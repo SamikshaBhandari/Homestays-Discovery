@@ -115,6 +115,13 @@ header {
   padding: 60px 20px;
   text-align: center;
 }
+.Destination {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-top: 10px;
+}
 .Container h1 {
   color: rgb(6, 6, 6);
   font-weight: bold;
@@ -123,21 +130,116 @@ header {
 .Container p {
   font-size: 1.1rem;
   color: rgb(58, 57, 57);
-  margin-bottom: 40px;
+  margin-top: 10px;
 }
 .Container_text {
+  position: relative;
+  width: 300px;
+  height: 350px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-left: 15px;
+}
+.Container_text img:hover {
+  transform: translateY(-5px);
+}
+.Container_text img {
+  width: 100%;
+  height: 200px;
+  border-radius: 4px;
+}
+.Container_text a {
+  text-decoration: none;
+  color: rgb(2, 183, 255);
+}
+.Container_text a:hover {
+  text-decoration: underline;
+}
+.Container_text h3 {
+  margin-top: 10px;
+}
+.Container_text p {
+  margin: 5px;
+}
+.Container1 {
+  padding: 60px 20px;
+  text-align: center;
+}
+.Container1 h1 {
+  color: rgb(6, 6, 6);
+  font-weight: bold;
+  font-size: 2rem;
+}
+.Container1 p {
+  font-size: 1.1rem;
+  color: rgb(58, 57, 57);
+  margin-top: 10px;
+}
+.Featured_destination {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-top: 10px;
+}
+.Destination1 {
   background-color: white;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding: 15px;
-  width: 300px;
+  width: 400px;
   transition: transform 0.3s ease;
+  text-align: left;
 }
-.Container_text:hover {
+.Destination1 img:hover {
   transform: translateY(-5px);
 }
-.Container_text img {
-  height: 150px;
+.Destination1 p {
+  color: rgb(45, 44, 44);
+}
+.Destination1 img {
   width: 100%;
+  height: 200px;
   border-radius: 4px;
+}
+.home {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.homestays_name h3 {
+  margin: 5px;
+}
+.Destination1 p {
+  margin: 2px;
+}
+.price {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+.Rs p {
+  font-size: 14px;
+  color: rgb(34, 34, 34);
+}
+.reviews p {
+  font-size: 14px;
+  color: rgb(37, 37, 37);
+}
+.Destination1 button {
+  width: 70%;
+  height: 30px;
+  border-radius: 5px;
+  align-items: center;
+  text-align: center;
+  margin-left: 50px;
+  margin-top: 20px;
+  background-color: rgb(7, 180, 249);
+  border: 1px solid rgb(5, 179, 248);
+  color: white;
+}
+.Destination1 button:hover {
+  background-color: rgb(1, 135, 188);
 }
