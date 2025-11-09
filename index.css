@@ -14,8 +14,8 @@ header {
   overflow: hidden;
 }
 .image img {
-  height: 100px;
-  width: 120px;
+  height: 160px;
+  width: 170px;
 }
 .navigation {
   display: flex;
@@ -429,4 +429,78 @@ header {
 }
 .Explore_button button:hover {
   background-color: rgb(2, 147, 251);
+}
+footer {
+  background-color: rgb(18, 17, 17);
+}
+.main_section {
+  display: flex;
+  justify-content: space-around;
+  height: 200px;
+  overflow: hidden;
+}
+.media p {
+  color: white;
+  margin-top: -27px;
+}
+.media img {
+  height: 130px;
+  width: 40%;
+}
+.icons {
+  display: flex;
+  gap: 10px;
+  margin: 10px;
+}
+.icons button {
+  height: 20px;
+  width: 30px;
+  border-radius: 5px;
+  border: none;
+}
+.icons button:hover {
+  background-color: rgb(20, 159, 215);
+}
+.link {
+  margin: 20px;
+}
+.link h2 {
+  margin-bottom: 15px;
+  color: white;
+}
+.tags a {
+  display: block;
+  margin: 8px 0;
+  font-size: 16px;
+  color: white;
+  text-decoration: none;
+}
+.tags a:hover {
+  color: white;
+  text-decoration: underline;
+}
+.contact {
+  margin: 20px;
+}
+.contact h2 {
+  margin-bottom: 15px;
+  color: white;
+}
+.contact p {
+  font-size: 16px;
+  margin: 8px 0;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+.contact i {
+  margin-right: 10px;
+  font-size: 18px;
+  color: white;
+}
+.copyright p {
+  align-items: center;
+  text-align: center;
+  color: white;
+  margin: 10px;
 }
