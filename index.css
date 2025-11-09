@@ -383,10 +383,10 @@ header {
   margin-top: 20px;
   background: linear-gradient(
       to bottom,
-      rgba(10, 25, 47, 0.9),
+      rgba(10, 25, 45, 0.3),
       rgba(0, 0, 0, 0.2)
     ),
-    url("images/image.png");
+    url("images/Place.jpg");
   background-size: cover;
   background-position: center;
   border-radius: none;
