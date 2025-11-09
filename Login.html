@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+    <style>
+        * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(213, 211, 208);
+}
+.container1 {
+  width: 420px;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0px 0px 10px 0px rgba(2, 2, 2, 0.1);
+  border-radius: 8px;
+}
+.images {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.images img {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+}
+.container2 h1 {
+  font-size: 22px;
+  text-align: center;
+  color: rgb(36, 35, 35);
+}
+.container2 p {
+  text-align: center;
+  color: rgb(35, 34, 34);
+}
+.main-box {
+  margin-top: 20px;
+}
+.main-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.main-box label {
+  font-size: 16px;
+  color: rgb(12, 12, 12);
+  font-weight: normal;
+}
+.main-box input {
+  padding: 10px;
+  border: 1px solid rgb(189, 187, 187);
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%;
+}
+.container3 i {
+  position: absolute;
+  color: gray;
+  margin-left: 10px;
+  margin-top: 12px;
+}
+.container3 input {
+  padding-left: 30px;
+}
+.container4 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+.Boxes {
+  display: flex;
+  gap: 10px;
+}
+.Forgot a {
+  text-decoration: none;
+  color: rgb(9, 107, 245);
+  font-size: 16px;
+}
+.Forgot a:hover {
+  text-decoration: underline;
+}
+.signup {
+  width: 100%;
+  padding: 10px;
+  background-color: rgb(11, 141, 240);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.signup a {
+  text-decoration: none;
+  color: white;
+  display: block;
+  text-align: center;
+}
+.signup a:hover {
+  text-decoration: underline;
+}
+.container5 {
+  text-align: center;
+  margin-top: 20px;
+}
+.container5 p {
+  font-size: 16px;
+  color: rgb(44, 43, 43);
+}
+.container5 a {
+  text-decoration: none;
+  color: rgb(9, 107, 245);
+}
+.container5 a:hover {
+  text-decoration: underline;
+}
+    </style>
+  </head>
+  <body>
+     <div class="container"id="login_btn">
+      <div class="container1">
+        <div class="images">
+          <img src="Images/nature.jpg" />
+        </div>
+        <div class="container2">
+          <h1>Welcome Back</h1>
+          <p>Login to your account</p>
+        </div>
+        <div class="main-box">
+    <form>
+            <label for="Email">Email Address</label><br />
+            <div class="container3">
+              <i class="fa-regular fa-envelope"></i>
+              <input type="text" name="Email" placeholder="Enter your email" />
+            </div>
+        
+          <br />
+            <label for="password">Password</label><br />
+            <div class="container3">
+              <i class="fa-solid fa-lock"></i>
+              <input
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+              />
+            </div>
+          <div class="container4">
+          <div class="Boxes">
+            <div class="Privacy1"><input type="checkbox" /></div>
+              <div class="privacy2">Remember Me</div>
+          </div>
+            <div class="Forgot"><a href="#">Forget your password ?</a></div>
+          </div>
+          <div class="signup">
+            <a href="#">Login</a>
+          </div>
+        </div>
+    <div class="container5">
+        <p>Don't have an account? <a href="Signup.html">Sign up here</a></p>
+    </div>  
+</form>
+      </div>
+    </div>
+
+  </body>
+</html>
