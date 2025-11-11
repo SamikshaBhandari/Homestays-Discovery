@@ -24,6 +24,9 @@
       text-align: center;
       justify-content: space-around;
       overflow: hidden;
+      position: fixed;
+      top: 0;
+      z-index: 10;
     }
     .image img {
       height: 160px;
@@ -48,12 +51,11 @@
       margin-bottom: 10px;
     }
     .login {
-      border: 1px solid rgb(70, 187, 234);
+      border: 1px solid rgb(30, 140, 243);
       border-radius: 5px;
       height: 30px;
       width: 80px;
       display: flex;
-      /* background-color: rgb(39, 183, 240); */
       align-items: center;
       justify-content: center;
       transition: background-color 0.3s ease;
@@ -63,7 +65,7 @@
       color: rgb(5, 5, 5);
     }
     .Sign {
-      border: 1px solid rgb(63, 194, 246);
+      border: 1px solid rgb(30, 140, 243);
       border-radius: 5px;
       height: 30px;
       width: 80px;
@@ -78,7 +80,7 @@
     }
     .login:hover,
     .Sign:hover {
-      background-color: rgb(13, 175, 239);
+      background-color: rgb(32, 13, 239);
       cursor: pointer;
     }
     .login a:hover,
@@ -86,11 +88,11 @@
       color: white;
     }
     .hero {
+      margin-top: 70px;
       height: 350px;
-      position: relative;
       text-align: center;
       align-items: center;
-      padding: 100px 20px;
+      padding:100px 20px 80px;
       background: linear-gradient(
           to bottom,
           rgba(10, 25, 47, 0.3),
@@ -99,6 +101,7 @@
         url("images/background image.png");
       background-size: cover;
       background-position: bottom;
+      
     }
     .hero h1 {
       font-size: 3rem;
@@ -155,7 +158,7 @@
 .Container_text {
   position: relative;
   width: 300px;
-  height: 300px;
+  height: 400px;
   background: white;
   border-radius: 12px;
   overflow: hidden;
@@ -171,7 +174,13 @@
 }
 .Container_text a {
   text-decoration: none;
-  color: rgb(2, 183, 255);
+  color: rgb(25, 66, 247);
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.Container_text i{
+  font-size: medium;
 }
 .Container_text a:hover {
   text-decoration: underline;
@@ -211,7 +220,7 @@ footer {
   border: none;
 }
 .icons button:hover {
-  background-color: rgb(20, 159, 215);
+  background-color: rgb(20, 69, 215);
 }
 .link {
   margin: 20px;
@@ -256,7 +265,36 @@ footer {
   color: white;
   margin: 10px;
 }
-
+.place_details{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.category_type,.nature_type{
+  margin: 5px;
+  border-radius: 8px;
+  background-color: rgb(209, 228, 236);
+  width: 80px;
+  height: 25px;
+  text-align: center;
+  align-items: center;
+}
+.nepal_side{
+  color:rgb(9, 57, 248);
+  font-weight: bold;
+}
+.category_type,.nature_type a{
+  text-decoration: none;
+}
+.main_type{
+  display: flex;
+  justify-content: space-around;
+}
+.main_type a{
+  font-size: 16px;
+  font-weight: normal;
+  color:rgb(6, 66, 245);
+}
   </style>
   <body>
     <header>
@@ -313,47 +351,76 @@ footer {
         <div class="Container_text">
           <img src="images/mundum trail.webp" />
           <h3>Mundum Trail</h3>
-          <p>Eastern Nepal</p>
-          <a href="#">2 Homestays Available</a>
+          <p>Explore the breathtaking beauty of Bhojpur with stunning nature view.Perfect for trekking</p>
+          <div class="place_details">
+            <div class="nepal_side">
+            <p>Eastern Nepal</p>
+            </div>
+            <div class="main_type">
+            <div class="category_type">
+              <a href="#">Advanture</a>
+            </div>
+            <div class="nature_type">
+              <a href="#">Nature</a>
+            </div>
+            </div>
+          </div>
+          <a href="#">View homestays <i class="fa-solid fa-arrow-right"></i></a>
         </div>
         <div class="Container_text">
-          <img src="images/pokhara Vally.webp" />
-          <h3>Pokhara Vally</h3>
-          <p>Western Nepal</p>
-          <a href="#">3 Homestays Available</a>
-        </div>
-        <div class="Container_text">
-          <img src="images/Boudha.webp" />
-          <h3>Boudha Stupa</h3>
-          <p>Central Nepal</p>
-          <a href="#">4 Homestays Available</a>
-        </div>
-        <div class="Container_text">
-          <img src="images/western-nepal.jpg" />
-          <h3>Upper Mustang</h3>
-          <p>Western Nepal</p>
-          <a href="#">2 Homestays Available</a>
-        </div>
-        <div class="Container_text">
-          <img src="images/Boudha.webp" />
-          <h3>Boudha Stupa</h3>
-          <p>Central Nepal</p>
-          <a href="#">4 Homestays Available</a>
+          <img src="images/mundum trail.webp" />
+          <h3>Mundum Trail</h3>
+          <p>Explore the breathtaking beauty of Bhojpur with stunning nature view.Perfect for trekking</p>
+          <div class="place_details">
+            <div class="nepal_side">
+            <p>Eastern Nepal</p>
+            </div>
+            <div class="main_type">
+            <div class="category_type">
+              <a href="#">Advanture</a>
+            </div>
+            <div class="nature_type">
+              <a href="#">Nature</a>
+            </div>
+            </div>
+          </div>
+          <a href="#">View homestays <i class="fa-solid fa-arrow-right"></i></a>
         </div><div class="Container_text">
-          <img src="images/Boudha.webp" />
-          <h3>Boudha Stupa</h3>
-          <p>Central Nepal</p>
-          <a href="#">4 Homestays Available</a>
+          <img src="images/mundum trail.webp" />
+          <h3>Mundum Trail</h3>
+          <p>Explore the breathtaking beauty of Bhojpur with stunning nature view.Perfect for trekking</p>
+          <div class="place_details">
+            <div class="nepal_side">
+            <p>Eastern Nepal</p>
+            </div>
+            <div class="main_type">
+            <div class="category_type">
+              <a href="#">Advanture</a>
+            </div>
+            <div class="nature_type">
+              <a href="#">Nature</a>
+            </div>
+            </div>
+          </div>
+          <a href="#">View homestays <i class="fa-solid fa-arrow-right"></i></a>
         </div><div class="Container_text">
-          <img src="images/Boudha.webp" />
-          <h3>Boudha Stupa</h3>
-          <p>Central Nepal</p>
-          <a href="#">4 Homestays Available</a>
-        </div><div class="Container_text">
-          <img src="images/Boudha.webp" />
-          <h3>Boudha Stupa</h3>
-          <p>Central Nepal</p>
-          <a href="#">4 Homestays Available</a>
+          <img src="images/mundum trail.webp" />
+          <h3>Mundum Trail</h3>
+          <p>Explore the breathtaking beauty of Bhojpur with stunning nature view.Perfect for trekking</p>
+          <div class="place_details">
+            <div class="nepal_side">
+            <p>Eastern Nepal</p>
+            </div>
+            <div class="main_type">
+            <div class="category_type">
+              <a href="#">Advanture</a>
+            </div>
+            <div class="nature_type">
+              <a href="#">Nature</a>
+            </div>
+            </div>
+          </div>
+          <a href="#">View homestays <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </div>
     </div>
