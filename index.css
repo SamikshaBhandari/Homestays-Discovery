@@ -12,6 +12,9 @@ header {
   text-align: center;
   justify-content: space-around;
   overflow: hidden;
+  position: fixed;
+  top: 0;
+  z-index: 10;
 }
 .image img {
   height: 160px;
@@ -36,12 +39,11 @@ header {
   margin-bottom: 10px;
 }
 .login {
-  border: 1px solid rgb(70, 187, 234);
+  border: 1px solid rgb(30, 140, 243);
   border-radius: 5px;
   height: 30px;
   width: 80px;
   display: flex;
-  /* background-color: rgb(39, 183, 240); */
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s ease;
@@ -51,7 +53,7 @@ header {
   color: rgb(5, 5, 5);
 }
 .Sign {
-  border: 1px solid rgb(63, 194, 246);
+  border: 1px solid rgb(30, 140, 243);
   border-radius: 5px;
   height: 30px;
   width: 80px;
@@ -66,7 +68,7 @@ header {
 }
 .login:hover,
 .Sign:hover {
-  background-color: rgb(13, 175, 239);
+  background-color: rgb(32, 13, 239);
   cursor: pointer;
 }
 .login a:hover,
@@ -78,7 +80,8 @@ header {
   position: relative;
   text-align: center;
   align-items: center;
-  padding: 80px 20px;
+  padding: 150px 20px 80px;
+  margin-top: 70px;
   background: linear-gradient(
       to bottom,
       rgba(10, 25, 47, 0.3),
@@ -102,13 +105,13 @@ header {
   margin: 10px;
   padding: 10px 20px;
   border: none;
-  background-color: rgb(12, 119, 220);
+  background-color: rgb(13, 51, 243);
   color: rgb(252, 250, 250);
   border-radius: 4px;
   cursor: pointer;
 }
 .action-buttons button:hover {
-  background-color: rgb(2, 144, 253);
+  background-color: rgb(35, 49, 248);
   color: rgb(253, 251, 251);
 }
 .Container {
@@ -151,7 +154,7 @@ header {
 }
 .Container_text a {
   text-decoration: none;
-  color: rgb(2, 183, 255);
+  color: rgb(25, 66, 247);
 }
 .Container_text a:hover {
   text-decoration: underline;
@@ -236,12 +239,12 @@ header {
   text-align: center;
   margin-left: 50px;
   margin-top: 20px;
-  background-color: rgb(7, 180, 249);
-  border: 1px solid rgb(5, 179, 248);
+  background-color: rgb(15, 49, 237);
+  border: 1px solid rgb(5, 54, 248);
   color: white;
 }
 .Destination1 button:hover {
-  background-color: rgb(1, 135, 188);
+  background-color: rgb(31, 59, 201);
 }
 .featured {
   padding: 80px 20px;
@@ -372,11 +375,11 @@ header {
 }
 .place a {
   text-decoration: none;
-  color: rgb(7, 148, 249);
+  color: rgb(2, 69, 255);
 }
 .place a:hover {
   text-decoration: underline;
-  color: rgb(3, 144, 251);
+  color: rgb(36, 64, 222);
 }
 .explore {
   height: 400px;
@@ -406,7 +409,7 @@ header {
 }
 .explore1 a {
   padding: 10px 20px;
-  background-color: rgb(51, 134, 211);
+  background-color: rgb(38, 58, 235);
   color: white;
   border: none;
   border-radius: 4px;
@@ -415,20 +418,20 @@ header {
   text-decoration: none;
 }
 .explore1 a:hover {
-  background-color: rgb(3, 144, 252);
+  background-color: rgb(7, 3, 252);
 }
 .Explore_button button {
   margin: 5px;
   padding: 10px 20px;
   border: none;
-  background-color: rgb(7, 170, 245);
+  background-color: rgb(5, 75, 251);
   color: rgb(252, 250, 250);
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
 }
 .Explore_button button:hover {
-  background-color: rgb(2, 147, 251);
+  background-color: rgb(2, 43, 251);
 }
 footer {
   background-color: rgb(18, 17, 17);
@@ -459,7 +462,7 @@ footer {
   border: none;
 }
 .icons button:hover {
-  background-color: rgb(20, 159, 215);
+  background-color: rgb(21, 65, 244);
 }
 .link {
   margin: 20px;
