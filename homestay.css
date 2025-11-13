@@ -131,7 +131,7 @@ header {
   justify-content: center;
   flex-wrap: wrap;
   gap: 25px;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 .Container h1 {
   color: rgb(6, 6, 6);
@@ -195,6 +195,7 @@ header {
 .nepal_side {
   color: rgb(88, 87, 87);
   font-weight: normal;
+  margin: 10px;
 }
 .network,
 .category_type,
