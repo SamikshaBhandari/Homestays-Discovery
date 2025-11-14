@@ -112,10 +112,11 @@
         color: white;
       }
       .Box1 {
-        background-color: rgb(212, 211, 211);
+        background-color: rgb(255, 254, 254);
         margin-top: 20px;
         display: flex;
         justify-content: center;
+        gap: 30px;
       }
       .box3 {
         display: flex;
@@ -133,6 +134,19 @@
       }
       .box5 p {
         color: rgb(44, 44, 44);
+      }
+      .Container1 {
+        background-color: rgb(213, 210, 210);
+        box-shadow: 0px 0px 10px 0px rgba(2, 2, 2, 0.1);
+        border-radius: 10px;
+        height: 250px;
+        width: 40%;
+      }
+      .detail {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        gap: 30px;
       }
     </style>
   </head>
@@ -198,6 +212,22 @@
             <p>Homestay11@gmail.com</p>
           </div>
         </div>
+      </div>
+
+      <div class="Container1">
+        <h1>Send us a Message</h1>
+        <form>
+          <div class="detail">
+            <div class="name">
+              <label for="name">Full Name *</label><br />
+              <input type="text" placeholder="Your full name" />
+            </div>
+            <div class="email">
+              <label for="email">Email Address *</label><br />
+              <input type="text" placeholder="Enter your email" />
+            </div>
+          </div>
+        </form>
       </div>
     </section>
   </body>
