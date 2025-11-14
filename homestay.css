@@ -191,17 +191,24 @@ header {
   height: 25px;
   text-align: center;
   align-items: center;
+  padding: 4px;
 }
 .nepal_side {
   color: rgb(88, 87, 87);
   font-weight: normal;
   margin: 10px;
 }
-.network,
-.category_type,
+.network a,
+.category_type a,
 .nature_type a {
   text-decoration: none;
 }
+.network a:hover,
+.category_type a:hover,
+.nature_type a:hover {
+  text-decoration: none;
+}
+
 .main_type {
   display: flex;
   justify-content: space-between;
