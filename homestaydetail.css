@@ -12,9 +12,6 @@ header {
   text-align: center;
   justify-content: space-around;
   overflow: hidden;
-  position: fixed;
-  top: 0;
-  z-index: 10;
 }
 .image img {
   height: 160px;
@@ -74,4 +71,32 @@ header {
 .login a:hover,
 .Sign a:hover {
   color: white;
+}
+.main_container {
+  background-color: rgb(252, 251, 249);
+  height: 100vh;
+  margin: 20px;
+}
+.main_container h1 {
+  align-items: center;
+  text-align: start;
+  margin: 20px;
+  padding: 20px;
+}
+.content {
+  display: flex;
+  justify-content: start;
+  gap: 30px;
+  padding: 20px;
+  margin-top: -50px;
+  margin-left: 20px;
+}
+.review p {
+  color: rgb(55, 55, 55);
+}
+.location p {
+  color: rgb(57, 56, 56);
+}
+.location p i {
+  color: gray;
 }
