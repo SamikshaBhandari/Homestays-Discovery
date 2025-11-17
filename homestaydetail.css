@@ -82,14 +82,15 @@ header {
   text-align: start;
   margin: 20px;
   padding: 20px;
+  margin-left: 70px;
 }
 .content {
   display: flex;
   justify-content: start;
-  gap: 30px;
+  gap: 20px;
   padding: 20px;
   margin-top: -50px;
-  margin-left: 20px;
+  margin-left: 70px;
 }
 .review p {
   color: rgb(55, 55, 55);
@@ -99,4 +100,96 @@ header {
 }
 .location p i {
   color: gray;
+}
+.image_section {
+  background-color: rgb(214, 214, 213);
+  height: 510px;
+  width: 50%;
+  border-radius: 10px;
+}
+.main_img img:hover {
+  transform: translateY(-1px);
+  border: 3px solid rgb(100, 149, 238);
+}
+.img1 img {
+  width: 100%;
+  height: 360px;
+  border-radius: 10px;
+}
+.main_img {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.main_img img {
+  height: 140px;
+  width: 100%;
+  border-radius: 5px;
+}
+.reserve_box {
+  background-color: white(238, 239, 240);
+  height: 300px;
+  width: 25%;
+  box-shadow: 0px 0px 10px 0px rgba(2, 2, 2, 0.1);
+  border-radius: 10px;
+}
+.checking {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  margin-top: 20px;
+  gap: 70px;
+}
+.Box1 p,
+.Box2 p {
+  font-weight: bold;
+  font-size: 20px;
+}
+.check_detail {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  gap: 10px;
+}
+.check_detail label {
+  font-weight: bold;
+}
+.check_detail input {
+  border-radius: 5px;
+  border: 1px solid gray;
+  height: 30px;
+  width: 130%;
+}
+.Guests {
+  text-align: start;
+  margin-left: 40px;
+}
+.Guests label {
+  font-weight: bold;
+}
+.Guests select {
+  border-radius: 5px;
+  height: 30px;
+  width: 80%;
+  border: 1px solid gray;
+}
+.reserve_btn {
+  text-align: center;
+  margin: 20px;
+}
+.reserve_btn button {
+  width: 90%;
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(43, 104, 217);
+  color: white;
+  height: 30px;
+  margin-top: 20px;
+}
+.reserve_btn button:hover {
+  background-color: blue;
+}
+.main_box {
+  display: flex;
+  justify-content: space-around;
 }
