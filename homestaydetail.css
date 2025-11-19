@@ -193,3 +193,21 @@ header {
   display: flex;
   justify-content: space-around;
 }
+.text_box {
+  background-color: rgb(233, 231, 231);
+  width: 50%;
+  margin-left: 90px;
+}
+.text1 h1 {
+  text-align: start;
+  align-items: start;
+  margin-left: -10px;
+}
+.text1 p {
+  text-align: start;
+  align-items: center;
+  margin-top: -30px;
+  margin-left: 10px;
+  font-size: 16px;
+  color: rgb(34, 34, 34);
+}
