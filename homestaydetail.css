@@ -194,9 +194,10 @@ header {
   justify-content: space-around;
 }
 .text_box {
-  background-color: rgb(233, 231, 231);
+  background-color: rgb(253, 252, 252);
   width: 50%;
   margin-left: 90px;
+  height: 100vh;
 }
 .text1 h1 {
   text-align: start;
@@ -210,4 +211,19 @@ header {
   margin-left: 10px;
   font-size: 16px;
   color: rgb(34, 34, 34);
+}
+.facilities h1 {
+  text-align: start;
+  align-items: center;
+  margin-left: -10px;
+  margin-top: -10px;
+}
+.facilities_content {
+  display: flex;
+  justify-content: space-around;
+  gap: 70px;
+  margin-top: 20px;
+}
+.facilities_content i {
+  color: green;
 }
