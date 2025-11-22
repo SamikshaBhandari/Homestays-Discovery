@@ -199,55 +199,66 @@ header {
   margin-left: 90px;
   height: 100vh;
 }
-.text1 h1 {
+.text1 h2 {
   text-align: start;
   align-items: start;
-  margin-left: -10px;
+  margin-top: 30px;
+  margin-left: 10px;
 }
 .text1 p {
   text-align: start;
   align-items: center;
-  margin-top: -30px;
+  margin-top: 10px;
   margin-left: 10px;
   font-size: 16px;
   color: rgb(34, 34, 34);
 }
-.facilities h1 {
+.facilities h2 {
   text-align: start;
   align-items: center;
-  margin-left: -10px;
-  margin-top: -10px;
+  margin-left: 10px;
+  margin-top: 10px;
+  color: black;
 }
 .facilities_content {
   display: flex;
   justify-content: space-around;
   gap: 70px;
   margin-top: 20px;
+  margin-left: -20px;
 }
 .facilities_content i {
   color: green;
+  font-size: 18px;
 }
-.available_room h1 {
+.available_room h2 {
   margin-top: 10px;
   text-align: start;
   align-items: center;
-  margin-left: -10px;
+  margin-left: 10px;
+  color: black;
 }
 .Room_box {
   border: 1px solid gray;
   border-radius: 5px;
   height: 70px;
-  margin-top: -20px;
+  margin-top: 20px;
   margin-left: 10px;
 }
 .Room_box p {
   font-size: 20px;
   margin-left: 10px;
+  color: rgb(33, 33, 33);
 }
 .Room_No {
   display: flex;
   justify-content: space-around;
   margin-top: 20px;
+  margin-left: -10px;
+}
+.Room_No p {
+  display: flex;
+  gap: 5px;
 }
 .room1 p {
   color: rgb(63, 63, 63);
@@ -255,4 +266,6 @@ header {
 }
 .room1 i {
   font-size: small;
+  color: gray;
+  margin-left: 5px;
 }
