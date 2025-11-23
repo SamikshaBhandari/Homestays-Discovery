@@ -12,6 +12,9 @@ header {
   text-align: center;
   justify-content: space-around;
   overflow: hidden;
+  position: fixed;
+  z-index: 5;
+  top: 0;
 }
 .image img {
   height: 160px;
@@ -73,9 +76,9 @@ header {
   color: white;
 }
 .main_container {
-  background-color: rgb(252, 251, 249);
+  background-color: white;
   height: 100vh;
-  margin: 20px;
+  margin-top: 70px;
 }
 .main_container h1 {
   align-items: center;
@@ -129,7 +132,7 @@ header {
 .reserve_box {
   background-color: white(238, 239, 240);
   height: 350px;
-  width: 25%;
+  width: 30%;
   box-shadow: 0px 0px 10px 0px rgba(2, 2, 2, 0.1);
   border-radius: 10px;
 }
@@ -164,7 +167,7 @@ header {
 }
 .Guests {
   text-align: start;
-  margin-left: 40px;
+  margin-left: 60px;
   margin-top: 20px;
 }
 .Guests label {
@@ -278,4 +281,79 @@ header {
   font-size: small;
   color: gray;
   margin-left: 5px;
+}
+footer {
+  background-color: rgb(18, 17, 17);
+  margin-top: 30%;
+}
+.main_section {
+  display: flex;
+  justify-content: space-around;
+  height: 200px;
+  overflow: hidden;
+}
+.media p {
+  color: white;
+  margin-top: -27px;
+}
+.media img {
+  height: 130px;
+  width: 40%;
+}
+.icons {
+  display: flex;
+  gap: 10px;
+  margin: 10px;
+}
+.icons button {
+  height: 20px;
+  width: 30px;
+  border-radius: 5px;
+  border: none;
+}
+.icons button:hover {
+  background-color: rgb(20, 159, 215);
+}
+.link {
+  margin: 20px;
+}
+.link h2 {
+  margin-bottom: 15px;
+  color: white;
+}
+.tags a {
+  display: block;
+  margin: 8px 0;
+  font-size: 16px;
+  color: white;
+  text-decoration: none;
+}
+.tags a:hover {
+  color: white;
+  text-decoration: underline;
+}
+.contact {
+  margin: 20px;
+}
+.contact h2 {
+  margin-bottom: 15px;
+  color: white;
+}
+.contact p {
+  font-size: 16px;
+  margin: 8px 0;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+.contact i {
+  margin-right: 10px;
+  font-size: 18px;
+  color: white;
+}
+.copyright p {
+  align-items: center;
+  text-align: center;
+  color: white;
+  margin: 10px;
 }
