@@ -81,7 +81,8 @@ header {
   padding: 20px;
   font-size: large;
   width: 100%;
-  height: 250px;
+  height: 100vh;
+  background-color: whitesmoke;
 }
 .Reserve_box a {
   text-decoration: none;
@@ -95,4 +96,104 @@ header {
 .Reserve_box h3 {
   margin-top: 5px;
   padding: 20px;
+}
+.Reserve_box1 {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  margin-top: 20px;
+}
+.reserve_form {
+  display: flex;
+  width: 45%;
+  height: 550px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0px 0px 10px 0px rgba(2, 2, 2, 0.1);
+  align-items: start;
+  justify-content: start;
+}
+.Book_detl {
+  display: flex;
+  justify-content: start;
+  gap: 50px;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+.Book_detl input {
+  height: 30px;
+  width: 250px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+.Book_detl label {
+  font-size: medium;
+}
+.noofguest {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.noofguest label {
+  font-size: medium;
+}
+.noofguest input {
+  height: 30px;
+  width: 250px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+.your_info {
+  display: flex;
+  justify-content: start;
+  gap: 50px;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+.your_info input {
+  height: 30px;
+  width: 250px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+.your_info label {
+  font-size: medium;
+}
+.phone {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.phone label {
+  font-size: medium;
+}
+.phone input {
+  height: 30px;
+  width: 250px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+.policy p {
+  font-size: medium;
+  margin-left: 20px;
+  margin-top: 20px;
+  width: 600px;
+  border-radius: 5px;
+  background-color: rgb(204, 213, 207);
+  align-items: center;
+  height: 40px;
+}
+.confirm {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.confirm a button {
+  height: 30px;
+  width: 90%;
+  background-color: rgb(8, 8, 251);
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+.confirm a button:hover {
+  background-color: rgb(3, 3, 190);
+  cursor: pointer;
 }
