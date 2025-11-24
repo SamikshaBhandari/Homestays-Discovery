@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Booking</title>
+    <link rel="stylesheet" href="booking.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="image">
+        <img src="images/logo.png" />
+      </div>
+      <div class="navigation">
+        <a href="index.html">Home</a>
+        <a href="Destination.html">Destination</a>
+        <a href="Homestay.html">Homestays</a>
+        <a href="Contact.html">Contact</a>
+      </div>
+      <div class="Login_container">
+        <div class="login">
+          <a href="Login.html">Login</a>
+        </div>
+        <div class="Sign">
+          <a href="Signup.html">Sign Up</a>
+        </div>
+      </div>
+    </header>
+    <section class="Reserve_box">
+      <a href="#"><i class="fa-solid fa-arrow-left"></i>Back</a>
+      <h3>Complete your booking</h3>
+      <div class="Reserve_box1">
+        <div class="reserve_form">
+          <form>
+            <h1>Booking Details</h1>
+            <div class="Book_detl">
+              <div class="Check_in">
+              <label for="checkin">Check-in Date *</label><br/>
+              <input type="date" id="checkin" name="checkin"/>
+              </div>  
+          <div class="nights">
+            <label for="nights">Number of Nights *</label><br/>
+              <input type="number" id="nights" name="nights" />
+          </div>
+            </div>
+            <div class="noofguest">
+              <label for="guest">Number of Guests *</label><br/>
+              <input type="number"id="guest"name="guest" placeholder="Number of Guests"/>
+            </div>
+            <h1>Your Information</h1>
+            <div class="your_info">
+              <div class="full_name">
+                <label for="fname">Full Name *</label><br/>
+                <input type="text"Name="name"placeholder="Full name"/>
+              </div>
+              <div class="Email">
+                <label for="email">Email Address *</label><br/>
+                <input type="text"Name="lname"placeholder="Last name"/>
+              </div>
+            </div>
+            <div class="phone">
+              <label for="phone">Phone Number *</label><br/>
+              <input type="tel"id="phone"placeholder="Phone Number"/>
+            </div>
+            <div class="policy">
+              <p>Booking Policy:Your booking will be confirmed within 24 hours. 
+                Cancellations made 7 days before check-in are eligible for full refund.</p>
+            </div>
+            <div class="confirm">
+              <a href="#"><button><i class="fa-solid fa-check"></i>Confirm Booking</button></a>
+            </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
