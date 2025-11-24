@@ -115,12 +115,17 @@ header {
   align-items: start;
   justify-content: start;
 }
+.reserve_form h3 {
+  margin-left: 5px;
+  margin-top: 20px;
+}
 .Book_detl {
   display: flex;
   justify-content: start;
   gap: 50px;
   margin-left: 20px;
   margin-top: 5px;
+  flex-wrap: wrap;
 }
 .Book_detl input {
   height: 30px;
@@ -196,7 +201,7 @@ header {
 }
 .confirm-btn {
   height: 40px;
-  width: 500px;
+  width: 80%;
   background-color: rgb(8, 8, 251);
   color: white;
   border: none;
@@ -253,12 +258,11 @@ header {
   font-weight: bold;
 }
 .Secure {
-  margin-left: 20px;
   margin-top: 20px;
   background-color: rgb(202, 221, 202);
   color: green;
   height: 30px;
-  width: 150px;
+  width: 100%;
   border: none;
   border-radius: 5px;
   display: flex;
