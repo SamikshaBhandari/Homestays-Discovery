@@ -12,9 +12,9 @@ header {
   text-align: center;
   justify-content: space-around;
   overflow: hidden;
-  position: fixed;
+  /* position: fixed;
   z-index: 5;
-  top: 0;
+  top: 0; */
 }
 .image img {
   height: 160px;
@@ -74,4 +74,87 @@ header {
 .login a:hover,
 .Sign a:hover {
   color: white;
+}
+.Booking_box {
+  max-width: 800px;
+  margin: auto;
+  margin-top: 50px;
+}
+.Booking h2,
+.Booking p {
+  margin-bottom: 20px;
+  align-items: center;
+}
+.tabs {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  background-color: #f0f0f0;
+  padding: 8px;
+  border-radius: 30px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tab_s {
+  padding: 10px 30px;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: transparent;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: gray;
+}
+
+.tab_s:hover {
+  background-color: whitesmoke;
+}
+
+.tab {
+  padding: 10px 30px;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  background-color: rgb(0, 140, 255);
+  color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.main_section {
+  margin-top: 50px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.main_section h3 {
+  margin-bottom: 20px;
+  align-items: center;
+}
+.Images img {
+  width: 80%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+.check_clas {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+.check_clas label {
+  font-size: 14px;
+  color: rgb(79, 78, 78);
+  margin-bottom: 5px;
+}
+.Booked_time p {
+  font-size: 16px;
+  color: rgb(7, 7, 7);
+  margin-bottom: 5px;
+  margin-top: 20px;
 }
