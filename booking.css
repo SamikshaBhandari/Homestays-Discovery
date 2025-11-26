@@ -221,15 +221,21 @@ header {
   box-shadow: 0px 0px 10px 0px rgba(2, 2, 2, 0.1);
   border-radius: 5px;
 }
+.booking_summary h3 {
+  margin-left: 10px;
+  margin-top: 20px;
+}
 .booking_img img {
   height: 200px;
   width: 95%;
+  object-fit: cover;
+  display: block;
   border-radius: 5px;
   margin-top: -10px;
   margin-left: 10px;
 }
 .homes_name h3 {
-  margin-left: start;
+  margin-left: 10px;
   margin-top: -10px;
   color: rgb(7, 7, 7);
 }
