@@ -141,7 +141,7 @@ header {
   height: 150px;
   object-fit: cover;
   border-radius: 10px;
-  margin-top: -20px;
+  margin-top: -40px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 .check_clas {
@@ -162,7 +162,7 @@ header {
 }
 .time_travel {
   display: flex;
-  gap: 80px;
+  gap: 10px;
 }
 .view_section {
   margin-top: 30px;
@@ -201,15 +201,15 @@ header {
   border: 1px solid rgb(0, 140, 255);
   border-radius: 5px;
   height: 30px;
-  width: 200%;
+  width: 220px;
   cursor: pointer;
-  flex: 1;
+  flex: none;
 }
 .message_btn {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 150px;
+  width: 220px;
 }
 .Message button {
   background-color: white;
@@ -218,7 +218,7 @@ header {
   height: 30px;
   width: 90%;
   cursor: pointer;
-  flex: 1;
+  flex: none;
   margin-left: 100px;
 }
 .Cancel button {
