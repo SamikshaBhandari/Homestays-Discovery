@@ -61,10 +61,11 @@
   position: absolute;
   color: gray;
   margin-left: 10px;
-  margin-top: 12px;
+  margin-top: 20px;
 }
 .container3 input {
   padding-left: 30px;
+  margin-top: 10px;
 }
 .container4 {
   display: flex;
@@ -84,7 +85,7 @@
 .Forgot a:hover {
   text-decoration: underline;
 }
-.signup {
+.signup button {
   width: 100%;
   padding: 10px;
   background-color: rgb(11, 141, 240);
@@ -93,7 +94,7 @@
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 25px;
 }
 .signup a {
   text-decoration: none;
@@ -101,8 +102,9 @@
   display: block;
   text-align: center;
 }
-.signup a:hover {
+.signup button:hover {
   text-decoration: underline;
+  background-color: rgb(9, 107, 245);
 }
 .container5 {
   text-align: center;
