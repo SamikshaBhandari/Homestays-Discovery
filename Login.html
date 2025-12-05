@@ -11,7 +11,7 @@
     />
   </head>
   <body>
-     <div class="container"id="login_btn">
+     <div class="container">
       <div class="container1">
         <div class="images">
           <img src="Images/nature.jpg" />
@@ -21,13 +21,13 @@
           <p>Login to your account</p>
         </div>
         <div class="main-box">
-    <form>
+    <form id="login_form">
             <label for="Email">Email Address</label><br />
             <div class="container3">
               <i class="fa-regular fa-envelope"></i>
-              <input type="text" name="Email" placeholder="Enter your email" />
+              <input type="text" name="Email" id="email_box"placeholder="Enter your email" />
+              <p class="error"></p>
             </div>
-        
           <br />
             <label for="password">Password</label><br />
             <div class="container3">
@@ -35,8 +35,10 @@
               <input
                 type="password"
                 name="password"
+                id="password_input"
                 placeholder="Enter your password"
               />
+              <p class="error"></p>
             </div>
           <div class="container4">
           <div class="Boxes">
@@ -46,7 +48,7 @@
             <div class="Forgot"><a href="#">Forget your password ?</a></div>
           </div>
           <div class="signup">
-            <a href="#">Login</a>
+            <button type="submit"id="submit_btn">Login</button>
           </div>
         </div>
     <div class="container5">
@@ -95,5 +97,8 @@
         rights reserved.</p>
        </div>
     </footer>
+    
+
   </body>
+  <script src="javascriptfile/login.js"></script>
 </html>
