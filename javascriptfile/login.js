@@ -29,5 +29,5 @@ loginForm?.addEventListener('submit', function(e) {
     return;
   }
   alert("Login successful ");
-  window.location.href = "index.html";
+  window.location.href = "index1.html";
 });
