@@ -21,22 +21,25 @@
           <p>Create your account</p>
         </div>
         <div class="main-box">
-    <form>
+    <form id="signup_form"action="signup.php"method="POST">
       <div class="Name-section">
       <div class="first-name">
               <label for="name">First Name</label>
-              <input type="text"name="first"placeholder="First name">
+              <input type="text"name="first"id="fName"placeholder="First name">
+              <p class="error"></p>
       </div>
       <div class="last name">
         <label for="name">Last Name</label>
-        <input type="text"name="last"placeholder="Last name">
+        <input type="text"name="last"id="lName"placeholder="Last name">
+        <p class="error"></p>
       </div>
       </div>
       <br>
             <label for="Email">Email Address</label><br />
             <div class="container3">
               <i class="fa-regular fa-envelope"></i>
-              <input type="text" name="Email" placeholder="Enter your email" />
+              <input type="text" name="Email" id="Email_box"placeholder="Enter your email" />
+              <p class="error"></p>
             </div>
         
           <br />
@@ -46,22 +49,25 @@
               <input
                 type="password"
                 name="password"
+                id="password_box"
                 placeholder="Enter your password"
               />
+              <p class="error"></p>
             </div>
             <br>
             <label for="password">Confirm Password</label><br>
             <div class="container3">
                 <i class="fa-solid fa-lock"></i>
-                <input type="password"name="password"placeholder="Confirm password"/>            
-            </div>
+                <input type="password"name="password"id="cPassword"placeholder="Confirm password"/>            
+            <p class="error"></p>
+              </div>
 
           <div class="Privacy">
             <div class="Privacy1"><input type="checkbox" /></div>
               <div class="privacy2">I agree to the <a href="#">term of service</a> and <a href="#">Privacy policy</a></div>
           </div>
           <div class="signup">
-            <a href="#">Create Account</a>
+            <button type="submit">Create Account</button>
           </div>
         </div>
         
@@ -112,4 +118,5 @@
        </div>
     </footer>
   </body>
+  <script src="javascriptfile/signup.js"></script>
 </html>
