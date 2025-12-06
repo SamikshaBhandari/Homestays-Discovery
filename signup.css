@@ -66,10 +66,10 @@
 .container3 input {
   padding-left: 30px;
 }
-.signup {
+.signup button {
   width: 100%;
   padding: 10px;
-  background-color: rgb(11, 141, 240);
+  background-color: rgb(21, 135, 223);
   color: white;
   border: none;
   border-radius: 4px;
@@ -83,8 +83,9 @@
   display: block;
   text-align: center;
 }
-.signup a:hover {
+.signup button:hover {
   text-decoration: underline;
+  background-color: rgb(1, 113, 198);
 }
 .Name-section {
   display: flex;
