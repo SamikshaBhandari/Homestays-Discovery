@@ -7,7 +7,8 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
 
 loginForm?.addEventListener('submit', function(e) {
-  e.preventDefault();
+  e.preventDefault();   
+  let isValid = true; 
   if(emailRegex.test(emailInput.value)) {
     errorMessages[0].textContent = 'Valid email address';
     errorMessages[0].style.color = 'green';
@@ -16,7 +17,7 @@ loginForm?.addEventListener('submit', function(e) {
     errorMessages[0].textContent = 'Please enter a valid email address';
     errorMessages[0].style.color = 'red';
     emailInput.style.border = '1px solid red';
-    return;
+    isValid = false;
   }
   if(passwordRegex.test(passwordInput.value)) {
     errorMessages[1].textContent = 'Strong password';
@@ -26,8 +27,12 @@ loginForm?.addEventListener('submit', function(e) {
     errorMessages[1].textContent = 'Password must be at least 8 characters, include uppercase, lowercase, number, and special character';
     errorMessages[1].style.color = 'red';
     passwordInput.style.border = '1px solid red';
-    return;
+    isValid = false;
   }
-  alert("Login successful ");
-  window.location.href = "index1.html";
+  if(isValid){
+    alert("Login successful");
+    setTimeout(() => {
+  loginForm.submit();
+}, 100);
+  }
 });
