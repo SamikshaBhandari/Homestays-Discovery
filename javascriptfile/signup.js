@@ -12,7 +12,7 @@ const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
 
 signupForm?.addEventListener('submit', function(e) {
   e.preventDefault();
-  const isValid=true;
+  let isValid=true;
   if(!nameRegex.test(firstNameInput.value)){
     alert("First name should contain only letters and at least 2 characters");
     firstNameInput.style.border = "1px solid red";
