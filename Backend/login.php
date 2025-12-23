@@ -21,7 +21,7 @@ if (empty($email) || empty($password_input)) {
     exit();
 }
 $stmt = $conn->prepare(
-    "SELECT id, name, email, password, role, created_at
+    "SELECT user_id, name, email, password, role, created_at
      FROM users
      WHERE email = ?"
 );
@@ -31,7 +31,7 @@ $result = $stmt->get_result();
 if ($result->num_rows === 1) {
     $row = $result->fetch_assoc();
     if (password_verify($password_input, $row['password'])) {
-        $_SESSION['user_id']= $row['id'];
+        $_SESSION['user_id']= $row['user_id'];
         $_SESSION['name']= $row['name'];
         $_SESSION['email']= $row['email'];
         $_SESSION['role']= $row['role'];
