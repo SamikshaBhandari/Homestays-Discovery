@@ -50,15 +50,13 @@ bookingForm?.addEventListener('submit', function(e) {
         inputemail.style.border = '1px solid red';
         isValid = false;
     }
-
     if(phoneRegex.test(phoneInput.value)) {
         phoneInput.style.border = '1px solid green';
     } else {
-        alert("Please enter a valid 10-digit phone number (98/97...)");
+        alert("Please enter a valid 10-digit phone number");
         phoneInput.style.border = '1px solid red';
         isValid = false;
     }
-
     if(checkinInput.value === "") {
         alert("Please select a check-in date");
         checkinInput.style.border = '1px solid red';
@@ -66,7 +64,6 @@ bookingForm?.addEventListener('submit', function(e) {
     } else {
         checkinInput.style.border = '1px solid green';
     }
-
     if(isValid){
         alert("Booking details are valid! Redirecting...");
         setTimeout(() => {
