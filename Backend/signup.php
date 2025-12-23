@@ -1,48 +1,43 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "hms";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-if($conn->connect_error){
-    die("Connection failed: " . $conn->connect_error);
-}
-$first = isset($_POST["first"]) ? trim($_POST["first"]) : "";
-$last = isset($_POST["last"]) ? trim($_POST["last"]) : "";
-$name = $first . " " . $last;
-$email = isset($_POST["Email"]) ? trim($_POST["Email"]) : "";
-$password = isset($_POST["password"]) ? trim($_POST["password"]) : "";
-$cpassword = isset($_POST["cpassword"]) ? trim($_POST["cpassword"]) : "";
-$role = "user"; 
-
-if(empty($first) || empty($last) || empty($email) || empty($password) || empty($cpassword)){
-    echo "Please fill in all fields.";
-    exit();
-}
-if($password !== $cpassword){
-    echo "Passwords do not match.";
-    exit();
-}
-$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-$stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
-$stmt->bind_param("s", $email);
-$stmt->execute();
-$result = $stmt->get_result();
-
-if($result->num_rows > 0){
-    echo "This email is already registered. Please login.";
-} else {
-    $stmt = $conn->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $name, $email, $hashedPassword, $role);
-
-    if($stmt->execute()){
-        header("Location: Login.html");
+include 'databaseconnection.php';
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $first = isset($_POST["first"]) ? trim($_POST["first"]) : "";
+    $last  = isset($_POST["last"]) ? trim($_POST["last"]) : "";
+    $name  = $first . " " . $last; 
+    $email = isset($_POST["Email"]) ? trim($_POST["Email"]) : "";
+    $pass  = isset($_POST["password"]) ? trim($_POST["password"]) : "";
+    $cpass = isset($_POST["cpassword"]) ? trim($_POST["cpassword"]) : "";
+    $role  = "user";
+    if(empty($first) || empty($last) || empty($email) || empty($pass) || empty($cpass)){
+        echo "<script>alert('Sabai fields bharnu hola!'); window.history.back();</script>";
         exit();
-    } else {
-        echo "Error: " . $stmt->error;
     }
+    if($pass !== $cpass){
+        echo "<script>alert('Passwords do not match!'); window.history.back();</script>";
+        exit();
+    }
+
+    $hashedPassword = password_hash($pass, PASSWORD_DEFAULT);
+    $checkEmail = $conn->prepare("SELECT email FROM users WHERE email = ?");
+    $checkEmail->bind_param("s", $email);
+    $checkEmail->execute();
+    $result = $checkEmail->get_result();
+
+    if($result->num_rows > 0){
+        echo "<script>alert('Email already registered! Please login.'); window.location.href='../Login.html';</script>";
+    } else {
+        $stmt = $conn->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $name, $email, $hashedPassword, $role);
+
+        if($stmt->execute()){
+            echo "<script>alert('Account created successfully!'); window.location.href='../Login.html';</script>";
+            exit();
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+        $stmt->close();
+    }
+    $checkEmail->close();
 }
-$stmt->close();
 $conn->close();
 ?>
