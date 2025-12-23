@@ -65,7 +65,7 @@ bookingForm?.addEventListener('submit', function(e) {
         checkinInput.style.border = '1px solid green';
     }
     if(isValid){
-        alert("Booking details are valid! Redirecting...");
+        alert("Booking details are valid!");
         setTimeout(() => {
             bookingForm.submit(); 
         }, 500);
