@@ -36,7 +36,7 @@
       <h3>Complete your booking</h3>
       <div class="Reserve_box1">
         <div class="reserve_form">
-          <form>
+          <form id="Booking">
             <h3>Booking Details</h3>
             <div class="Book_detl">
               <div class="Check_in">
@@ -56,11 +56,11 @@
             <div class="your_info">
               <div class="full_name">
                 <label for="fname">Full Name *</label><br/>
-                <input type="text"Name="name"placeholder="Full name"/>
+                <input type="text"id="Fname"Name="name"placeholder="Full name"/>
               </div>
               <div class="Email">
                 <label for="email">Email Address *</label><br/>
-                <input type="text"Name="lname"placeholder="Enter email address"/>
+                <input type="text"id="Email"Name="Email"placeholder="Enter email address"/>
               </div>
             </div>
             <div class="phone">
@@ -90,7 +90,7 @@
               <p>Price per Night</p>
             </div>
             <div class="money">
-              <p>Rs.1000</p>
+              <p id="Money">Rs.1000</p>
             </div>
           </div>
           <div class="price_detail">
@@ -98,14 +98,14 @@
               <p>Number of Night</p>
             </div>
             <div class="money">
-              <p>1</p>
+              <p id="Numofnight">1</p>
             </div>
           </div><div class="price_detail">
             <div class="price1">
               <p>Number of guest</p>
             </div>
             <div class="money">
-              <p>1</p>
+              <p id="numofguest">1</p>
             </div>
           </div>
           <div class="price_detail">
@@ -113,7 +113,7 @@
               <p>SubTotal</p>
             </div>
             <div class="money">
-              <p>Rs.1000</p>
+              <p id="SubTotal">Rs.1000</p>
             </div>
           </div>
           <div class="total_amount">
@@ -121,7 +121,7 @@
               <p>Total</p>
             </div>
             <div class="amount">
-               <p>Rs.1000</p>
+               <p id="total_Amount">Rs.1000</p>
             </div>
           </div>
           <div class="Secure">
@@ -171,4 +171,5 @@
        </div>
     </footer>
   </body>
+  <script src="javascriptfile/booking.js"></script>
 </html>
