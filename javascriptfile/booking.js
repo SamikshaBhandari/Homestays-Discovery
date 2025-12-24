@@ -57,7 +57,7 @@ bookingForm?.addEventListener('submit', function(e) {
         phoneInput.style.border = '1px solid red';
         isValid = false;
     }
-    if(checkinInput.value === "") {
+    if(checkinInput?.value === "") {
         alert("Please select a check-in date");
         checkinInput.style.border = '1px solid red';
         isValid = false;
