@@ -1,15 +1,17 @@
+
 <?php
 include 'databaseconnection.php';
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $first = isset($_POST["first"]) ? trim($_POST["first"]) : "";
-    $last  = isset($_POST["last"]) ? trim($_POST["last"]) : "";
-    $name  = $first . " " . $last; 
-    $email = isset($_POST["Email"]) ? trim($_POST["Email"]) : "";
-    $pass  = isset($_POST["password"]) ? trim($_POST["password"]) : "";
-    $cpass = isset($_POST["cpassword"]) ? trim($_POST["cpassword"]) : "";
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+    $first = trim($_POST['first'] ?? '');
+    $last  = trim($_POST['last'] ?? '');
+    $email = trim($_POST['Email'] ?? '');
+    $pass  = $_POST['password'] ?? '';
+    $cpass = $_POST['cpassword'] ?? '';
     $role  = "user";
+
     if(empty($first) || empty($last) || empty($email) || empty($pass) || empty($cpass)){
-        echo "<script>alert('Sabai fields bharnu hola!'); window.history.back();</script>";
+        echo "<script>alert('Fill up all form!'); window.history.back();</script>";
         exit();
     }
     if($pass !== $cpass){
