@@ -1,25 +1,20 @@
 <?php
 session_start();
+include 'databaseconnection.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    die("Only POST method allowed");
+    header("Location: ../Login.html");
+    exit;
 }
-$servername = "localhost";
-$username   = "root";
-$password   = "";
-$dbname     = "hms";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+$email = trim($_POST['email'] ?? '');
+$password = $_POST['password'] ?? '';
+
+if (empty($email) || empty($password)) {
+    echo "<script>alert('Please fill in both email and password'); window.history.back();</script>";
+    exit;
 }
-$email = $_POST['email'] ?? '';
-$password_input = $_POST['password'] ?? '';
-if (empty($email) || empty($password_input)) {
-    echo "Please fill in both email and password.";
-    exit();
-}
+
 $stmt = $conn->prepare(
     "SELECT user_id, name, email, password, role, created_at
      FROM users
@@ -28,22 +23,25 @@ $stmt = $conn->prepare(
 $stmt->bind_param("s", $email);
 $stmt->execute();
 $result = $stmt->get_result();
-if ($result->num_rows === 1) {
-    $row = $result->fetch_assoc();
-    if (password_verify($password_input, $row['password'])) {
-        $_SESSION['user_id']= $row['user_id'];
-        $_SESSION['name']= $row['name'];
-        $_SESSION['email']= $row['email'];
-        $_SESSION['role']= $row['role'];
-        $_SESSION['created_at'] = $row['created_at'];
-        header("Location:../index1.html");
-        exit();
-    } else {
-        echo "Invalid password.";
-    }
-} else {
-    echo "No user found with this email address.";
+
+if ($result->num_rows === 0) {
+    echo "<script>alert('User not found'); window.history.back();</script>";
+    exit;
 }
-$stmt->close();
-$conn->close();
-?>
+
+$user = $result->fetch_assoc();
+
+if (!password_verify($password, $user['password'])) {
+   
+    echo "<script>alert('Wrong password'); window.history.back();</script>";
+    exit;
+}
+$_SESSION['user_id'] = $user['user_id'];
+$_SESSION['name'] = $user['name'];
+$_SESSION['email'] = $user['email'];
+$_SESSION['role'] = $user['role'];
+$_SESSION['created_at'] = $user['created_at'];
+
+header("Location: ../index1.html");
+exit;
+
