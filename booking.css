@@ -303,7 +303,7 @@ header {
 }
 footer {
   background-color: rgb(18, 17, 17);
-  margin-top: 70px;
+  margin-top: 15%;
 }
 .main_section {
   display: flex;
