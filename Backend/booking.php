@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     die("Direct access not allowed.");
 }
 
-$fname    = $_POST['Fname'] ?? ''; 
+$fname    = $_POST['name'] ?? ''; 
 $email    = $_POST['Email'] ?? '';
 $phone    = $_POST['phone'] ?? '';
 $checkin  = $_POST['checkin'] ?? '';
