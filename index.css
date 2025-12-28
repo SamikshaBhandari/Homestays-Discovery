@@ -114,57 +114,6 @@ header {
   background-color: rgb(35, 49, 248);
   color: rgb(253, 251, 251);
 }
-.Container {
-  padding: 60px 20px;
-  text-align: center;
-}
-.Destination {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 25px;
-  margin-top: 10px;
-}
-.Container h1 {
-  color: rgb(6, 6, 6);
-  font-weight: bold;
-  font-size: 2rem;
-}
-.Container p {
-  font-size: 1.1rem;
-  color: rgb(58, 57, 57);
-  margin-top: 10px;
-}
-.Container_text {
-  position: relative;
-  width: 300px;
-  height: 300px;
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-.Container_text img:hover {
-  transform: translateY(-5px);
-}
-.Container_text img {
-  width: 100%;
-  height: 200px;
-  border-radius: 4px;
-}
-.Container_text a {
-  text-decoration: none;
-  color: rgb(25, 66, 247);
-}
-.Container_text a:hover {
-  text-decoration: underline;
-}
-.Container_text h3 {
-  margin-top: 10px;
-}
-.Container_text p {
-  margin: 5px;
-}
 .Container1 {
   padding: 60px 20px;
   text-align: center;
