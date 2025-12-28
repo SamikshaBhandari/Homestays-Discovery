@@ -1,19 +1,21 @@
-
 <?php
 include 'databaseconnection.php';
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $first = trim($_POST['first'] ?? '');
     $last  = trim($_POST['last'] ?? '');
+    $phone = trim($_POST['Phone'] ?? ''); 
+    $address = trim($_POST['address'] ?? ''); 
     $email = trim($_POST['Email'] ?? '');
     $pass  = $_POST['password'] ?? '';
     $cpass = $_POST['cpassword'] ?? '';
     $role  = "user";
 
-    if(empty($first) || empty($last) || empty($email) || empty($pass) || empty($cpass)){
+    if(empty($first) || empty($last) || empty($phone) || empty($address) || empty($email) || empty($pass) || empty($cpass)){
         echo "<script>alert('Fill up all form!'); window.history.back();</script>";
         exit();
     }
+    
     if($pass !== $cpass){
         echo "<script>alert('Passwords do not match!'); window.history.back();</script>";
         exit();
@@ -28,9 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if($result->num_rows > 0){
         echo "<script>alert('Email already registered! Please login.'); window.location.href='../Login.html';</script>";
     } else {
-        $stmt = $conn->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $name, $email, $hashedPassword, $role);
-
+        $name = $first . " " . $last;
+        $stmt = $conn->prepare("INSERT INTO users (name, phone, address, email, password, role) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssss", $name, $phone, $address, $email, $hashedPassword, $role);
         if($stmt->execute()){
             echo "<script>alert('Account created successfully!'); window.location.href='../Login.html';</script>";
             exit();
