@@ -132,7 +132,10 @@ header {
   cursor: pointer;
   font-weight: 500;
 }
-
+.filter-btn i {
+  margin-right: 5px;
+  color: rgb(6, 6, 6);
+}
 .filter-btn:hover {
   background-color: white;
 }
