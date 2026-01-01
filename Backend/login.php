@@ -42,6 +42,9 @@ $_SESSION['email'] = $user['email'];
 $_SESSION['role'] = $user['role'];
 $_SESSION['created_at'] = $user['created_at'];
 
+setcookie("isLoggedIn", "true", time() + (86400 * 1), "/"); 
+setcookie("userName", $user['name'], time() + (86400 * 1), "/");
+
 header("Location: ../index1.html");
 exit;
 

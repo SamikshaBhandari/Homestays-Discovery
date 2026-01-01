@@ -28,6 +28,11 @@
         <div class="Sign">
           <a href="Signup.html">Sign Up</a>
         </div>
+
+
+        
+
+
       </div>
     </header>
     <div class="hero">
@@ -311,5 +316,55 @@
         rights reserved.</p>
        </div>
     </footer>
+
+<script>
+    function getCookie(name) {
+        let value = "; " + document.cookie;
+        let parts = value.split("; " + name + "=");
+        if (parts.length === 2) return parts.pop().split(";").shift();
+    }
+
+    const loggedIn = getCookie("isLoggedIn");
+    const userName = getCookie("userName");
+
+    if (loggedIn === "true") {
+        const loginBtn = document.querySelector('.login');
+        const signupBtn = document.querySelector('.Sign');
+        const loginContainer = document.querySelector('.Login_container');
+
+        if (loginBtn) loginBtn.style.display = 'none';
+        if (signupBtn) signupBtn.style.display = 'none';
+
+        if (loginContainer) {
+            loginContainer.innerHTML = `
+                  <span style="color: #333;
+                              font-weight: bold;">
+                  <div style="display: flex;
+                   align-items: center;
+                    gap: 10px;">
+            
+            <div style="width: 35px; 
+                        height: 35px; 
+                        background-color: #007bff; 
+                        border-radius: 50%; 
+                        display: flex; 
+                        align-items: center; 
+                        justify-content: center;">
+                <i class="fa-solid fa-user" style="color: white; font-size: 18px;"></i>
+            </div>
+                      ${decodeURIComponent(userName)}</span>
+
+                    <a href="#" id="logoutLink" style="color: red; text-decoration: none; font-size: 14px;">Logout</a>
+                  </div>
+                    `;
+            document.getElementById('logoutLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                document.cookie = "isLoggedIn=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                document.cookie = "userName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                window.location.reload();
+            });
+        }
+    }
+</script>
   </body>
 </html>
