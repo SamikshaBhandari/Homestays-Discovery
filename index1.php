@@ -23,9 +23,9 @@ $userName = $isLoggedIn ? $_SESSION['name'] : '';
       </div>
       <div class="navigation">
         <a href="index1.php">Home</a>
-        <a href="Homestay.html">Homestays</a>
-        <a href="Contact.html">Contact</a>
-        <a href="">Notification</a>
+        <a href="Homestay.php">Homestays</a>
+        <a href="Contact.php">Contact</a>
+        <a href="#">Notification</a>
       </div>
 
       <div class="Login_container">
@@ -36,12 +36,24 @@ $userName = $isLoggedIn ? $_SESSION['name'] : '';
         <div style="display: flex; align-items: center; gap: 12px;">
             
             <a href="profile.html" title="View Profile">
-                <div style="width: 38px; height: 38px; border-radius: 50%; overflow: hidden; border: 2px solid gray; display: flex; align-items: center; justify-content: center;">
-                    <img src="<?php echo $gravatar_url; ?>" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;">
+                <div style="width: 38px;
+                 height: 38px;
+                  border-radius: 50%;
+                   overflow: hidden;
+                    border: 2px solid gray;
+                     display: flex;
+                      align-items: center;
+                       justify-content: center;">
+                    <img src="<?php echo $gravatar_url; ?>" alt="Profile" 
+                    style="width: 100%;
+                     height: 100%;
+                      object-fit: cover;">
                 </div>
             </a>
 
-            <span style="color: #333; font-weight: bold; font-family: 'Roboto', sans-serif;">
+            <span style="color: gray;
+             font-weight: bold; 
+             font-family: 'Roboto', sans-serif;">
                 <?php echo htmlspecialchars($userName); ?>
             </span>
             
@@ -66,7 +78,7 @@ $userName = $isLoggedIn ? $_SESSION['name'] : '';
         unforgettable memories.
       </p>
       <div class="action-buttons">
-       <a href="Homestay.html"><button>Find HomeStays</button></a>
+       <a href="Homestay.php"><button>Find HomeStays</button></a>
       </div>
     </div>
     
@@ -97,7 +109,7 @@ $userName = $isLoggedIn ? $_SESSION['name'] : '';
               <p>(5 Reviews)</p>
             </div>
           </div>
-         <a href="homestaydetail.html">
+         <a href="homestaydetail.php">
           <button>View Details</button></a>
         </div>
         <div class="Destination1">
@@ -120,7 +132,7 @@ $userName = $isLoggedIn ? $_SESSION['name'] : '';
               <p>(4 Reviews)</p>
             </div>
           </div>
-          <a href="homestaydetail.html">
+          <a href="homestaydetail.php">
           <button>View Details</button></a>
         </div>
         <div class="Destination1">
@@ -143,7 +155,7 @@ $userName = $isLoggedIn ? $_SESSION['name'] : '';
               <p>(6 Reviews)</p>
             </div>
           </div>
-          <a href="homestaydetail.html"><button>View Details</button></a>
+          <a href="homestaydetail.php"><button>View Details</button></a>
         </div>
       </div>
     </div>

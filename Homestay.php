@@ -1,3 +1,9 @@
+<?php
+session_start();
+$isLoggedIn = isset($_SESSION['user_id']);
+$userName = $isLoggedIn ? $_SESSION['name'] : '';
+$userEmail = $isLoggedIn ? $_SESSION['email'] : '';
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,19 +22,30 @@
         <img src="images/logo.png" />
       </div>
       <div class="navigation">
-        <a href="index1.html">Home</a>
-        <a href="Homestay.html">Homestays</a>
-          <a href="">Notification</a>
-        <a href="Contact.html">Contact</a>
+        <a href="index1.php">Home</a>
+        <a href="Homestay.php">Homestays</a>
+          <a href="#">Notification</a>
+        <a href="Contact.php">Contact</a>
       </div>
       <div class="Login_container">
-        <div class="login">
-          <a href="Login.html">Login</a>
+    <?php if ($isLoggedIn): 
+        $gravatar_url = "https://www.gravatar.com/avatar/" . md5(strtolower(trim($userEmail))) . "?d=mp&s=40";
+    ?>
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <a href="profile.html">
+                <div style="width: 38px; height: 38px; border-radius: 50%; overflow: hidden; border: 2px solid gray; display: flex; align-items: center; justify-content: center;">
+                    <img src="<?php echo $gravatar_url; ?>" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </a>
+            <span style="color: gray; font-weight: bold; font-family: 'Roboto', sans-serif;">
+                <?php echo htmlspecialchars($userName); ?>
+            </span>
         </div>
-        <div class="Sign">
-          <a href="Signup.html">Sign Up</a>
-        </div>
-      </div>
+    <?php else: ?>
+        <div class="login"><a href="Login.html">Login</a></div>
+        <div class="Sign"><a href="Signup.html">Sign Up</a></div>
+    <?php endif; ?>
+</div>
     </header>
     <div class="hero">
       <h1>Available Homestays</h1>

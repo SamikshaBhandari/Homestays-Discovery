@@ -27,7 +27,7 @@ if ($stmt) {
     if (mysqli_stmt_execute($stmt)) {
         echo "<script>
                 alert('Successfully your booking is confirmed.');
-                window.location.href = '../index1.html'; 
+                window.location.href = '../index1.php'; 
               </script>";
     } else {
         echo "Database Error: " . mysqli_stmt_error($stmt);
