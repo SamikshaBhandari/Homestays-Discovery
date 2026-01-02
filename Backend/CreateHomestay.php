@@ -2,11 +2,9 @@
 include 'databaseconnection.php';
 session_start();
 
-// Unauthorized access check
 if (!isset($_SESSION['user_id'])) {
     die("Unauthorized access!");
 }
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user_id = $_SESSION['user_id'];
     $name = mysqli_real_escape_string($conn, $_POST['name']);
@@ -17,9 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $rooms = $_POST['total_rooms'];
     $description = mysqli_real_escape_string($conn, $_POST['description']);
 
-    // Image Upload Process
 
-    $image_names = []; // Sabai image name store garna
+    $image_names = []; 
     $upload_dir = "../images/";
     $temp_name = $_FILES['image']['tmp_name'][0];
     
@@ -34,10 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
     if (move_uploaded_file($temp_name, $upload_path)) {
-        // SQL query match with your table screenshot
         $query = "INSERT INTO homestays (name, location, region, description, price, total_rooms, user_id, image) 
                   VALUES ('$name', '$location', '$region', '$description', '$price', '$rooms', '$user_id', '$image_name')";
-
         if (mysqli_query($conn, $query)) {
             echo "<script>alert('Homestay added successfully!'); window.location.href='../Homestay.php';</script>";
         } else {
