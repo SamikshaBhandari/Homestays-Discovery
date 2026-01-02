@@ -73,7 +73,7 @@ if (isset($_POST['update_profile'])) {
         input {
              width: 100%;
               padding: 10px;
-               border: 1px solid white;
+               border: 1px solid gray;
                 border-radius: 8px;
                  box-sizing: border-box;
                  }
