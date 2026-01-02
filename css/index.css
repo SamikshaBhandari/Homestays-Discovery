@@ -87,7 +87,7 @@ header {
       rgba(10, 25, 47, 0.3),
       rgba(0, 0, 0, 0)
     ),
-    url("images/background image.png");
+    url("../images/background image.png");
   background-size: cover;
   background-position: bottom;
 }
@@ -338,7 +338,7 @@ header {
       rgba(10, 25, 45, 0.3),
       rgba(0, 0, 0, 0.2)
     ),
-    url("images/Place.jpg");
+    url("../images/Place.jpg");
   background-size: cover;
   background-position: center;
   border-radius: none;

@@ -1,10 +1,16 @@
+<?php
+session_start();
+$isLoggedIn = isset($_SESSION['user_id']);
+$userName = $isLoggedIn ? $_SESSION['name'] : '';
+$userEmail = $isLoggedIn ? $_SESSION['email'] : '';
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Confirm Page</title>
-    <link rel="stylesheet" href="confirm.css" />
+    <link rel="stylesheet" href="./css/confirm.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
@@ -22,11 +28,12 @@
         <a href="Contact.php">Contact</a>
       </div>
       <div class="Login_container">
-    <?php if ($isLoggedIn): 
+    <?php 
+    if ($isLoggedIn): 
         $gravatar_url = "https://www.gravatar.com/avatar/" . md5(strtolower(trim($userEmail))) . "?d=mp&s=40";
     ?>
         <div style="display: flex; align-items: center; gap: 12px;">
-            <a href="profile.html">
+            <a href="Backend/profile.php">
                 <div style="width: 38px;
                  height: 38px;
                   border-radius: 50%;

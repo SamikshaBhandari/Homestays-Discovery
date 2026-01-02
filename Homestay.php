@@ -32,7 +32,7 @@ $userEmail = $isLoggedIn ? $_SESSION['email'] : '';
         $gravatar_url = "https://www.gravatar.com/avatar/" . md5(strtolower(trim($userEmail))) . "?d=mp&s=40";
     ?>
         <div style="display: flex; align-items: center; gap: 12px;">
-            <a href="profile.html">
+            <a href="Backend/profile.php">
                 <div style="width: 38px; height: 38px; border-radius: 50%; overflow: hidden; border: 2px solid gray; display: flex; align-items: center; justify-content: center;">
                     <img src="<?php echo $gravatar_url; ?>" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>

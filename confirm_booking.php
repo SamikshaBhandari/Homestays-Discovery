@@ -10,7 +10,7 @@ $userEmail = $isLoggedIn ? $_SESSION['email'] : '';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Booking</title>
-    <link rel="stylesheet" href="./css/booking.css" />
+    <link rel="stylesheet" href="./css/confirm_booking.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
@@ -34,7 +34,7 @@ $userEmail = $isLoggedIn ? $_SESSION['email'] : '';
     ?>
         <div style="display: flex; align-items: center; gap: 12px;">
             
-            <a href="profile.html" title="View Profile">
+            <a href="Backend/profile.php" title="View Profile">
                 <div style="width: 38px;
                  height: 38px;
                   border-radius: 50%;

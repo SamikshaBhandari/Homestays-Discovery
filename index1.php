@@ -35,7 +35,7 @@ $userName = $isLoggedIn ? $_SESSION['name'] : '';
     ?>
         <div style="display: flex; align-items: center; gap: 12px;">
             
-            <a href="profile.html" title="View Profile">
+            <a href="Backend/profile.php" title="View Profile">
                 <div style="width: 38px;
                  height: 38px;
                   border-radius: 50%;
