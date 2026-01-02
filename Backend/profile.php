@@ -91,7 +91,7 @@ $userData = mysqli_fetch_assoc($result);
         .info-group {
             text-align: left;
             margin-bottom: 20px;
-            border-bottom: 1px solid white;
+            border-bottom: 1px solid gray;
             padding-bottom: 10px;
         }
         .info-group label {
