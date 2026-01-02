@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Homestay - TravelLocal Nepal</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: white;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        padding: 40px 20px;
+      }
+      .form-container {
+        max-width: 650px;
+        width: 100%;
+        background: white;
+        padding: 35px;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      }
+      .form-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .form-header h2 {
+        color: rgb(41, 41, 65);
+        margin: 0;
+      }
+      .form-header p {
+        color: gray;
+        font-size: 14px;
+      }
+      .grid-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: rgb(41, 41, 65);
+      }
+      input,
+      textarea,
+      select {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid rgb(166, 165, 165);
+        border-radius: 10px;
+        font-size: 14px;
+        box-sizing: border-box;
+        transition: 0.3s;
+      }
+      input:focus,
+      textarea:focus {
+        border-color: rgb(37, 101, 197);
+        outline: none;
+        box-shadow: 0 0 10px rgba(0, 123, 255, 0.1);
+      }
+      textarea {
+        height: 120px;
+        resize: none;
+      }
+      .submit-btn {
+        width: 100%;
+        padding: 15px;
+        background: rgb(49, 165, 49);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .submit-btn:hover {
+        background: rgb(46, 186, 46);
+        transform: translateY(-2px);
+      }
+      .back-btn {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        text-decoration: none;
+        color: rgb(223, 52, 52);
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <div class="form-header">
+        <h2><i class="fas fa-hotel"></i> Register Homestay</h2>
+        <p>Fill in the details to list your property</p>
+      </div>
+      <form
+        action="Backend/CreateHomestay.php"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <div class="form-group">
+          <label>Homestay Name *</label>
+          <input
+            type="text"
+            name="name"
+            placeholder="e.g. Ghandruk Village Home"
+            required
+          />
+        </div>
+        <div class="grid-row">
+          <div class="form-group">
+            <label>Location (City/Village) *</label>
+            <input
+              type="text"
+              name="location"
+              placeholder="e.g. Pokhara"
+              required
+            />
+          </div>
+        </div>
+        <div class="grid-row">
+          <div class="form-group">
+            <label>Region *</label>
+            <select name="region">
+              <option value="Himalayan">Himalayan</option>
+              <option value="Hilly">Hilly</option>
+              <option value="Terai">Terai</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Price per Night (Rs.) *</label>
+            <input type="number" name="price" placeholder="1000" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Total Rooms Available *</label>
+          <input
+            type="number"
+            name="total_rooms"
+            placeholder="e.g. 5"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label>Description *</label>
+          <textarea
+            name="description"
+            placeholder="Describe food, rooms, and culture..."
+            required
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Upload Homestay Photo *</label>
+          <input type="file" name="image" accept="image/*" required multiple />
+        </div>
+
+        <button type="submit" class="submit-btn">List My Homestay</button>
+        <a href="index1.php" class="back-btn">Cancel & Go Back</a>
+      </form>
+    </div>
+  </body>
+</html>
