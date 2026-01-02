@@ -8,7 +8,7 @@ if (isset($_COOKIE[session_name()])) {
 session_destroy();
 echo "
 <script>
-    alert('Logout successful!');
+    alert('Logout successfully!');
     window.location.href = '../index1.php';
 </script>
 ";
