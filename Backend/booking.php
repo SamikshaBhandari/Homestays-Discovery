@@ -1,41 +1,50 @@
 <?php
-include 'databaseconnection.php'; 
 session_start();
+include './databaseconnection.php'; 
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    die("Direct access not allowed.");
-}
-
-$fname    = $_POST['name'] ?? ''; 
-$email    = $_POST['Email'] ?? '';
-$phone    = $_POST['phone'] ?? '';
-$checkin  = $_POST['checkin'] ?? '';
-$nights   = (int)($_POST['nights'] ?? 0);
-$guest    = (int)($_POST['guest'] ?? 0);
-
-$price_per_night = 1000;
-$total_price = $nights * $price_per_night;
-
-$sql = "INSERT INTO bookings (full_name, email, checkin_date, nights, guests, phone, total_price) 
-        VALUES (?, ?, ?, ?, ?, ?, ?)";
-$stmt = mysqli_prepare($conn, $sql);
-
-if ($stmt) {
-    mysqli_stmt_bind_param($stmt, "sssiisd", $fname, $email, $checkin, $nights, $guest, $phone, $total_price);
-
-    if (mysqli_stmt_execute($stmt)) {
-        echo "<script>
-                alert('Successfully your booking is confirmed.');
-                window.location.href = '../index1.php'; 
-              </script>";
-    } else {
-        echo "Database Error: " . mysqli_stmt_error($stmt);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!isset($_SESSION['user_id'])) {
+        echo "<script>alert('Please login to book!'); window.location.href='../Login.html';</script>";
+        exit;
     }
-    mysqli_stmt_close($stmt);
-} else {
-    echo "SQL Preparation Error: " . mysqli_error($conn);
-}
 
-mysqli_close($conn);
+    $user_id = (int)$_SESSION['user_id'];
+    $checkin_date = $_POST['checkin'];
+    $nights = (int)$_POST['nights'];
+    $guests = (int)$_POST['guest'];
+    $homestay_id = 1; 
+
+    $price_per_night = 1000;
+    $total_price = $nights * $price_per_night;
+    $status = 'pending'; // Status lai variable ma rakheko
+
+    // Query ma columns ko order milayeko
+    $sql = "INSERT INTO bookings (user_id, homestay_id, checkin_date, nights, guests, total_price, status) 
+            VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+    $stmt = $conn->prepare($sql);
+    
+    if ($stmt) {
+        /* Data Types: 
+           i = integer (user_id, homestay_id, nights, guests)
+           s = string (checkin_date, status)
+           d = double/decimal (total_price)
+           Kram: i, i, s, i, i, d, s (Jamma 7 wata)
+        */
+        $stmt->bind_param("iisiids", $user_id, $homestay_id, $checkin_date, $nights, $guests, $total_price, $status);
+
+        if ($stmt->execute()) {
+            echo "<script>
+                    alert('Booking Confirmed! Total Price: Rs. $total_price');
+                    window.location.href = '../index1.php';
+                  </script>";
+        } else {
+            echo "Execution Error: " . $stmt->error;
+        }
+        $stmt->close();
+    } else {
+        echo "Query Prepare Error: " . $conn->error;
+    }
+}
+$conn->close();
 ?>
