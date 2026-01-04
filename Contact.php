@@ -106,46 +106,45 @@ $userEmail = $isLoggedIn ? $_SESSION['email'] : '';
       </div>
 
       <div class="Container1">
-        <h1>Send us a Message</h1>
-        <form>
-          <div class="detail">
-            <div class="name">
-              <label for="Name">Full Name *</label><br />
-              <input type="text" placeholder="Your full name" />
-            </div>
-            <div class="email">
-              <label for="email">Email Address *</label><br />
-              <input type="text" placeholder="Enter your email" />
-            </div>
-          </div>
-          <div class="detail">
-            <div class="name">
-              <label for="Name">Phone Number *</label><br />
-              <input type="text" placeholder="Your full name" />
-            </div>
-            <div class="email">
-              <label for="Subject">Subject *</label><br />
-              <select id="subject" name="subject">
-                <option value="select">Select a Subject</option>
-                <option value="select">Booking Inquiry</option>
-                <option value="select">General Information</option>
-                <option value="select">Feedback</option>
-              </select>
-            </div>
-          </div>
-          <div class="message">
-            <label for="Message">Message *(Max 100 Characters)</label><br />
-            <textarea
-        placeholder="Tell us about your plans or any question you have..."
-        maxlength="100"
-      ></textarea>
-
-          </div>
-          <div class="btn">
-            <button>Send message</button>
-          </div>
-        </form>
+  <h1>Send us a Message</h1>
+  <form>
+    <div class="detail">
+      <div class="name">
+        <label for="Name">Full Name *</label>
+        <input type="text" placeholder="Your full name" required />
       </div>
+      <div class="email">
+        <label for="email">Email Address *</label>
+        <input type="email" placeholder="Enter your email" required />
+      </div>
+    </div>
+    
+    <div class="detail">
+      <div class="name">
+        <label for="Phone">Phone Number *</label>
+        <input type="text" placeholder="Your phone number" required />
+      </div>
+      <div class="email">
+        <label for="Subject">Subject *</label>
+        <select id="subject" name="subject" required>
+          <option value="" disabled selected>Select a Subject</option>
+          <option value="booking">Booking Inquiry</option>
+          <option value="info">General Information</option>
+          <option value="feedback">Feedback</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="message">
+      <label for="Message">Message *(Max 100 Characters)</label>
+      <textarea placeholder="Tell us about your plans..." maxlength="100" required></textarea>
+    </div>
+
+    <div class="btn">
+      <button type="submit">Send message</button>
+    </div>
+  </form>
+</div>
     </section>
      <footer>
         <div class="main_section">
