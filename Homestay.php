@@ -85,7 +85,8 @@ $userEmail = $isLoggedIn ? $_SESSION['email'] : '';
   </div>
 
   <div class="right-section">
-    <button class="add-homestay-btn">Add Your Homestay</button>
+    <a href="html/create_homestay.html" style="text-decoration: none;">
+    <button class="add-homestay-btn">Add Your Homestay</button></a>
   </div>
 </div>
     <div class="Destination">
