@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forgot Password</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        background-color: rgb(213, 211, 208);
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      .container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+      .container1 {
+        width: 420px;
+        padding: 35px;
+        background-color: white;
+        box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        text-align: center;
+      }
+      .images img {
+        height: 90px;
+        width: 90px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: none;
+        margin-bottom: 15px;
+      }
+      .container2 h1 {
+        font-size: 24px;
+        color: black;
+        margin-bottom: 8px;
+      }
+      .container2 p {
+        font-size: 14px;
+        color: gray;
+        margin-bottom: 25px;
+        line-height: 1.4;
+      }
+      .main-box {
+        text-align: left;
+      }
+      label {
+        font-weight: 600;
+        font-size: 14px;
+        color: rgb(16, 15, 15);
+        display: block;
+        margin-bottom: 8px;
+      }
+      .container3 {
+        position: relative;
+        margin-bottom: 20px;
+      }
+      .container3 i {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: gray;
+      }
+      .container3 input {
+        width: 100%;
+        padding: 12px 12px 12px 40px;
+        border: 1px solid rgb(177, 177, 177);
+        border-radius: 6px;
+        outline: none;
+        transition: 0.3s;
+      }
+      .container3 input:focus {
+        border-color: rgb(32, 95, 230);
+        box-shadow: 0 0 5px rgba(9, 107, 245, 0.2);
+      }
+      .login-button button {
+        width: 100%;
+        padding: 12px;
+        background-color: rgb(33, 94, 226);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .login-button button:hover {
+        background-color: rgb(51, 100, 215);
+        transform: translateY(-1px);
+      }
+      .container5 {
+        margin-top: 25px;
+        font-size: 14px;
+      }
+      .container5 a {
+        text-decoration: none;
+        color: rgb(33, 94, 226);
+        font-weight: normal;
+      }
+      .container5 a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="container1">
+        <div class="images">
+          <img src="../images/nature.jpg" alt="Logo" />
+        </div>
+
+        <div class="container2">
+          <h1>Reset Password</h1>
+          <p>
+            Don't worry! Enter your email below and we'll help you get back into
+            your account.
+          </p>
+        </div>
+
+        <div class="main-box">
+          <form action="../Backend/forgot.php" method="POST">
+            <label for="email">Registered Email</label>
+            <div class="container3">
+              <i class="fa-regular fa-envelope"></i>
+              <input
+                type="email"
+                name="email"
+                id="email_box"
+                placeholder="example@mail.com"
+                required
+              />
+            </div>
+            <div class="login-button">
+              <button type="submit">Reset Password</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="container5">
+          <p>Suddenly remembered? <a href="../Login.html">Back to Login</a></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
