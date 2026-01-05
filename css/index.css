@@ -356,31 +356,28 @@ header {
   font-size: 1.2em;
   margin-bottom: 30px;
 }
-.explore1 a {
-  padding: 10px 20px;
-  background-color: rgb(38, 58, 235);
+.Explore_button {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
+}
+.hero-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  background-color: rgb(11, 66, 205);
   color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
   text-decoration: none;
-}
-.explore1 a:hover {
-  background-color: rgb(7, 3, 252);
-}
-.Explore_button button {
-  margin: 5px;
-  padding: 10px 20px;
-  border: none;
-  background-color: rgb(5, 75, 251);
-  color: rgb(252, 250, 250);
-  border-radius: 4px;
-  cursor: pointer;
+  border-radius: 5px;
   font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  border: none;
 }
-.Explore_button button:hover {
+.hero-btn:hover {
   background-color: rgb(2, 43, 251);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 footer {
   background-color: rgb(18, 17, 17);
