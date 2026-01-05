@@ -305,9 +305,9 @@ $userName = $isLoggedIn ? $_SESSION['name'] : '';
           hospitality
         </p>
         <div class="Explore_button">
-          <button>Browse Homestays</button>
-          <button>Contact Us</button>
-        </div>
+    <a href="Homestay.php" class="hero-btn">Browse Homestays</a>
+    <a href="Contact.php" class="hero-btn">Contact Us</a>
+</div>
       </div>
     </div>
     <footer>
