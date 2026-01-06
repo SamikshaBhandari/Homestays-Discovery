@@ -174,7 +174,8 @@ header {
 .Container_text {
   position: relative;
   width: 330px;
-  height: 460px;
+  height: auto;
+  padding: 15px;
   background: white;
   border-radius: 12px;
   overflow: hidden;
@@ -222,6 +223,9 @@ header {
   padding: 4px;
 }
 .nepal_side {
+  display: flex;
+  gap: 5px;
+  align-items: center;
   color: rgb(88, 87, 87);
   font-weight: normal;
   margin: 10px;
@@ -249,12 +253,15 @@ header {
 .homestay_details {
   display: flex;
   justify-content: space-between;
+  padding: 0 10px;
 }
 .review p {
   margin: 10px;
 }
 .location_icon p {
   color: rgb(30, 30, 30);
+  display: flex;
+  gap: 5px;
 }
 .location_icon p i {
   color: rgb(36, 36, 36);
@@ -271,6 +278,7 @@ header {
   background-color: rgb(39, 39, 239);
   border: none;
   color: white;
+  width: 250px;
 }
 .View_detail button:hover {
   background-color: blue;
