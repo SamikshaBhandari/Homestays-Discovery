@@ -14,6 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $region = mysqli_real_escape_string($conn, $_POST['region']);
     $price = $_POST['price'];
     $rooms = $_POST['total_rooms'];
+    $host_name = $_POST['host_name'];
+    $rating = $_POST['rating'];
     $description = mysqli_real_escape_string($conn, $_POST['description']);
 
     $upload_dir = "../images/"; 
@@ -31,8 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit;
         }
     }
-    $query = "INSERT INTO homestays (name, location, region, description, price, total_rooms, user_id, profile_image) 
-              VALUES ('$name', '$location', '$region', '$description', '$price', '$rooms', '$user_id', '$image_name')";
+    $query = "INSERT INTO homestays (name, location, region, description, price, total_rooms, user_id, profile_image, host_name, rating) 
+              VALUES ('$name', '$location', '$region', '$description', '$price', '$rooms', '$user_id', '$image_name', '$host_name', '$rating')";
 
     if (mysqli_query($conn, $query)) {
         echo "<script>
