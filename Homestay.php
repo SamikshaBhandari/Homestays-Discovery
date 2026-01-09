@@ -122,9 +122,9 @@ $userEmail = $isLoggedIn ? $_SESSION['email'] : '';
               </div>
 
               <div class="View_detail">
-                <a href="homestaydetail.php?id=<?php echo $row['user_id']; ?>">
-                  <button>View Details</button>
-                </a>
+               <a href="homestaydetail.php?id=<?php echo $row['homestay_id']; ?>">
+                <button class="view-btn">View Detail</button>
+               </a>
               </div>
             </div>
         <?php 
