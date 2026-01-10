@@ -9,12 +9,10 @@ if (!isset($_SESSION['user_id'])) {
 
 $userId = $_SESSION['user_id'];
 
-// Purano data tanne form ma dekhouna ko lagi
 $query = "SELECT * FROM users WHERE user_id = '$userId'";
 $result = mysqli_query($conn, $query);
 $userData = mysqli_fetch_assoc($result);
 
-// Form submit bhayepachi data update garne logic
 if (isset($_POST['update_profile'])) {
     $newName = mysqli_real_escape_string($conn, $_POST['name']);
     $newEmail = mysqli_real_escape_string($conn, $_POST['email']);
@@ -23,7 +21,7 @@ if (isset($_POST['update_profile'])) {
     $updateQuery = "UPDATE users SET name='$newName', email='$newEmail', phone='$newPhone' WHERE user_id='$userId'";
     
     if (mysqli_query($conn, $updateQuery)) {
-        $_SESSION['name'] = $newName; // Session update gareko
+        $_SESSION['name'] = $newName;
         echo "<script>alert('Profile updated successfully!'); window.location.href='profile.php';</script>";
     } else {
         echo "<script>alert('Error updating profile!');</script>";
