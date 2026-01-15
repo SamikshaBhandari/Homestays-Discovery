@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $email = trim($_POST['email'] ?? '');
 $password = $_POST['password'] ?? '';
+$redirect = trim($_POST['redirect'] ?? '');
 
 if (empty($email) || empty($password)) {
     echo "<script>alert('Please fill in both email and password'); window.history.back();</script>";
@@ -18,21 +19,28 @@ if (empty($email) || empty($password)) {
 $stmt = $conn->prepare(
     "SELECT user_id, name, email, password, role, created_at
      FROM users
-     WHERE email = ?"
+     WHERE email = ? LIMIT 1"
 );
+
+if (!$stmt) {
+    echo "<script>alert('Database error: " . htmlspecialchars($conn->error) . "'); window.history.back();</script>";
+    exit;
+}
+
 $stmt->bind_param("s", $email);
 $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows === 0) {
     echo "<script>alert('User not found'); window.history.back();</script>";
+    $stmt->close();
     exit;
 }
 
 $user = $result->fetch_assoc();
+$stmt->close();
 
 if (!password_verify($password, $user['password'])) {
-   
     echo "<script>alert('Wrong password'); window.history.back();</script>";
     exit;
 }
@@ -42,9 +50,18 @@ $_SESSION['email'] = $user['email'];
 $_SESSION['role'] = $user['role'];
 $_SESSION['created_at'] = $user['created_at'];
 
-setcookie("isLoggedIn", "true", time() + (86400 * 1), "/"); 
-setcookie("userName", $user['name'], time() + (86400 * 1), "/");
+setcookie("isLoggedIn", "true", time() + (86400 * 30), "/");
+setcookie("userName", $user['name'], time() + (86400 * 30), "/");
 
-header("Location: ../index1.php");
+if (!empty($redirect)) {
+    $redirect = preg_replace('/[^a-zA-Z0-9_?=&-.]/', '', $redirect);
+    header("Location: ../" . $redirect);
+} elseif ($user['role'] === 'admin') {
+    header("Location: admin/dashboard.php");
+} else {
+    header("Location: ../index1.php");
+}
+
 exit;
-
+$conn->close();
+?>
