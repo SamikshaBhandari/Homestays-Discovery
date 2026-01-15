@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $total_price = $nights * $price_per_night;
     $status = 'pending';
 
-    $sql = "INSERT INTO bookings (user_id, homestay_id, checkin_date, checkout_date, nights, guests, total_price, status, booking_date) 
+    $sql = "INSERT INTO bookings (user_id, homestay_id, checkin_date, checkout_date, nights, guests, total_price, status,created_at) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())";
 
     $stmt = $conn->prepare($sql);
