@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Page</title>
-    <link rel="stylesheet"href="./css/login.css"/>
+    <link rel="stylesheet" href="./css/login.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
     />
   </head>
   <body>
-     <div class="container">
+    <div class="container">
       <div class="container1">
         <div class="images">
           <img src="Images/nature.jpg" />
@@ -21,14 +21,23 @@
           <p>Login to your account</p>
         </div>
         <div class="main-box">
-    <form id="login_form"action="Backend/login.php"method="POST">
-            <label for="Email">Email Address</label><br />
+          <form id="login_form" action="Backend/login.php" method="POST">
+            <input type="hidden" id="redirectUrl" name="redirect" value="" />
+
+            <label for="email">Email Address</label><br />
             <div class="container3">
               <i class="fa-regular fa-envelope"></i>
-              <input type="text" name="email" id="email_box"placeholder="Enter your email" />
+              <input
+                type="email"
+                name="email"
+                id="email_box"
+                placeholder="Enter your email"
+                required
+              />
               <p class="error"></p>
             </div>
-          <br />
+            <br />
+
             <label for="password">Password</label><br />
             <div class="container3">
               <i class="fa-solid fa-lock"></i>
@@ -37,67 +46,84 @@
                 name="password"
                 id="password_input"
                 placeholder="Enter your password"
+                required
               />
               <p class="error"></p>
             </div>
-          <div class="container4">
-          <div class="Boxes">
-            <div class="Privacy1"><input type="checkbox" /></div>
-              <div class="privacy2">Remember Me</div>
-          </div>
-            <div class="Forgot"><a href="html/forgot.html">Forget your password ?</a></div>
-          </div>
-          <div class="signup">
-            <button type="submit"id="submit_btn">Login</button>
-          </div>
+
+            <div class="container4">
+              <div class="Boxes">
+                <div class="Privacy1"><input type="checkbox" /></div>
+                <div class="privacy2">Remember Me</div>
+              </div>
+              <div class="Forgot">
+                <a href="html/forgot.html">Forget your password ?</a>
+              </div>
+            </div>
+
+            <div class="signup">
+              <button type="submit" id="submit_btn">Login</button>
+            </div>
+          </form>
         </div>
-    <div class="container5">
-        <p>Don't have an account? <a href="Signup.html">Sign up here</a></p>
-    </div>  
-</form>
+
+        <div class="container5">
+          <p>Don't have an account? <a href="Signup.html">Sign up here</a></p>
+        </div>
       </div>
     </div>
-<footer>
-        <div class="main_section">
-          <div class="media">
-            <img src="Images/logo.png" />
-            <p>
-             Discover authentic Nepali hospitality through our carefully selected homestays.<br> Experience local culture, breathtaking landscapes, and unforgettable adventures.
-            </p>
-            <div class="icons">
-              <button
-                ><a class="fa-brands fa-facebook" style="color: blue"></a
-              ></button>
-              <button
-                ><a class="fa-brands fa-instagram" style="color: red"></a
-              ></button>
-            </div>
+
+    <footer>
+      <div class="main_section">
+        <div class="media">
+          <img src="Images/logo.png" />
+          <p>
+            Discover authentic Nepali hospitality through our carefully selected
+            homestays.<br />
+            Experience local culture, breathtaking landscapes, and unforgettable
+            adventures.
+          </p>
+          <div class="icons">
+            <button>
+              <a class="fa-brands fa-facebook" style="color: blue"></a>
+            </button>
+            <button>
+              <a class="fa-brands fa-instagram" style="color: red"></a>
+            </button>
           </div>
-          <div class="link">
-            <h2>Quick Links</h2>
-            <div class="tags">
-              <a href="#">Homestays</a>
-              <a href="#">Contact Us</a>
-              <a href="#">About Us</a>
-            </div>
+        </div>
+        <div class="link">
+          <h2>Quick Links</h2>
+          <div class="tags">
+            <a href="Homestay.php">Homestays</a>
+            <a href="Contact.php">Contact Us</a>
+            <a href="#">About Us</a>
           </div>
-          <div class="contact">
+        </div>
+        <div class="contact">
           <h2>Contact</h2>
           <div class="number">
-            <p><i class="fa-solid fa-location-dot"></i>Sunsari ,Nepal</p>
-            <p><i class="fa-solid fa-phone"></i>9742869769</p>
-            <p><i class="fa-solid fa-envelope"></i>Travellocal2@gmail.com</p>
+            <p><i class="fa-solid fa-location-dot"></i> Sunsari, Nepal</p>
+            <p><i class="fa-solid fa-phone"></i> 9742869769</p>
+            <p><i class="fa-solid fa-envelope"></i> Travellocal2@gmail.com</p>
           </div>
         </div>
       </div>
+      <div class="copyright">
+        <p>
+          <i class="fa-regular fa-copyright"></i> 2025 TravelLocal Nepal. All
+          rights reserved.
+        </p>
       </div>
-       <div class="copyright">
-       <p> <i class="fa-regular fa-copyright"></i> 2025 TravelLocal Nepal. All
-        rights reserved.</p>
-       </div>
     </footer>
-    
 
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const redirect = urlParams.get("redirect");
+      if (redirect) {
+        document.getElementById("redirectUrl").value = redirect;
+      }
+    </script>
+    <script src="javascriptfile/login.js"></script>
   </body>
-  <script src="javascriptfile/login.js"></script>
 </html>
