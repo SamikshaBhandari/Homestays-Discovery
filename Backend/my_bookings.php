@@ -30,27 +30,27 @@ $result = $stmt->get_result();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Bookings - TravelLocal Nepal</title>
+    <title>My Bookings</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, rgb(102, 126, 234) 0%, rgb(118, 75, 162) 100%);
             min-height: 100vh;
             padding: 20px;
         }
         .header {
-            background: white;
+            background: rgb(255, 255, 255);
             padding: 20px;
             border-radius: 10px;
             margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .header h1 { color: #333; }
+        .header h1 { color: rgb(51, 51, 51); }
         .user-info {
             display: flex;
             align-items: center;
@@ -60,25 +60,25 @@ $result = $stmt->get_result();
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: #667eea;
+            background: rgb(102, 126, 234);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: rgb(255, 255, 255);
             font-weight: bold;
         }
         .container { max-width: 1200px; margin: 0 auto; }
         .booking-card { 
-            background: white; 
+            background: rgb(255, 255, 255); 
             padding: 25px; 
             margin-bottom: 20px; 
             border-radius: 12px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
         .booking-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
         }
         .booking-header { 
             display: flex; 
@@ -86,10 +86,10 @@ $result = $stmt->get_result();
             align-items: center; 
             margin-bottom: 20px;
             padding-bottom: 15px;
-            border-bottom: 2px solid #f0f0f0;
+            border-bottom: 2px solid rgb(240, 240, 240);
         }
         .booking-header h3 { 
-            color: #2c3e50; 
+            color: rgb(44, 62, 80); 
             font-size: 22px;
             display: flex;
             align-items: center;
@@ -103,19 +103,19 @@ $result = $stmt->get_result();
             text-transform: uppercase;
         }
         .status.pending { 
-            background: #fff3cd; 
-            color: #856404; 
-            border: 2px solid #ffc107;
+            background: rgb(255, 243, 205); 
+            color: rgb(133, 100, 4); 
+            border: 2px solid rgb(255, 193, 7);
         }
         .status.confirmed { 
-            background: #d4edda; 
-            color: #155724; 
-            border: 2px solid #28a745;
+            background: rgb(212, 237, 218); 
+            color: rgb(21, 87, 36); 
+            border: 2px solid rgb(40, 167, 69);
         }
         .status.cancelled { 
-            background: #f8d7da; 
-            color: #721c24; 
-            border: 2px solid #dc3545;
+            background: rgb(248, 215, 218); 
+            color: rgb(114, 28, 36); 
+            border: 2px solid rgb(220, 53, 69);
         }
         .booking-details { 
             display: grid; 
@@ -127,61 +127,52 @@ $result = $stmt->get_result();
             align-items: center; 
             gap: 12px;
             padding: 10px;
-            background: #f8f9fa;
+            background: rgb(248, 249, 250);
             border-radius: 8px;
         }
         .detail-item i { 
-            color: #667eea; 
+            color: rgb(102, 126, 234); 
             font-size: 20px;
             width: 30px;
             text-align: center;
         }
-        .detail-item span {
-            color: #555;
-        }
-        .detail-item strong {
-            color: #333;
-        }
+        .detail-item span { color: rgb(85, 85, 85); }
+        .detail-item strong { color: rgb(51, 51, 51); }
+        
         .back-btn { 
             display: inline-block; 
             margin-bottom: 20px; 
             padding: 12px 25px; 
-            background: white;
-            color: #667eea; 
+            background: rgb(255, 255, 255);
+            color: rgb(102, 126, 234); 
             text-decoration: none; 
             border-radius: 8px;
             font-weight: bold;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
         .back-btn:hover { 
-            background: #667eea;
-            color: white;
+            background: rgb(102, 126, 234);
+            color: rgb(255, 255, 255);
             transform: translateX(-5px);
         }
         .no-bookings { 
             text-align: center; 
             padding: 80px 20px; 
-            background: white;
+            background: rgb(255, 255, 255);
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
         .no-bookings i {
             font-size: 80px;
-            color: #ddd;
+            color: rgb(221, 221, 221);
             margin-bottom: 20px;
         }
-        .no-bookings h2 {
-            color: #555;
-            margin-bottom: 10px;
-        }
-        .no-bookings p {
-            color: #888;
-            margin-bottom: 30px;
-        }
+        .no-bookings h2 { color: rgb(85, 85, 85); margin-bottom: 10px; }
+        .no-bookings p { color: rgb(136, 136, 136); margin-bottom: 30px; }
         .booking-count {
-            background: #667eea;
-            color: white;
+            background: rgb(102, 126, 234);
+            color: rgb(255, 255, 255);
             padding: 5px 15px;
             border-radius: 20px;
             font-size: 14px;
