@@ -165,8 +165,8 @@ function encodeImagePath($path) {
               </p>
             </div>
           </div>
-          <form id="ReserveBox" action="confirm_booking.php" method="POST">
-            <input type="hidden" name="homestay_id" value="<?php echo (int)$homestay['homestay_id']; ?>">
+              <form id="ReserveBox" action="confirm_booking.php?id=<?php echo (int)$homestay['homestay_id']; ?>" method="POST">
+    <input type="hidden" name="homestay_id" value="<?php echo (int)$homestay['homestay_id']; ?>">
             <div class="check_detail">
               <div class="Box3">
                 <label for="checkIn">Check in</label><br />
@@ -188,8 +188,12 @@ function encodeImagePath($path) {
               </select>
             </div>
             <div class="reserve_btn">
-              <button type="submit">Reserve Now</button>
-            </div>
+        <?php if ($isLoggedIn): ?>
+            <button type="submit">Reserve Now</button>
+        <?php else: ?>
+            <button type="button" onclick="loginPrompt()">Reserve Now</button>
+        <?php endif; ?>
+    </div>
           </form>
         </div>
       </section>
@@ -298,4 +302,11 @@ function encodeImagePath($path) {
       </div>
     </footer>
   </body>
+  <script>
+function loginPrompt() {
+    if (confirm('You must login to book this homestay. Login now?')) {
+        window.location.href = 'Login.html?redirect=confirm_booking.php?id=<?php echo $homestayId; ?>';
+    }
+}
+</script>
 </html>
