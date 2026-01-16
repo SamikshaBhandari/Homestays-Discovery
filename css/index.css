@@ -109,91 +109,132 @@ header {
   color: rgb(252, 250, 250);
   border-radius: 4px;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 .action-buttons button:hover {
   background-color: rgb(35, 49, 248);
   color: rgb(253, 251, 251);
+  transform: translateY(-2px);
 }
 .Container1 {
   padding: 60px 20px;
   text-align: center;
+  background-color: white;
 }
 .Container1 h1 {
   color: rgb(6, 6, 6);
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
 }
 .Container1 p {
   font-size: 1.1rem;
   color: rgb(58, 57, 57);
   margin-top: 10px;
+  margin-bottom: 40px;
 }
 .Featured_destination {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 25px;
+  gap: 30px;
   margin-top: 10px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .Destination1 {
   position: relative;
   width: 330px;
-  height: 360px;
+  height: auto;
   background: white;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: left;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
 }
-.Destination1 img:hover {
-  transform: translateY(-5px);
-}
-.Destination1 p {
-  color: rgb(26, 25, 25);
+.Destination1:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 .Destination1 img {
   width: 100%;
-  height: 200px;
-  border-radius: 4px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 0;
+  transition: transform 0.3s ease;
+}
+.Destination1:hover img {
+  transform: scale(1.05);
 }
 .home {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 15px;
   gap: 10px;
 }
 .homestays_name h3 {
-  margin: 5px;
+  margin: 0;
+  font-size: 1.2rem;
+  color: black;
+}
+.home p {
+  margin: 0;
+  font-size: 14px;
+  color: black;
+  display: flex;
+  align-items: center;
+  gap: 3px;
 }
 .Destination1 p {
-  margin: 2px;
+  margin: 0 15px 10px;
+  color: rgb(20, 20, 20);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 .price {
   display: flex;
   justify-content: space-between;
-  margin-top: 5px;
+  margin: 10px 15px;
+  padding: 10px;
+  background-color: rgb(222, 225, 226);
+  border-radius: 8px;
 }
 .Rs p {
-  font-size: 14px;
-  color: rgb(34, 34, 34);
+  font-size: 16px;
+  color: rgb(4, 4, 4);
+  font-weight: 700;
+  margin: 0;
 }
 .reviews p {
   font-size: 14px;
-  color: rgb(37, 37, 37);
+  color: white;
+  margin: 0;
 }
 .Destination1 button {
-  width: 70%;
-  height: 30px;
-  border-radius: 5px;
+  width: calc(100% - 30px);
+  height: 38px;
+  border-radius: 8px;
   align-items: center;
   text-align: center;
-  margin-left: 50px;
-  margin-top: 20px;
+  margin: 0 15px 15px;
   background-color: rgb(15, 49, 237);
-  border: 1px solid rgb(5, 54, 248);
+  border: none;
   color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 .Destination1 button:hover {
   background-color: rgb(31, 59, 201);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(15, 49, 237, 0.4);
 }
 .featured {
   padding: 80px 20px;
@@ -202,14 +243,22 @@ header {
   flex-direction: column;
   gap: 10px;
 }
-.featured p {
-  font-size: large;
+.featured h1 {
+  font-size: 2.5rem;
+  color: rgb(44, 62, 80);
+  margin-bottom: 10px;
+}
+.featured > p {
+  font-size: 1.1rem;
+  color: rgb(142, 155, 160);
+  margin-bottom: 20px;
 }
 .discover-place {
   display: flex;
   justify-content: center;
-  padding: 80px 20px;
+  padding: 40px 20px;
   gap: 30px;
+  flex-wrap: wrap;
 }
 .Discovery {
   background: white;
@@ -250,77 +299,88 @@ header {
   display: flex;
   flex-direction: column;
   gap: 5px;
+  padding: 60px 20px;
+  background-color: #f8f9fa;
 }
 .community h1 {
   color: rgb(6, 6, 6);
   font-weight: bold;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
 }
-.community p {
-  font-size: large;
+.community > p {
+  font-size: 1.1rem;
   color: rgb(58, 57, 57);
+  margin-bottom: 30px;
 }
 .review {
   display: flex;
   justify-content: center;
-  margin-top: 50px;
-  background-color: white;
-  gap: 50px;
+  margin-top: 30px;
+  gap: 30px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .re-part {
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   max-width: 350px;
-  width: 50%;
+  width: 100%;
   padding: 20px;
   text-align: center;
+  transition: all 0.3s ease;
 }
 .re-part:hover {
-  transform: translateY(-5px);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 .re-part1 {
   display: flex;
   align-items: center;
   justify-content: start;
-  gap: 5px;
+  gap: 15px;
+  margin-bottom: 15px;
 }
 .re-img img {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid rgb(250, 251, 251);
+  border: 3px solid white;
 }
 .re-detail {
-  margin-top: 5px;
+  text-align: left;
 }
 .re-detail h3 {
-  font-size: 20px;
-  margin: 5px 0 5px;
-  color: rgb(6, 6, 6);
-  text-align: left;
+  font-size: 18px;
+  margin: 0 0 5px;
+  color: #2c3e50;
 }
 .re-detail p {
-  margin: 5px 0 5px;
+  margin: 3px 0;
   font-size: 14px;
-  font-weight: larger;
-  text-align: left;
-  color: rgb(9, 9, 9);
+  color: #7f8c8d;
 }
 .re-detail p i {
-  color: orange;
+  color: rgb(249, 220, 7);
 }
 .re-info {
-  text-align: start;
+  text-align: left;
   color: rgb(58, 57, 57);
 }
 .re-info p {
-  font-size: 16px;
+  font-size: 15px;
   color: rgb(58, 57, 57);
+  line-height: 1.6;
+  font-style: italic;
 }
 .place {
   font-weight: bold;
   margin-top: 10px;
+  text-align: left;
 }
 .place a {
   text-decoration: none;
@@ -361,6 +421,7 @@ header {
   justify-content: center;
   gap: 30px;
   margin-top: 30px;
+  flex-wrap: wrap;
 }
 .hero-btn {
   display: inline-block;
@@ -381,6 +442,7 @@ header {
 }
 footer {
   background-color: rgb(18, 17, 17);
+  margin-top: 5px;
 }
 .main_section {
   display: flex;
@@ -408,7 +470,7 @@ footer {
   border: none;
 }
 .icons button:hover {
-  background-color: rgb(21, 65, 244);
+  background-color: rgb(20, 159, 215);
 }
 .link {
   margin: 20px;
@@ -452,4 +514,74 @@ footer {
   text-align: center;
   color: white;
   margin: 10px;
+}
+@media (max-width: 768px) {
+  .Featured_destination {
+    gap: 20px;
+  }
+  .Destination1 {
+    width: 100%;
+    max-width: 350px;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .hero p {
+    font-size: 16px;
+  }
+  .discover-place {
+    flex-direction: column;
+    align-items: center;
+  }
+  .review {
+    flex-direction: column;
+    align-items: center;
+  }
+  .re-part {
+    max-width: 90%;
+  }
+  .main_section {
+    flex-direction: column;
+    text-align: center;
+  }
+  .navigation {
+    gap: 10px;
+    font-size: 14px;
+  }
+}
+.home {
+  padding: 12px 15px 8px;
+  align-items: center;
+}
+.rating-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  color: rgb(38, 38, 72);
+  margin: 0;
+}
+.stars {
+  display: inline-flex;
+  gap: 3px;
+  color: yellow;
+  font-size: 14px;
+}
+.rating-value {
+  color: rgb(148, 152, 156);
+  font-weight: 600;
+  font-size: 14px;
+}
+.location-text {
+  margin: 8px 15px 15px !important;
+  color: black;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.location-text i {
+  color: black;
+  font-size: 16px;
 }
