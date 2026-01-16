@@ -173,7 +173,7 @@ $profile_image     = $homestay['profile_image'] ? 'images/' . $homestay['profile
       <div class="tags">
         <a href="Homestay.php">Homestays</a>
         <a href="Contact.php">Contact Us</a>
-        <a href="#">About Us</a>
+        <a href="index1.php">Home</a>
       </div>
     </div>
     <div class="contact">

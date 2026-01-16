@@ -329,9 +329,9 @@ $userName = $isLoggedIn ? $_SESSION['name'] : '';
           <div class="link">
             <h2>Quick Links</h2>
             <div class="tags">
-              <a href="#">Homestays</a>
-              <a href="#">Contact Us</a>
-              <a href="#">About Us</a>
+              <a href="Homestay.php">Homestays</a>
+              <a href="Contact.php">Contact Us</a>
+              <a href="index1.php">Home</a>
             </div>
           </div>
           <div class="contact">
