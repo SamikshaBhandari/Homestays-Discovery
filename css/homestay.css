@@ -107,52 +107,148 @@ header {
   background-color: rgb(250, 249, 248);
   width: 85%;
   margin: 40px auto;
-  padding: 10px 25px;
+  padding: 20px 30px;
   border-radius: 12px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+  gap: 20px;
 }
 .left-section {
   display: flex;
   align-items: flex-end;
-  gap: 20px;
+  gap: 15px;
+  flex: 1;
 }
-.location input,
-.Price_range select,
-.sort select {
-  height: 30px;
+.filter-section {
+  display: flex;
+  width: 100%;
+}
+.filter-section form {
+  display: flex;
+  align-items: flex-end;
+  gap: 15px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.filter-group label {
+  font-weight: 600;
+  color: rgb(43, 43, 61);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.filter-group input,
+.filter-group select {
+  height: 38px;
   border-radius: 5px;
   border: 1px solid rgb(219, 218, 218);
-  padding: 0 5px;
-}
-.filter-btn {
+  padding: 0 12px;
+  font-size: 14px;
+  min-width: 160px;
   background-color: white;
-  border: 1px solid white;
-  padding: 6px 15px;
+  transition: all 0.3s;
+}
+.filter-group input:focus,
+.filter-group select:focus {
+  outline: none;
+  border-color: rgb(16, 170, 231);
+  box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+}
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
+.filter-buttons .filter-btn {
+  padding: 10px 25px;
+  height: 38px;
+  background: rgb(16, 170, 231);
+  color: white;
+  border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 600;
+  transition: all 0.3s;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
-.filter-btn i {
-  margin-right: 5px;
-  color: rgb(6, 6, 6);
+.filter-buttons .filter-btn:hover {
+  background: rgb(25, 85, 215);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
-.filter-btn:hover {
-  background-color: white;
+.filter-buttons .reset-btn {
+  background: gray !important;
+  padding: 10px 20px;
 }
-
+.filter-buttons .reset-btn:hover {
+  background: gray !important;
+}
 .add-homestay-btn {
   background-color: blue;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 10px 25px;
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
-  transition: 0.3s;
+  font-size: 15px;
+  transition: all 0.3s;
+  white-space: nowrap;
 }
 .add-homestay-btn:hover {
   background-color: rgb(62, 111, 216);
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 255, 0.3);
+}
+.results-info {
+  padding: 15px 20px;
+  text-align: center;
+  color: rgb(127, 140, 141);
+  font-size: 16px;
+  margin: 10px auto;
+  max-width: 85%;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.results-info strong {
+  color: rgb(42, 42, 68);
+  font-weight: 700;
+}
+.no-results {
+  padding: 80px 20px;
+  text-align: center;
+  color: rgb(162, 179, 184);
+  width: 100%;
+}
+.no-results i {
+  font-size: 64px;
+  margin-bottom: 25px;
+  opacity: 0.4;
+  color: rgb(174, 183, 200);
+}
+.no-results p {
+  font-size: 18px;
+  margin: 12px 0;
+  line-height: 1.6;
+}
+.no-results a {
+  color: rgb(10, 180, 247);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+}
+.no-results a:hover {
+  text-decoration: underline;
 }
 .Destination {
   display: flex;
@@ -180,14 +276,20 @@ header {
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
 }
-.Container_text img:hover {
+.Container_text:hover {
   transform: translateY(-5px);
 }
 .Container_text img {
   width: 100%;
   height: 200px;
   border-radius: 4px;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+.Container_text img:hover {
+  transform: scale(1.05);
 }
 .Container_text a {
   text-decoration: none;
@@ -209,7 +311,6 @@ header {
   margin: 5px;
   font-size: medium;
 }
-
 .network,
 .category_type,
 .nature_type {
@@ -240,7 +341,6 @@ header {
 .nature_type a:hover {
   text-decoration: none;
 }
-
 .main_type {
   display: flex;
   justify-content: space-between;
@@ -266,6 +366,16 @@ header {
 .location_icon p i {
   color: rgb(36, 36, 36);
 }
+.price-display {
+  font-weight: bold;
+  color: black;
+  margin: 10px;
+  font-size: 16px;
+  padding: 10px;
+  background-color: rgb(227, 238, 234);
+  border-radius: 5px;
+  text-align: center;
+}
 .View_detail {
   display: flex;
   justify-content: center;
@@ -279,12 +389,15 @@ header {
   border: none;
   color: white;
   width: 250px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 .View_detail button:hover {
   background-color: blue;
 }
 footer {
   background-color: rgb(18, 17, 17);
+  margin-top: 50px;
 }
 .main_section {
   display: flex;
@@ -310,6 +423,8 @@ footer {
   width: 30px;
   border-radius: 5px;
   border: none;
+  cursor: pointer;
+  transition: 0.3s;
 }
 .icons button:hover {
   background-color: rgb(20, 159, 215);
@@ -356,4 +471,65 @@ footer {
   text-align: center;
   color: white;
   margin: 10px;
+}
+@media (max-width: 1024px) {
+  .container1 {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px;
+  }
+  .left-section {
+    width: 100%;
+  }
+  .filter-section form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .filter-group input,
+  .filter-group select {
+    width: 100%;
+    min-width: 100%;
+  }
+  .filter-buttons {
+    width: 100%;
+  }
+  .filter-buttons .filter-btn {
+    flex: 1;
+  }
+  .add-homestay-btn {
+    width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .hero p {
+    font-size: 16px;
+  }
+  .container1 {
+    width: 95%;
+    margin: 20px auto;
+  }
+  .Destination {
+    gap: 20px;
+  }
+  .Container_text {
+    width: 100%;
+    max-width: 350px;
+  }
+  .main_section {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+  }
+  header {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
+  .navigation {
+    gap: 10px;
+    font-size: 14px;
+  }
 }
