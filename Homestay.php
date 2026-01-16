@@ -5,13 +5,50 @@ include 'Backend/databaseconnection.php';
 $isLoggedIn = isset($_SESSION['user_id']);
 $userName = $isLoggedIn ? $_SESSION['name'] : '';
 $userEmail = $isLoggedIn ? $_SESSION['email'] : '';
+
+$location_search = isset($_GET['location']) && $_GET['location'] !== '' ? trim($_GET['location']) : '';
+$price_range = isset($_GET['price']) && $_GET['price'] !== '' ? $_GET['price'] : '';
+$sort_by = isset($_GET['sort']) && $_GET['sort'] !== '' ? $_GET['sort'] : 'recommended';
+
+$where_conditions = [];
+
+if (!empty($location_search)) {
+    $location_search_escaped = $conn->real_escape_string($location_search);
+    $where_conditions[] = "location LIKE '%$location_search_escaped%'";
+}
+
+if (!empty($price_range)) {
+    if ($price_range === '1000-1500') {
+        $where_conditions[] = "price >= 1000 AND price <= 1500";
+    } elseif ($price_range === '1500-2000') {
+        $where_conditions[] = "price >= 1500 AND price <= 2000";
+    }
+}
+$where_clause = '';
+if (!empty($where_conditions)) {
+    $where_clause = 'WHERE ' . implode(' AND ', $where_conditions);
+}
+$order_by = 'homestay_id DESC';
+if ($sort_by === 'rate') {
+    $order_by = 'rating DESC';
+} elseif ($sort_by === 'recommended') {
+    $order_by = 'homestay_id DESC';
+}
+$sql = "SELECT * FROM homestays $where_clause ORDER BY $order_by"; 
+$result = mysqli_query($conn, $sql);
+
+if (!$result) {
+    die("Query Error: " . mysqli_error($conn));
+}
+
+$count = mysqli_num_rows($result);
 ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Available Homestays</title>
+    <title>Available Homestays - TravelLocal Nepal</title>
     <link rel="stylesheet" href="./css/homestay.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
   </head>
@@ -54,95 +91,124 @@ $userEmail = $isLoggedIn ? $_SESSION['email'] : '';
 
     <div class="container1">
       <div class="left-section">
-        <div class="location">
-          <label for="location">Location</label><br />
-          <input type="text" placeholder="search by location......" />
-        </div>
-
-        <div class="Price_range">
-          <label for="price">Price Range</label><br />
-          <select id="price" name="price">
-            <option value="any price">Any price</option>
-            <option value="1000-1500">Rs.1000-Rs.1500</option>
-            <option value="1500-2000">Rs.1500-Rs.2000</option>
-          </select>
-        </div>
-
-        <div class="sort">
-          <label for="sort">Sort by</label><br />
-          <select id="sort" name="sort">
-            <option value="recommended">Recommended</option>
-            <option value="rate">Highest Rated</option>
-          </select>
-        </div>
-
-        <div class="filter-action">
-          <button class="filter-btn"><i class="fa fa-filter"></i> Filter</button>
+        <div class="filter-section">
+          <form method="GET" action="Homestay.php">
+            <div class="filter-group">
+              <label for="location"><i class="fa fa-map-marker"></i> Location</label>
+              <input 
+                type="text" 
+                id="location" 
+                name="location" 
+                placeholder="Search by location..." 
+                value="<?php echo htmlspecialchars($location_search); ?>" 
+              />
+            </div>
+            <div class="filter-group">
+              <label for="price"><i class="fa fa-money-bill"></i> Price Range</label>
+              <select id="price" name="price">
+                <option value="">Any price</option>
+                <option value="1000-1500" <?php echo $price_range === '1000-1500' ? 'selected' : ''; ?>>
+                  Rs. 1000 - Rs. 1500
+                </option>
+                <option value="1500-2000" <?php echo $price_range === '1500-2000' ? 'selected' : ''; ?>>
+                  Rs. 1500 - Rs. 2000
+                </option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label for="sort"><i class="fa fa-sort"></i> Sort by</label>
+              <select id="sort" name="sort">
+                <option value="recommended" <?php echo $sort_by === 'recommended' ? 'selected' : ''; ?>>
+                  Recommended
+                </option>
+                <option value="rate" <?php echo $sort_by === 'rate' ? 'selected' : ''; ?>>
+                  Highest Rated
+                </option>
+              </select>
+            </div>
+            <div class="filter-buttons">
+              <button type="submit" class="filter-btn">
+                <i class="fa fa-filter"></i> Filter
+              </button>
+              <a href="Homestay.php" style="flex: 1; text-decoration: none;">
+                <button type="button" class="filter-btn reset-btn" style="width: 100%;">
+                  <i class="fa fa-redo"></i> Reset
+                </button>
+              </a>
+            </div>
+          </form>
         </div>
       </div>
-
       <div class="right-section">
         <a href="html/create_homestay.html" style="text-decoration: none;">
           <button class="add-homestay-btn">Add Your Homestay</button>
         </a>
       </div>
     </div>
+    <?php if ($count > 0): ?>
+    <div class="results-info">
+        Found <strong><?php echo $count; ?></strong> homestay(s)
+        <?php if (!empty($location_search)): ?>
+            in <strong><?php echo htmlspecialchars($location_search); ?></strong>
+        <?php endif; ?>
+    </div>
+    <?php endif; ?>
 
     <div class="Destination">
-        <?php
-        $sql = "SELECT * FROM homestays"; 
-        $result = mysqli_query($conn, $sql);
-
-        if (mysqli_num_rows($result) > 0) {
-            while($row = mysqli_fetch_assoc($result)) {
-        ?>
+        <?php if ($count > 0): ?>
+            <?php while($row = mysqli_fetch_assoc($result)): ?>
             <div class="Container_text">
-              <img src="images/<?php echo $row['profile_image']; ?>" alt="images" />
-              
-              <div class="homestay_details">
+              <img src="images/<?php echo htmlspecialchars($row['profile_image']); ?>" alt="<?php echo htmlspecialchars($row['name']); ?>" />
+                            <div class="homestay_details">
                 <div class="homestay_name">
                   <h3><?php echo htmlspecialchars($row['name']); ?></h3>
                 </div>
                 <div class="review">
                   <p>
                     <i class="fa-solid fa-star" style="color: rgb(249, 220, 7)"></i>
-                    <?php echo $row['rating']; ?>
+                    <?php echo htmlspecialchars($row['rating']); ?>
                   </p>
                 </div>
               </div>
-
               <div class="location_icon">
-                <p><i class="fa-solid fa-location-dot"></i><?php echo htmlspecialchars($row['location']); ?></p>
+                <p><i class="fa-solid fa-location-dot"></i> <?php echo htmlspecialchars($row['location']); ?></p>
               </div>
 
               <p><?php echo htmlspecialchars(substr($row['description'], 0, 100)) . '...'; ?></p>
-
               <div class="nepal_side">
-                <i class="fa-regular fa-user"></i><p>Hosted by <?php echo htmlspecialchars($row['host_name']); ?></p>
+                <i class="fa-regular fa-user"></i>
+                <p>Hosted by <?php echo htmlspecialchars($row['host_name']); ?></p>
               </div>
 
+              <div class="price-display">
+                Rs. <?php echo number_format($row['price'], 2); ?> / night
+              </div>
               <div class="View_detail">
                <a href="homestaydetail.php?id=<?php echo $row['homestay_id']; ?>">
                 <button class="view-btn">View Detail</button>
                </a>
               </div>
             </div>
-        <?php 
-            }
-        } else {
-            echo "<p style='padding: 20px;'>No homestays found in the database.</p>";
-        }
-        ?>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <div class="no-results">
+              <i class="fa fa-search"></i>
+              <p>No homestays found matching your filters.</p>
+              <p><a href="Homestay.php">Clear filters and try again</a></p>
+            </div>
+        <?php endif; ?>
     </div>
-
     <footer>
         <div class="main_section">
           <div class="media">
-            <img src="Images/logo.png" />
-            <p>Discover authentic Nepali hospitality through our carefully selected homestays.</p>
+            <img src="Images/logo.png" alt="TravelLocal Nepal" />
+            <p>
+            Discover authentic Nepali hospitality through our carefully selected homestays.<br />
+            Experience local culture, breathtaking landscapes, and unforgettable adventures.
+          </p>
             <div class="icons">
-              <a href="#" class="fa-brands fa-facebook" style="color: blue; font-size: 24px; margin-right: 10px;"></a>
-              <a href="#" class="fa-brands fa-instagram" style="color: red; font-size: 24px;"></a>
+              <button><a href="#" class="fa-brands fa-facebook" style="color: blue;"></a></button>
+              <button><a href="#" class="fa-brands fa-instagram" style="color: red;"></a></button>
             </div>
           </div>
           <div class="link">
@@ -150,6 +216,7 @@ $userEmail = $isLoggedIn ? $_SESSION['email'] : '';
             <div class="tags">
               <a href="Homestay.php">Homestays</a>
               <a href="Contact.php">Contact Us</a>
+              <a href="index1.php">Home</a>
             </div>
           </div>
           <div class="contact">
@@ -167,3 +234,4 @@ $userEmail = $isLoggedIn ? $_SESSION['email'] : '';
     </footer>
   </body>
 </html>
+<?php mysqli_close($conn); ?>
