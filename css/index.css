@@ -314,25 +314,30 @@ header {
   margin-bottom: 30px;
 }
 .review {
-  display: flex;
-  justify-content: center;
-  margin-top: 30px;
-  gap: 30px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .review {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .review {
+    grid-template-columns: 1fr;
+  }
 }
 .re-part {
   background: white;
+  padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  max-width: 350px;
-  width: 100%;
-  padding: 20px;
-  text-align: center;
-  transition: all 0.3s ease;
 }
+
 .re-part:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
@@ -357,12 +362,12 @@ header {
 .re-detail h3 {
   font-size: 18px;
   margin: 0 0 5px;
-  color: #2c3e50;
+  color: rgb(44, 62, 80);
 }
 .re-detail p {
   margin: 3px 0;
   font-size: 14px;
-  color: #7f8c8d;
+  color: rgb(103, 106, 110);
 }
 .re-detail p i {
   color: rgb(249, 220, 7);
