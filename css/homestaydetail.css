@@ -77,7 +77,7 @@ header {
 }
 .main_container {
   background-color: white;
-  height: 100vh;
+  height: auto;
   margin-top: 70px;
 }
 .main_container h1 {
@@ -106,7 +106,7 @@ header {
 }
 .image_section {
   background-color: rgb(214, 214, 213);
-  height: 510px;
+  height: auto;
   width: 50%;
   border-radius: 10px;
 }
@@ -116,7 +116,7 @@ header {
 }
 .img1 img {
   width: 100%;
-  height: 360px;
+  height: auto;
   border-radius: 10px;
 }
 .main_img {
@@ -125,19 +125,20 @@ header {
   gap: 10px;
 }
 .main_img img {
-  height: 140px;
+  height: auto;
   width: 100%;
   border-radius: 5px;
 }
 .reserve_box {
   width: 360px;
-  height: 300px;
+  height: fit-content;
   background: white;
   border: 1px solid rgb(242, 231, 231);
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
+
 .checking {
   display: flex;
   justify-content: space-between;
@@ -189,8 +190,36 @@ select {
 }
 
 .reserve_btn button:hover {
-  background-color: rgb(10, 45, 150);
+  background-color: rgb(25, 75, 227);
 }
+.write-review-link {
+  display: block;
+  margin-top: 12px;
+  text-decoration: none;
+}
+.write_review_btn_custom {
+  width: 100%;
+  background: white !important;
+  color: rgb(23, 64, 214) !important;
+  padding: 12px 20px;
+  border: 1px solid rgb(36, 115, 233) !important;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  font-family: inherit;
+  transition: 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.write_review_btn_custom:hover {
+  background-color: rgb(23, 64, 214) !important;
+  color: white !important;
+}
+
 .main_box {
   display: flex;
   justify-content: space-around;
@@ -199,9 +228,10 @@ select {
 }
 .text_box {
   background-color: rgb(253, 252, 252);
-  width: 50%;
-  margin-left: 40px;
-  height: 100vh;
+  width: calc(50% - 20px);
+  height: auto;
+  padding: 30px;
+  border-radius: 8px;
 }
 .text1 h2 {
   text-align: start;
@@ -275,7 +305,7 @@ select {
 }
 footer {
   background-color: rgb(18, 17, 17);
-  margin-top: 60%;
+  margin-top: 10%;
 }
 .main_section {
   display: flex;
