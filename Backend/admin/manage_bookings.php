@@ -223,7 +223,7 @@ $bookings = $conn->query($sql);
                         <td>#<?php echo $booking['booking_id']; ?></td>
                         <td>
                             <strong><?php echo htmlspecialchars($booking['user_name']); ?></strong><br>
-                            <small style="color: #7f8c8d;"><?php echo htmlspecialchars($booking['user_email']); ?></small>
+                            <small style="color: lightgray;"><?php echo htmlspecialchars($booking['user_email']); ?></small>
                         </td>
                         <td><?php echo htmlspecialchars($booking['homestay_name']); ?></td>
                         <td><?php echo date('M d, Y', strtotime($booking['checkin_date'])); ?></td>
@@ -240,7 +240,7 @@ $bookings = $conn->query($sql);
                                 <button type="submit" name="status" value="cancelled" class="action-btn btn-cancel"><i class="fa fa-times"></i></button>
                             </form>
                             <?php else: ?>
-                            <span style="color: #7f8c8d;">-</span>
+                            <span style="color: lightgray;">-</span>
                             <?php endif; ?>
                         </td>
                     </tr>
@@ -248,7 +248,7 @@ $bookings = $conn->query($sql);
                 </tbody>
             </table>
             <?php else: ?>
-            <p style="text-align: center; color: #7f8c8d; padding: 50px;">No bookings found</p>
+            <p style="text-align: center; color: lightgray; padding: 50px;">No bookings found</p>
             <?php endif; ?>
         </div>
     </div>
