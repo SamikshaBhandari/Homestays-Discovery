@@ -106,10 +106,15 @@ $recent_bookings = $conn->query($recent_sql);
             height: 4px;
             background: rgb(52, 152, 219);
         }
-        .stat-card.green::before { background: rgb(39, 174, 96); }
-        .stat-card.orange::before { background: rgb(243, 156, 18); }
-        .stat-card.red::before { background: rgb(231, 76, 60); }
-        
+        .stat-card.green::before {
+             background: rgb(39, 174, 96);
+             }
+        .stat-card.orange::before {
+             background: rgb(243, 156, 18);
+             }
+        .stat-card.red::before { 
+            background: rgb(231, 76, 60);
+         }
         .stat-card h3 { 
             color: rgb(127, 140, 141); 
             font-size: 13px; 
@@ -117,7 +122,11 @@ $recent_bookings = $conn->query($recent_sql);
             text-transform: uppercase; 
             font-weight: 600; 
         }
-        .stat-card .number { font-size: 36px; font-weight: bold; color: rgb(44, 62, 80); }
+        .stat-card .number {
+             font-size: 36px;
+              font-weight: bold;
+               color: rgb(44, 62, 80);
+             }
         
         .recent-bookings {
             background: rgb(255, 255, 255);
@@ -125,9 +134,17 @@ $recent_bookings = $conn->query($recent_sql);
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-        .recent-bookings h2 { margin-bottom: 20px; color: rgb(44, 62, 80); font-size: 20px; }
-        .recent-bookings table { width: 100%; border-collapse: collapse; }
-        .recent-bookings th, .recent-bookings td { 
+        .recent-bookings h2 {
+             margin-bottom: 20px;
+              color: rgb(44, 62, 80);
+               font-size: 20px;
+             }
+        .recent-bookings table {
+             width: 100%;
+              border-collapse: collapse;
+             }
+        .recent-bookings th,
+         .recent-bookings td { 
             padding: 12px; 
             text-align: left; 
             border-bottom: 1px solid rgb(236, 240, 241); 
@@ -146,9 +163,18 @@ $recent_bookings = $conn->query($recent_sql);
             font-weight: bold;
             text-transform: uppercase;
         }
-        .badge.pending { background: rgb(255, 243, 205); color: rgb(133, 100, 4); }
-        .badge.confirmed { background: rgb(212, 237, 218); color: rgb(21, 87, 36); }
-        .badge.cancelled { background: rgb(248, 215, 218); color: rgb(114, 28, 36); }
+        .badge.pending { 
+            background: rgb(255, 243, 205);
+             color: rgb(133, 100, 4); 
+            }
+        .badge.confirmed {
+             background: rgb(212, 237, 218);
+              color: rgb(21, 87, 36);
+             }
+        .badge.cancelled {
+             background: rgb(248, 215, 218);
+              color: rgb(114, 28, 36);
+             }
         
         .view-link {
             color: rgb(52, 152, 219);
@@ -182,7 +208,7 @@ $recent_bookings = $conn->query($recent_sql);
                 <img src="<?php echo htmlspecialchars($gravatar_url); ?>" alt="Profile">
                 <div>
                     <strong><?php echo htmlspecialchars($userName); ?></strong>
-                    <p style="font-size: 12px; color: #7f8c8d;">Admin</p>
+                    <p style="font-size: 12px; color: lightgray;">Admin</p>
                 </div>
             </div>
         </div>
@@ -236,7 +262,7 @@ $recent_bookings = $conn->query($recent_sql);
                 </tbody>
             </table>
             <?php else: ?>
-            <p style="text-align: center; color: #7f8c8d; padding: 40px;">No bookings yet</p>
+            <p style="text-align: center; color: lightgray; padding: 40px;">No bookings yet</p>
             <?php endif; ?>
         </div>
     </div>
