@@ -70,7 +70,7 @@ function encodeImagePath($path) {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><?php echo $name; ?> - Homestay Detail</title>
+    <title><?php echo $name; ?> Homestay Detail</title>
     <link rel="stylesheet" href="./css/homestaydetail.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
   </head>
@@ -165,8 +165,10 @@ function encodeImagePath($path) {
               </p>
             </div>
           </div>
-              <form id="ReserveBox" action="confirm_booking.php?id=<?php echo (int)$homestay['homestay_id']; ?>" method="POST">
-    <input type="hidden" name="homestay_id" value="<?php echo (int)$homestay['homestay_id']; ?>">
+          
+          <form id="ReserveBox" action="confirm_booking.php?id=<?php echo (int)$homestay['homestay_id']; ?>" method="POST">
+            <input type="hidden" name="homestay_id" value="<?php echo (int)$homestay['homestay_id']; ?>">
+            
             <div class="check_detail">
               <div class="Box3">
                 <label for="checkIn">Check in</label><br />
@@ -177,6 +179,7 @@ function encodeImagePath($path) {
                 <input type="date" id="checkout" name="checkout" required />
               </div>
             </div>
+            
             <div class="Guests">
               <label for="guest">Guests</label><br />
               <select id="guest" name="guest" required>
@@ -187,13 +190,20 @@ function encodeImagePath($path) {
                 <option value="5">5+ guests</option>
               </select>
             </div>
+            
             <div class="reserve_btn">
-        <?php if ($isLoggedIn): ?>
-            <button type="submit">Reserve Now</button>
-        <?php else: ?>
-            <button type="button" onclick="loginPrompt()">Reserve Now</button>
-        <?php endif; ?>
-    </div>
+              <?php if ($isLoggedIn): ?>
+                <button type="submit">Reserve Now</button>
+              <?php else: ?>
+                <button type="button" onclick="loginPrompt()">Reserve Now</button>
+              <?php endif; ?>
+            </div>
+
+            <a href="review.php?id=<?php echo (int)$homestay['homestay_id']; ?>" class="write-review-link">
+              <button type="button" class="write_review_btn_custom">
+                <i class="fa fa-star"></i> Write a Review
+              </button>
+            </a>
           </form>
         </div>
       </section>
@@ -247,6 +257,7 @@ function encodeImagePath($path) {
             </div>
           </div>
         </div>
+
         <div class="available_room">
           <h2>Traditional Double Room</h2>
           <div class="Room_box">
@@ -302,11 +313,12 @@ function encodeImagePath($path) {
       </div>
     </footer>
   </body>
+  
   <script>
-function loginPrompt() {
-    if (confirm('You must login to book this homestay. Login now?')) {
+    function loginPrompt() {
+      if (confirm('You must login to book this homestay. Login now?')) {
         window.location.href = 'Login.html?redirect=confirm_booking.php?id=<?php echo $homestayId; ?>';
+      }
     }
-}
-</script>
+  </script>
 </html>
