@@ -20,9 +20,11 @@ if (!$featured_result || mysqli_num_rows($featured_result) === 0) {
     $featured_result = mysqli_query($conn, $featured_sql);
 }
 
-$test_sql = "SELECT rating, comment, guest_name, guest_country, guest_avatar
-             FROM testimonials
-             ORDER BY created_at DESC
+$test_sql = "SELECT t.rating, t.comment, t.guest_name, t.guest_country, h.name as homestay_name
+             FROM testimonials t
+             LEFT JOIN homestays h ON t.homestay_id = h.homestay_id
+             WHERE t.homestay_id IS NOT NULL
+             ORDER BY t.created_at DESC
              LIMIT 3";
 $test_result = mysqli_query($conn, $test_sql);
 ?>
@@ -161,21 +163,22 @@ $test_result = mysqli_query($conn, $test_sql);
         ?>
         <div class="re-part">
           <div class="re-part1">
-            <div class="re-img">
-              <img src="<?php echo $avatar; ?>" alt="<?php echo htmlspecialchars($t['guest_name']); ?>" />
+            <div class="re-img" style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, rgb(28, 182, 225) 0%, rgb(33, 167, 205) 100%); display: flex; align-items: center; justify-content: center; color:white; font-size: 18px; font-weight: bold;">
+              <?php echo strtoupper($t['guest_name'][0]); ?>
             </div>
             <div class="re-detail">
               <h3><?php echo htmlspecialchars($t['guest_name']); ?></h3>
               <p><?php echo htmlspecialchars($t['guest_country']); ?></p>
               <p>
                 <?php for ($i=0; $i<5; $i++): ?>
-                  <i class="fa-solid fa-star" style="color: <?php echo $i < $tRating ? 'rgb(249, 220, 7)' : '#ddd'; ?>;"></i>
+                  <i class="fa-solid fa-star" style="color: <?php echo $i < $tRating ? 'rgb(249, 220, 7)' : 'lightgray'; ?>;"></i>
                 <?php endfor; ?>
               </p>
             </div>
           </div>
           <div class="re-info">
             <p>"<?php echo htmlspecialchars($t['comment']); ?>"</p>
+            <p style="font-size: 12px; color: rgb(52, 152, 219); margin-top: 8px;">Stayed at: <strong><?php echo htmlspecialchars($t['homestay_name'] ?? 'Unknown'); ?></strong></p>
           </div>
         </div>
         <?php endwhile; ?>
