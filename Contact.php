@@ -108,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 .star-rating label {
   cursor: pointer;
-  color: rgb(255, 255, 255);
+  color: rgb(186, 182, 182);
   transition: color 0.2s ease;
 }
 
