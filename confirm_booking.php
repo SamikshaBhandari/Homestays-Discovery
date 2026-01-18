@@ -37,10 +37,10 @@ if (!$homestay) {
     exit;
 }
 
-$homestay_name     = htmlspecialchars($homestay['name']);
-$homestay_location = htmlspecialchars($homestay['location']);
-$price_per_night   = (float) $homestay['price'];
-$profile_image     = $homestay['profile_image'] ? 'images/' . $homestay['profile_image'] : 'images/logo.png';
+$homestay_name= htmlspecialchars($homestay['name']);
+$homestay_location= htmlspecialchars($homestay['location']);
+$price_per_night= (float) $homestay['price'];
+$profile_image= $homestay['profile_image'] ? 'images/' . $homestay['profile_image'] : 'images/logo.png';
 ?>
 <!DOCTYPE html>
 <html lang="en">
