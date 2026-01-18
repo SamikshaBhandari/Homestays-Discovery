@@ -23,7 +23,6 @@ if (!$featured_result || mysqli_num_rows($featured_result) === 0) {
 $test_sql = "SELECT t.rating, t.comment, t.guest_name, t.guest_country, h.name as homestay_name
              FROM testimonials t
              LEFT JOIN homestays h ON t.homestay_id = h.homestay_id
-             WHERE t.homestay_id IS NOT NULL
              ORDER BY t.created_at DESC
              LIMIT 3";
 $test_result = mysqli_query($conn, $test_sql);
@@ -46,8 +45,11 @@ $test_result = mysqli_query($conn, $test_sql);
     <div class="navigation">
       <a href="index1.php">Home</a>
       <a href="Homestay.php">Homestays</a>
+      <?php if ($isLoggedIn): ?>
+        <a href="my_bookings.php">My Bookings</a>
+      <?php endif; ?>
       <a href="Contact.php">Contact</a>
-      <a href="#">Notification</a>
+      <a href="Notification.php">Notification</a>
     </div>
 
     <div class="Login_container">
@@ -109,10 +111,10 @@ $test_result = mysqli_query($conn, $test_sql);
               <span class="rating-value"><?php echo $rating; ?></span>
             </div>
           </div>
-<p class="location-text">
-  <i class="fa-solid fa-location-dot"></i>
-  <?php echo htmlspecialchars($f['location']); ?>
-</p>
+          <p class="location-text">
+            <i class="fa-solid fa-location-dot"></i>
+            <?php echo htmlspecialchars($f['location']); ?>
+          </p>
           <div class="price">
             <div class="Rs">
               <p>Rs.<?php echo number_format((float)$f['price'], 2); ?>/Night</p>
@@ -159,11 +161,10 @@ $test_result = mysqli_query($conn, $test_sql);
       <?php if ($test_result && mysqli_num_rows($test_result) > 0): ?>
         <?php while ($t = mysqli_fetch_assoc($test_result)):
           $tRating = (int)$t['rating'];
-          $avatar  = !empty($t['guest_avatar']) ? htmlspecialchars($t['guest_avatar']) : 'Images/default-avatar.png';
         ?>
         <div class="re-part">
           <div class="re-part1">
-            <div class="re-img" style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, rgb(28, 182, 225) 0%, rgb(33, 167, 205) 100%); display: flex; align-items: center; justify-content: center; color:white; font-size: 18px; font-weight: bold;">
+            <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, rgb(76, 175, 80) 0%, rgb(56, 142, 60) 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; font-weight: bold;">
               <?php echo strtoupper($t['guest_name'][0]); ?>
             </div>
             <div class="re-detail">
@@ -171,14 +172,22 @@ $test_result = mysqli_query($conn, $test_sql);
               <p><?php echo htmlspecialchars($t['guest_country']); ?></p>
               <p>
                 <?php for ($i=0; $i<5; $i++): ?>
-                  <i class="fa-solid fa-star" style="color: <?php echo $i < $tRating ? 'rgb(249, 220, 7)' : 'lightgray'; ?>;"></i>
+                  <i class="fa-solid fa-star" style="color: <?php echo $i < $tRating ? 'rgb(249, 220, 7)' : 'rgb(221, 221, 221)'; ?>;"></i>
                 <?php endfor; ?>
               </p>
             </div>
           </div>
           <div class="re-info">
             <p>"<?php echo htmlspecialchars($t['comment']); ?>"</p>
-            <p style="font-size: 12px; color: rgb(52, 152, 219); margin-top: 8px;">Stayed at: <strong><?php echo htmlspecialchars($t['homestay_name'] ?? 'Unknown'); ?></strong></p>
+            <?php if (!empty($t['homestay_name'])): ?>
+              <p style="font-size: 12px; color: rgb(52, 152, 219); margin-top: 8px;">
+                Stayed at: <strong><?php echo htmlspecialchars($t['homestay_name']); ?></strong>
+              </p>
+            <?php else: ?>
+              <p style="font-size: 12px; color: rgb(127, 140, 141); margin-top: 8px; font-style: italic;">
+                General Review
+              </p>
+            <?php endif; ?>
           </div>
         </div>
         <?php endwhile; ?>

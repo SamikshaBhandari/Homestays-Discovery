@@ -136,8 +136,12 @@ $result = $stmt->get_result();
             width: 30px;
             text-align: center;
         }
-        .detail-item span { color: rgb(85, 85, 85); }
-        .detail-item strong { color: rgb(51, 51, 51); }
+        .detail-item span {
+             color: rgb(85, 85, 85);
+             }
+        .detail-item strong { 
+            color: rgb(51, 51, 51);
+         }
         
         .back-btn { 
             display: inline-block; 
@@ -168,8 +172,14 @@ $result = $stmt->get_result();
             color: rgb(221, 221, 221);
             margin-bottom: 20px;
         }
-        .no-bookings h2 { color: rgb(85, 85, 85); margin-bottom: 10px; }
-        .no-bookings p { color: rgb(136, 136, 136); margin-bottom: 30px; }
+        .no-bookings h2 {
+             color: rgb(85, 85, 85); 
+             margin-bottom: 10px;
+             }
+        .no-bookings p {
+             color: rgb(136, 136, 136); 
+             margin-bottom: 30px; 
+            }
         .booking-count {
             background: rgb(102, 126, 234);
             color: rgb(255, 255, 255);
@@ -193,7 +203,7 @@ $result = $stmt->get_result();
                 <div class="user-avatar">
                     <?php echo strtoupper(substr($userName, 0, 1)); ?>
                 </div>
-                <span style="color: #333; font-weight: 500;"><?php echo htmlspecialchars($userName); ?></span>
+                <span style="color: gray; font-weight: 500;"><?php echo htmlspecialchars($userName); ?></span>
             </div>
         </div>
 
