@@ -52,12 +52,18 @@ $bookings = $conn->query($sql);
     <title>Manage Bookings-Admin</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-       * { margin: 0; padding: 0; box-sizing: border-box; }
+       * { 
+        margin: 0;
+         padding: 0; 
+         box-sizing: border-box;
+         }
         body { 
             font-family: 'Segoe UI', sans-serif; 
             background: rgb(245, 245, 245); 
         }
-        .container { display: flex; }
+        .container { 
+            display: flex;
+     }
         .sidebar {
             width: 250px;
             background: rgb(44, 62, 80);
@@ -67,7 +73,11 @@ $bookings = $conn->query($sql);
             padding: 20px;
             overflow-y: auto;
         }
-        .sidebar h2 { margin-bottom: 30px; color: rgb(52, 152, 219); font-size: 18px; }
+        .sidebar h2 { 
+            margin-bottom: 30px;
+             color: rgb(52, 152, 219);
+              font-size: 18px;
+             }
         .sidebar a {
             display: block;
             color: rgb(255, 255, 255);
@@ -86,7 +96,10 @@ $bookings = $conn->query($sql);
             background: rgb(52, 73, 94); 
             border-left-color: rgb(52, 152, 219); 
         }
-        .main-content { margin-left: 250px; padding: 30px; }
+        .main-content {
+             margin-left: 250px;
+              padding: 30px;
+             }
         .header { 
             background: rgb(255, 255, 255); 
             padding: 20px; 
@@ -94,7 +107,9 @@ $bookings = $conn->query($sql);
             margin-bottom: 30px; 
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
         }
-        .header h1 { color: rgb(44, 62, 80); }
+        .header h1 { 
+            color: rgb(44, 62, 80);
+         }
         .filters { 
             background: rgb(255, 255, 255); 
             padding: 20px; 
@@ -122,7 +137,10 @@ $bookings = $conn->query($sql);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
             overflow-x: auto; 
         }
-        table { width: 100%; border-collapse: collapse; }
+        table {
+             width: 100%;
+              border-collapse: collapse; 
+            }
         th, td { 
             padding: 12px; 
             text-align: left; 
@@ -141,11 +159,23 @@ $bookings = $conn->query($sql);
             font-weight: bold; 
             text-transform: uppercase; 
         }
-        .badge.pending { background: rgb(255, 243, 205); color: rgb(133, 100, 4); }
-        .badge.confirmed { background: rgb(212, 237, 218); color: rgb(21, 87, 36); }
-        .badge.cancelled { background: rgb(248, 215, 218); color: rgb(114, 28, 36); }
+        .badge.pending {
+             background: rgb(255, 243, 205); 
+             color: rgb(133, 100, 4);
+             }
+        .badge.confirmed { 
+            background: rgb(212, 237, 218); 
+            color: rgb(21, 87, 36); 
+        }
+        .badge.cancelled {
+             background: rgb(248, 215, 218);
+              color: rgb(114, 28, 36);
+             }
         
-        .action-form { display: inline-flex; gap: 5px; }
+        .action-form { 
+            display: inline-flex;
+             gap: 5px;
+             }
         .action-btn { 
             padding: 6px 12px; 
             border: none; 
@@ -155,11 +185,18 @@ $bookings = $conn->query($sql);
             font-size: 12px; 
             font-weight: 600; 
         }
-        .btn-confirm { background: rgb(39, 174, 96); }
-        .btn-confirm:hover { background: rgb(34, 153, 84); }
-        .btn-cancel { background: rgb(231, 76, 60); }
-        .btn-cancel:hover { background: rgb(192, 57, 43); }
-        
+        .btn-confirm {
+             background: rgb(39, 174, 96); 
+            }
+        .btn-confirm:hover { 
+            background: rgb(34, 153, 84);
+         }
+        .btn-cancel { 
+            background: rgb(231, 76, 60);
+         }
+        .btn-cancel:hover {
+             background: rgb(192, 57, 43); 
+            }
         .success-msg { 
             background: rgb(212, 237, 218); 
             border-left: 4px solid rgb(40, 167, 69); 

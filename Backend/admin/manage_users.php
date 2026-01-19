@@ -65,7 +65,9 @@ $users = $conn->query("SELECT * FROM users WHERE role='user' ORDER BY user_id DE
             margin-bottom: 30px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-        .header h1 { color: rgb(44, 62, 80); }
+        .header h1 {
+             color: rgb(44, 62, 80);
+             }
         .user-table { 
             background: rgb(255, 255, 255);
             padding: 25px;

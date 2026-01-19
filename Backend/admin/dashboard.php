@@ -34,7 +34,7 @@ $recent_bookings = $conn->query($recent_sql);
        * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background: rgb(245, 245, 245); 
+            background: rgb(247, 244, 244); 
         }
         .container { display: flex; }
         .sidebar {
@@ -46,7 +46,11 @@ $recent_bookings = $conn->query($recent_sql);
             position: fixed;
             overflow-y: auto;
         }
-        .sidebar h2 { margin-bottom: 30px; color: rgb(52, 152, 219); font-size: 18px; }
+        .sidebar h2 { 
+            margin-bottom: 30px;
+             color: rgb(52, 152, 219);
+              font-size: 18px;
+             }
         .sidebar a {
             display: block;
             color: rgb(255, 255, 255);
@@ -80,9 +84,19 @@ $recent_bookings = $conn->query($recent_sql);
             align-items: center;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-        .header h1 { color: rgb(44, 62, 80); }
-        .user-info { display: flex; align-items: center; gap: 15px; }
-        .user-info img { width: 40px; height: 40px; border-radius: 50%; }
+        .header h1 { 
+        color: rgb(44, 62, 80);
+         }
+        .user-info {
+             display: flex;
+              align-items: center;
+               gap: 15px; 
+            }
+        .user-info img {
+             width: 40px; 
+             height: 40px;
+              border-radius: 50%; 
+            }
         .stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

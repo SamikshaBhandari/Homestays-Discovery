@@ -35,7 +35,11 @@ $homestays = $conn->query("SELECT * FROM homestays ORDER BY homestay_id DESC");
             padding: 20px;
             overflow-y: auto;
         }
-        .sidebar h2 { margin-bottom: 30px; color: rgb(52, 152, 219); font-size: 18px; }
+        .sidebar h2 {
+             margin-bottom: 30px; 
+             color: rgb(52, 152, 219);
+              font-size: 18px;
+             }
         .sidebar a {
             display: block;
             color: rgb(255, 255, 255);
@@ -46,11 +50,16 @@ $homestays = $conn->query("SELECT * FROM homestays ORDER BY homestay_id DESC");
             transition: 0.3s;
             border-left: 4px solid rgba(0, 0, 0, 0);
         }
-        .sidebar a:hover, .sidebar a.active { 
+        .sidebar a:hover, 
+        .sidebar a.active { 
             background: rgb(52, 73, 94); 
             border-left-color: rgb(52, 152, 219); 
         }
-        .main-content { margin-left: 250px; padding: 30px; flex: 1; }
+        .main-content { 
+            margin-left: 250px; 
+            padding: 30px;
+             flex: 1; 
+        }
         .header { 
             background: rgb(255, 255, 255); 
             padding: 20px; 
@@ -58,7 +67,9 @@ $homestays = $conn->query("SELECT * FROM homestays ORDER BY homestay_id DESC");
             margin-bottom: 30px; 
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-        .header h1 { color: rgb(44, 62, 80); }
+        .header h1 { 
+            color: rgb(44, 62, 80); 
+        }
         .homestay-table { 
             background: rgb(255, 255, 255); 
             padding: 25px; 
@@ -66,7 +77,10 @@ $homestays = $conn->query("SELECT * FROM homestays ORDER BY homestay_id DESC");
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
             overflow-x: auto; 
         }
-        table { width: 100%; border-collapse: collapse; }
+        table { 
+            width: 100%;
+             border-collapse: collapse; 
+            }
         th, td { 
             padding: 12px; 
             text-align: left; 

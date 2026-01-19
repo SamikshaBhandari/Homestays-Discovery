@@ -50,7 +50,9 @@ $result = $stmt->get_result();
             justify-content: space-between;
             align-items: center;
         }
-        .header h1 { color: rgb(51, 51, 51); }
+        .header h1 { 
+            color: rgb(51, 51, 51);
+         }
         .user-info {
             display: flex;
             align-items: center;
@@ -67,7 +69,10 @@ $result = $stmt->get_result();
             color: rgb(255, 255, 255);
             font-weight: bold;
         }
-        .container { max-width: 1200px; margin: 0 auto; }
+        .container { 
+        max-width: 1200px;
+         margin: 0 auto;
+          }
         .booking-card { 
             background: rgb(255, 255, 255); 
             padding: 25px; 
