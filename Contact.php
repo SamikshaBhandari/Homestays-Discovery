@@ -168,11 +168,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <img src="images/logo.png" />
       </div>
       <div class="navigation">
-        <a href="index1.php">Home</a>
-        <a href="Homestay.php">Homestays</a>
-        <a href="#">Notification</a>
-        <a href="Contact.php">Contact</a>
-      </div>
+  <a href="index1.php">Home</a>
+  <a href="Homestay.php">Homestays</a>
+  <?php if ($isLoggedIn): ?>
+    <a href="Backend/my_bookings.php">My Bookings</a>
+  <?php endif; ?>
+  <a href="Contact.php">Contact</a>
+</div>
 
       <div class="Login_container">
         <?php if ($isLoggedIn): 
