@@ -2,7 +2,16 @@
 session_start();
 $isLoggedIn = isset($_SESSION['user_id']);
 $userName   = $isLoggedIn ? $_SESSION['name'] : '';
-
+$userEmail  = $isLoggedIn ? $_SESSION['email'] : '';
+$unread_notifications = 0;
+if ($isLoggedIn) {
+    $userId = $_SESSION['user_id'];
+    $notif_query = $conn->query("SELECT COUNT(*) as count FROM notifications WHERE user_id = $userId AND is_read = 0");
+    if ($notif_query) {
+        $notif_count = $notif_query->fetch_assoc();
+        $unread_notifications = $notif_count['count'];
+    }
+}
 include 'Backend/databaseconnection.php';
 
 $featured_sql = "SELECT homestay_id, name, location, price, rating, profile_image
@@ -43,14 +52,21 @@ $test_result = mysqli_query($conn, $test_sql);
       <img src="images/logo.png" />
     </div>
     <div class="navigation">
-      <a href="index1.php">Home</a>
-      <a href="Homestay.php">Homestays</a>
-      <?php if ($isLoggedIn): ?>
-        <a href="my_bookings.php">My Bookings</a>
-      <?php endif; ?>
-      <a href="Contact.php">Contact</a>
-      <a href="Notification.php">Notification</a>
-    </div>
+  <a href="index1.php">Home</a>
+  <a href="Homestay.php">Homestays</a>
+  <?php if ($isLoggedIn): ?>
+    <a href="Backend/my_bookings.php">My Bookings</a>
+    <a href="Notifications.php" style="position: relative;">
+        Notifications
+        <?php if ($unread_notifications > 0): ?>
+            <span style="position: absolute; top: -8px; right: -10px; background: rgb(220, 53, 69); color: white; border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold;">
+                <?php echo $unread_notifications; ?>
+            </span>
+        <?php endif; ?>
+    </a>
+  <?php endif; ?>
+  <a href="Contact.php">Contact</a>
+</div>
 
     <div class="Login_container">
       <?php if ($isLoggedIn):
