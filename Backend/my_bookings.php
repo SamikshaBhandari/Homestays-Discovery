@@ -33,30 +33,30 @@ $result = $stmt->get_result();
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: #f5f5f5;
+            background: rgb(245, 245, 245);
             padding: 20px;
         }
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            background: white;
+            background: rgb(255, 255, 255);
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         h1 {
-            color: #333;
+            color: rgb(51, 51, 51); 
             margin-bottom: 20px;
         }
         .booking-card {
-            background: #f9f9f9;
-            border: 1px solid #ddd;
+            background: rgb(249, 249, 249); 
+            border: 1px solid rgb(221, 221, 221);
             padding: 20px;
             margin-bottom: 20px;
             border-radius: 5px;
         }
         .booking-card h3 {
-            color: #333;
+            color: rgb(51, 51, 51); 
             margin-bottom: 10px;
         }
         .booking-details {
@@ -67,7 +67,7 @@ $result = $stmt->get_result();
         }
         .detail {
             padding: 10px;
-            background: white;
+            background: rgb(255, 255, 255); 
             border-radius: 3px;
         }
         .status {
@@ -78,21 +78,21 @@ $result = $stmt->get_result();
             font-size: 12px;
         }
         .status.pending {
-            background: #fff3cd;
-            color: #856404;
+            background: rgb(255, 243, 205);
+            color: rgb(133, 100, 4); 
         }
         .status.confirmed {
-            background: #d4edda;
-            color: #155724;
+            background: rgb(212, 237, 218); 
+            color: rgb(21, 87, 36); 
         }
         .status.cancelled {
-            background: #f8d7da;
-            color: #721c24;
+            background: rgb(248, 215, 218);
+            color: rgb(114, 28, 36); 
         }
         .no-bookings {
             text-align: center;
             padding: 40px;
-            color: #999;
+            color: rgb(153, 153, 153); 
         }
     </style>
 </head>
