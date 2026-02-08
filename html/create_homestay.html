@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -184,7 +184,13 @@
 
         <div class="form-group">
           <label>Upload Homestay Photo *</label>
-          <input type="file" name="image" accept="image/*" required multiple />
+          <input
+            type="file"
+            name="images[]"
+            accept="image/*"
+            required
+            multiple
+          />
         </div>
 
         <button type="submit" class="submit-btn">List My Homestay</button>

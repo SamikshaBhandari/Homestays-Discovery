@@ -28,7 +28,6 @@ loginForm?.addEventListener('submit', function(e) {
     isValid = false;
   }
   if(isValid){
-    alert("Login successful");
     loginForm.submit();
   }
 });

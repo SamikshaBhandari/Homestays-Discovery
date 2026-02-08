@@ -82,7 +82,6 @@ function encodeImagePath($path) {
       <div class="navigation">
         <a href="index1.php">Home</a>
         <a href="Homestay.php">Homestays</a>
-        <a href="#">Notification</a>
         <a href="Contact.php">Contact</a>
       </div>
       <div class="Login_container">

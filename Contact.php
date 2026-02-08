@@ -93,29 +93,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   border: 2px solid rgb(245, 198, 203);
 }
 
-.star-rating {
-  display: flex;
-  gap: 10px;
-  font-size: 32px;
-  justify-content: center;
-  margin: 20px 0;
-  flex-direction: row-reverse;
-}
-
-.star-rating input {
-  display: none;
-}
-
-.star-rating label {
-  cursor: pointer;
-  color: rgb(186, 182, 182);
-  transition: color 0.2s ease;
-}
-
-.star-rating label:hover,
-.star-rating label:hover label {
-  color: rgb(249, 220, 7);
-}
 
 .review-section {
   padding: 60px 20px;
@@ -159,6 +136,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 .review-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+.star-rating input[type="radio"] {
+  display: none;
+}
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+.star-rating label i {
+  font-size: 30px;
+  color: rgb(200, 200, 200); 
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.star-rating label:hover ~ label i,
+.star-rating label:hover i {
+  color:  rgb(249, 220, 7) 
+}
+
+.star-rating input[type="radio"]:checked ~ label i {
+  color:  rgb(249, 220, 7)
 }
     </style>
   </head>
