@@ -36,10 +36,12 @@ if (isset($_GET['status']) && in_array($_GET['status'], ['pending', 'confirmed',
 $sql = "SELECT b.booking_id, b.checkin_date, b.checkout_date, b.nights, b.guests, 
                b.total_price, b.status, b.created_at,
                u.name as user_name, u.email as user_email, u.phone as user_phone,
-               h.name as homestay_name
+               h.name as homestay_name,
+               owner.name as owner_name 
         FROM bookings b
         JOIN users u ON b.user_id = u.user_id
         JOIN homestays h ON b.homestay_id = h.homestay_id
+        LEFT JOIN users owner ON h.user_id = owner.user_id
         {$filter}
         ORDER BY b.created_at DESC";
 
@@ -49,11 +51,11 @@ $bookings = $conn->query($sql);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Manage Bookings-Admin</title>
+    <title>Manage Bookings</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-       * { 
-        margin: 0;
+        * {
+             margin: 0;
          padding: 0; 
          box-sizing: border-box;
          }
@@ -61,9 +63,6 @@ $bookings = $conn->query($sql);
             font-family: 'Segoe UI', sans-serif; 
             background: rgb(245, 245, 245); 
         }
-        .container { 
-            display: flex;
-     }
         .sidebar {
             width: 250px;
             background: rgb(44, 62, 80);
@@ -73,9 +72,9 @@ $bookings = $conn->query($sql);
             padding: 20px;
             overflow-y: auto;
         }
-        .sidebar h2 { 
-            margin-bottom: 30px;
-             color: rgb(52, 152, 219);
+        .sidebar h2 {
+             margin-bottom: 30px;
+              color: rgb(52, 152, 219); 
               font-size: 18px;
              }
         .sidebar a {
@@ -88,11 +87,7 @@ $bookings = $conn->query($sql);
             transition: 0.3s;
             border-left: 4px solid rgba(0, 0, 0, 0);
         }
-        .sidebar a:hover { 
-            background: rgb(52, 73, 94); 
-            border-left-color: rgb(52, 152, 219); 
-        }
-        .sidebar a.active { 
+        .sidebar a:hover, .sidebar a.active { 
             background: rgb(52, 73, 94); 
             border-left-color: rgb(52, 152, 219); 
         }
@@ -107,9 +102,7 @@ $bookings = $conn->query($sql);
             margin-bottom: 30px; 
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
         }
-        .header h1 { 
-            color: rgb(44, 62, 80);
-         }
+        .header h1 { color: rgb(44, 62, 80); }
         .filters { 
             background: rgb(255, 255, 255); 
             padding: 20px; 
@@ -139,8 +132,8 @@ $bookings = $conn->query($sql);
         }
         table {
              width: 100%;
-              border-collapse: collapse; 
-            }
+              border-collapse: collapse;
+             }
         th, td { 
             padding: 12px; 
             text-align: left; 
@@ -160,21 +153,20 @@ $bookings = $conn->query($sql);
             text-transform: uppercase; 
         }
         .badge.pending {
-             background: rgb(255, 243, 205); 
-             color: rgb(133, 100, 4);
+             background: rgb(255, 243, 205);
+              color: rgb(133, 100, 4);
              }
-        .badge.confirmed { 
-            background: rgb(212, 237, 218); 
-            color: rgb(21, 87, 36); 
-        }
+        .badge.confirmed {
+             background: rgb(212, 237, 218);
+              color: rgb(21, 87, 36);
+             }
         .badge.cancelled {
              background: rgb(248, 215, 218);
               color: rgb(114, 28, 36);
              }
-        
-        .action-form { 
-            display: inline-flex;
-             gap: 5px;
+        .action-form {
+             display: inline-flex;
+              gap: 5px;
              }
         .action-btn { 
             padding: 6px 12px; 
@@ -185,18 +177,13 @@ $bookings = $conn->query($sql);
             font-size: 12px; 
             font-weight: 600; 
         }
-        .btn-confirm {
-             background: rgb(39, 174, 96); 
-            }
-        .btn-confirm:hover { 
-            background: rgb(34, 153, 84);
+        .btn-confirm { 
+            background: rgb(39, 174, 96);
          }
         .btn-cancel { 
             background: rgb(231, 76, 60);
          }
-        .btn-cancel:hover {
-             background: rgb(192, 57, 43); 
-            }
+        
         .success-msg { 
             background: rgb(212, 237, 218); 
             border-left: 4px solid rgb(40, 167, 69); 
@@ -259,15 +246,20 @@ $bookings = $conn->query($sql);
                     <tr>
                         <td>#<?php echo $booking['booking_id']; ?></td>
                         <td>
-                            <strong><?php echo htmlspecialchars($booking['user_name']); ?></strong><br>
-                            <small style="color: lightgray;"><?php echo htmlspecialchars($booking['user_email']); ?></small>
+                            <strong style="color: rgb(44, 62, 80);"><?php echo htmlspecialchars($booking['user_name']); ?></strong><br>
+                            <small style="color: rgb(85, 85, 85); font-weight: 500;">
+                                <?php echo htmlspecialchars($booking['user_email']); ?>
+                            </small>
                         </td>
-                        <td><?php echo htmlspecialchars($booking['homestay_name']); ?></td>
+                        <td>
+                            <?php echo htmlspecialchars($booking['homestay_name']); ?><br>
+                            <small style="color: rgb(127, 140, 141);">Owner: <?php echo htmlspecialchars($booking['owner_name'] ?? 'N/A'); ?></small>
+                        </td>
                         <td><?php echo date('M d, Y', strtotime($booking['checkin_date'])); ?></td>
                         <td><?php echo date('M d, Y', strtotime($booking['checkout_date'])); ?></td>
                         <td><?php echo $booking['nights']; ?></td>
                         <td><?php echo $booking['guests']; ?></td>
-                        <td><strong>Rs. <?php echo number_format($booking['total_price'], 2); ?></strong></td>
+                        <td><strong style="color: rgb(44, 62, 80);">Rs. <?php echo number_format($booking['total_price'], 2); ?></strong></td>
                         <td><span class="badge <?php echo $booking['status']; ?>"><?php echo $booking['status']; ?></span></td>
                         <td>
                             <?php if ($booking['status'] === 'pending'): ?>
@@ -277,7 +269,7 @@ $bookings = $conn->query($sql);
                                 <button type="submit" name="status" value="cancelled" class="action-btn btn-cancel"><i class="fa fa-times"></i></button>
                             </form>
                             <?php else: ?>
-                            <span style="color: lightgray;">-</span>
+                            <span style="color: rgb(189, 195, 199);">-</span>
                             <?php endif; ?>
                         </td>
                     </tr>
@@ -285,7 +277,7 @@ $bookings = $conn->query($sql);
                 </tbody>
             </table>
             <?php else: ?>
-            <p style="text-align: center; color: lightgray; padding: 50px;">No bookings found</p>
+            <p style="text-align: center; color: rgb(127, 140, 141); padding: 50px;">No bookings found</p>
             <?php endif; ?>
         </div>
     </div>
