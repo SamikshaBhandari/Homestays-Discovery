@@ -7,20 +7,30 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     exit;
 }
 
+if (isset($_GET['delete_id'])) {
+    $delete_id = (int)$_GET['delete_id'];
+    $stmt = $conn->prepare("DELETE FROM homestays WHERE homestay_id = ?");
+    $stmt->bind_param("i", $delete_id);
+    if ($stmt->execute()) {
+        echo "<script>alert('Homestay deleted successfully'); window.location.href='manage_homestays.php';</script>";
+    }
+    $stmt->close();
+}
+
 $homestays = $conn->query("SELECT * FROM homestays ORDER BY homestay_id DESC");
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Manage Homestays -Admin</title>
+    <title>Manage Homestays</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-       * {
-         margin: 0;
-        padding: 0;
-         box-sizing: border-box;
-         }
+        * {
+             margin: 0;
+              padding: 0;
+               box-sizing: border-box;
+             }
         body { 
             font-family: 'Segoe UI', sans-serif; 
             background: rgb(245, 245, 245); 
@@ -36,8 +46,8 @@ $homestays = $conn->query("SELECT * FROM homestays ORDER BY homestay_id DESC");
             overflow-y: auto;
         }
         .sidebar h2 {
-             margin-bottom: 30px; 
-             color: rgb(52, 152, 219);
+             margin-bottom: 30px;
+              color: rgb(52, 152, 219); 
               font-size: 18px;
              }
         .sidebar a {
@@ -58,7 +68,7 @@ $homestays = $conn->query("SELECT * FROM homestays ORDER BY homestay_id DESC");
         .main-content { 
             margin-left: 250px; 
             padding: 30px;
-             flex: 1; 
+            flex: 1; 
         }
         .header { 
             background: rgb(255, 255, 255); 
@@ -68,8 +78,8 @@ $homestays = $conn->query("SELECT * FROM homestays ORDER BY homestay_id DESC");
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
         .header h1 { 
-            color: rgb(44, 62, 80); 
-        }
+            color: rgb(44, 62, 80);
+         }
         .homestay-table { 
             background: rgb(255, 255, 255); 
             padding: 25px; 
@@ -77,10 +87,10 @@ $homestays = $conn->query("SELECT * FROM homestays ORDER BY homestay_id DESC");
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
             overflow-x: auto; 
         }
-        table { 
-            width: 100%;
-             border-collapse: collapse; 
-            }
+        table {
+             width: 100%; 
+             border-collapse: collapse;
+             }
         th, td { 
             padding: 12px; 
             text-align: left; 
@@ -100,9 +110,18 @@ $homestays = $conn->query("SELECT * FROM homestays ORDER BY homestay_id DESC");
             border: 1px solid rgb(236, 240, 241);
         }
         .price-tag {
-            color: rgb(39, 174, 96);
-            font-weight: bold;
+             color: rgb(39, 174, 96);
+         font-weight: bold;
+         }
+        .btn-delete {
+            color: rgb(220, 53, 69);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
         }
+        .btn-delete:hover {
+             color: rgb(192, 57, 43); 
+    }
     </style>
 </head>
 <body>
@@ -131,6 +150,7 @@ $homestays = $conn->query("SELECT * FROM homestays ORDER BY homestay_id DESC");
                         <th>Location</th>
                         <th>Price</th>
                         <th>Owner</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -146,8 +166,15 @@ $homestays = $conn->query("SELECT * FROM homestays ORDER BY homestay_id DESC");
                         <td>#<?php echo $homestay['homestay_id']; ?></td>
                         <td><?php echo htmlspecialchars($homestay['name']); ?></td>
                         <td><?php echo htmlspecialchars($homestay['location']); ?></td>
-                        <td>Rs. <?php echo number_format($homestay['price'], 2); ?></td>
+                        <td><span class="price-tag">Rs. <?php echo number_format($homestay['price'], 2); ?></span></td>
                         <td><?php echo htmlspecialchars($homestay['owner_name'] ?? 'N/A'); ?></td>
+                        <td>
+                            <a href="manage_homestays.php?delete_id=<?php echo $homestay['homestay_id']; ?>" 
+                               class="btn-delete" 
+                               onclick="return confirm('Are you sure you want to delete this homestay?')">
+                               <i class="fa fa-trash"></i> Delete
+                            </a>
+                        </td>
                     </tr>
                     <?php endwhile; ?>
                 </tbody>

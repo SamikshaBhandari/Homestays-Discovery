@@ -7,20 +7,32 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     exit;
 }
 
+// --- Naya Thapeko Delete User Logic ---
+if (isset($_GET['remove_user'])) {
+    $remove_id = (int)$_GET['remove_user'];
+    // Admin lai delete garna namilne security
+    $stmt = $conn->prepare("DELETE FROM users WHERE user_id = ? AND role = 'user'");
+    $stmt->bind_param("i", $remove_id);
+    if ($stmt->execute()) {
+        echo "<script>alert('User removed successfully'); window.location.href='manage_users.php';</script>";
+    }
+    $stmt->close();
+}
+
 $users = $conn->query("SELECT * FROM users WHERE role='user' ORDER BY user_id DESC");
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Manage Users-Admin</title>
+    <title>Manage Users</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-       * { 
+        * { 
             margin: 0; 
-            padding: 0; 
-            box-sizing: border-box;
-        }
+            padding: 0;
+             box-sizing: border-box;
+             }
         body {
             font-family: 'Segoe UI', sans-serif;
             background: rgb(245, 245, 245); 
@@ -36,8 +48,8 @@ $users = $conn->query("SELECT * FROM users WHERE role='user' ORDER BY user_id DE
             overflow-y: auto;
         }
         .sidebar h2 { 
-            margin-bottom: 30px;
-            color: rgb(52, 152, 219);
+            margin-bottom: 30px; 
+            color: rgb(52, 152, 219); 
         }
         .sidebar a {
             display: block;
@@ -65,9 +77,9 @@ $users = $conn->query("SELECT * FROM users WHERE role='user' ORDER BY user_id DE
             margin-bottom: 30px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-        .header h1 {
-             color: rgb(44, 62, 80);
-             }
+        .header h1 { 
+            color: rgb(44, 62, 80);
+         }
         .user-table { 
             background: rgb(255, 255, 255);
             padding: 25px;
@@ -76,9 +88,9 @@ $users = $conn->query("SELECT * FROM users WHERE role='user' ORDER BY user_id DE
             overflow-x: auto; 
         }
         table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+             width: 100%;
+              border-collapse: collapse;
+             }
         th, td {
             padding: 12px;
             text-align: left;
@@ -91,10 +103,15 @@ $users = $conn->query("SELECT * FROM users WHERE role='user' ORDER BY user_id DE
             font-size: 13px;
         }
         tr:hover {
-            background-color: rgb(252, 252, 252);
-        }
-        .user-id {
+             background-color: rgb(252, 252, 252);
+             }
+        .user-id { 
             color: rgb(52, 152, 219);
+             font-weight: 600;
+             }
+        .btn-remove {
+            color: rgb(220, 53, 69);
+            text-decoration: none;
             font-weight: 600;
         }
     </style>
@@ -124,16 +141,24 @@ $users = $conn->query("SELECT * FROM users WHERE role='user' ORDER BY user_id DE
                         <th>Email</th>
                         <th>Phone</th>
                         <th>Joined</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php while($user = $users->fetch_assoc()): ?>
                     <tr>
-                        <td>#<?php echo $user['user_id']; ?></td>
+                        <td class="user-id">#<?php echo $user['user_id']; ?></td>
                         <td><?php echo htmlspecialchars($user['name']); ?></td>
                         <td><?php echo htmlspecialchars($user['email']); ?></td>
                         <td><?php echo htmlspecialchars($user['phone'] ?? 'N/A'); ?></td>
                         <td><?php echo date('M d, Y', strtotime($user['created_at'] ?? 'now')); ?></td>
+                        <td>
+                            <a href="manage_users.php?remove_user=<?php echo $user['user_id']; ?>" 
+                               class="btn-remove" 
+                               onclick="return confirm('Are you sure you want to remove this user?')">
+                               <i class="fa fa-user-times"></i> Remove
+                            </a>
+                        </td>
                     </tr>
                     <?php endwhile; ?>
                 </tbody>
