@@ -22,6 +22,9 @@ if (!$homestay_id) {
     echo "Homestay not specified. Please go back and select a homestay.";
     exit;
 }
+$pre_checkin  = $_GET['checkIn'] ?? '';
+$pre_checkout = $_GET['checkout'] ?? '';
+$pre_guest    = $_GET['guest'] ?? 1;
 
 require 'Backend/databaseconnection.php';
 
@@ -47,7 +50,7 @@ $profile_image= $homestay['profile_image'] ? 'images/' . $homestay['profile_imag
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Complete Booking<?php echo $homestay_name; ?></title>
+  <title>Complete Booking - <?php echo $homestay_name; ?></title>
   <link rel="stylesheet" href="./css/confirm_booking.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 </head>
@@ -87,16 +90,16 @@ $profile_image= $homestay['profile_image'] ? 'images/' . $homestay['profile_imag
         <div class="Book_detl">
           <div class="Check_in">
             <label for="checkin">Check-in Date *</label><br/>
-            <input type="date" id="checkin" name="checkIn" required min="<?php echo date('Y-m-d'); ?>" onchange="calculateTotal()"/>
+            <input type="date" id="checkin" name="checkIn" value="<?php echo $pre_checkin; ?>" required min="<?php echo date('Y-m-d'); ?>" onchange="calculateTotal()"/>
           </div>  
           <div class="nights">
             <label for="checkout">Check-out Date *</label><br/>
-            <input type="date" id="checkout" name="checkout" required min="<?php echo date('Y-m-d', strtotime('+1 day')); ?>" onchange="calculateTotal()"/>
+            <input type="date" id="checkout" name="checkout" value="<?php echo $pre_checkout; ?>" required min="<?php echo date('Y-m-d', strtotime('+1 day')); ?>" onchange="calculateTotal()"/>
           </div>
         </div>
         <div class="noofguest">
           <label for="guest">Number of Guests *</label><br/>
-          <input type="number" id="guest" name="guest" min="1" max="10" value="1" required onchange="calculateTotal()"/>
+          <input type="number" id="guest" name="guest" min="1" max="10" value="<?php echo $pre_guest; ?>" required onchange="calculateTotal()"/>
         </div>
         <h3>Your Information</h3>
         <div class="your_info">

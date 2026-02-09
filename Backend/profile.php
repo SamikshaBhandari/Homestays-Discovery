@@ -25,8 +25,8 @@ $userData = mysqli_fetch_assoc($result);
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
-            background-color:white;
-            color: light gray;
+            background-color: white;
+            color: gray;
         }
         .profile-container {
             display: flex;
@@ -38,7 +38,7 @@ $userData = mysqli_fetch_assoc($result);
         .profile-card {
             background: white;
             width: 100%;
-            max-width: 450px;
+            max-width: 480px; 
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
@@ -77,7 +77,7 @@ $userData = mysqli_fetch_assoc($result);
         }
         .profile-card h2 {
             margin: 10px 0 5px;
-            color:black;
+            color: black;
         }
        .profile-card .tag {
             color: gray;
@@ -105,27 +105,29 @@ $userData = mysqli_fetch_assoc($result);
         .info-group p {
             margin: 0;
             font-size: 16px;
-            color: light gray;
+            color: black;
             font-weight: 500;
         }
         .profile-btns {
             display: flex;
-            gap: 15px;
+            justify-content: space-between;
+            gap: 10px;
             margin-top: 30px;
         }
         .btn {
-            flex: 1;
-            padding: 12px;
+            flex: 1; 
+            padding: 12px 5px;
             border: none;
             border-radius: 10px;
             cursor: pointer;
-            font-size: 15px;
+            font-size: 13px;
             font-weight: 600;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 5px;
             transition: 0.3s;
+            white-space: nowrap;
         }
         .edit-btn {
             background-color: blue;
@@ -134,6 +136,14 @@ $userData = mysqli_fetch_assoc($result);
         .logout-btn {
             background-color: red;
             color: white;
+        }
+        .delete-btn {
+            background-color: rgb(51, 51, 51);
+            color: white;
+        }
+        .btn:hover {
+            opacity: 0.8;
+            transform: translateY(-2px);
         }
     </style>
 </head>
@@ -150,6 +160,7 @@ $userData = mysqli_fetch_assoc($result);
             </div>
             <h2><?php echo htmlspecialchars($userData['name']); ?></h2>
             <span class="tag">Traveller / Explorer</span>
+            
             <div class="info-group">
                 <label>Full Name</label>
                 <p><?php echo htmlspecialchars($userData['name']); ?></p>
@@ -162,20 +173,34 @@ $userData = mysqli_fetch_assoc($result);
                 <label>Phone Number</label>
                 <p><?php echo htmlspecialchars($userData['phone'] ?? 'Not provided'); ?></p>
             </div>
+
             <div class="profile-btns">
                 <button class="btn edit-btn" onclick="location.href='Edit.php'">
                     <i class="fas fa-edit"></i> Edit
                 </button>               
+                
                 <button class="btn logout-btn" id="logoutBtn">
                     <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+
+                <button class="btn delete-btn" id="deleteAccountBtn">
+                    <i class="fas fa-trash-alt"></i> Delete
                 </button>
             </div>
         </div>
     </div>
+
     <script>
         document.getElementById("logoutBtn").addEventListener("click", function () {
             if (confirm("Are you sure you want to logout?")) {
                 window.location.href = "logout.php";
+            }
+        });
+        document.getElementById("deleteAccountBtn").addEventListener("click", function () {
+            if (confirm("DANGER: Delete your account permanently?")) {
+                if (confirm("Final confirmation: This cannot be undone. Proceed?")) {
+                    window.location.href = "delete_account.php";
+                }
             }
         });
     </script>
