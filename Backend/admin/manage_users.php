@@ -123,6 +123,7 @@ $users = $conn->query("SELECT * FROM users WHERE role='user' ORDER BY user_id DE
         <a href="manage_bookings.php"><i class="fa fa-calendar-check"></i> Manage Bookings</a>
         <a href="manage_homestays.php"><i class="fa fa-home"></i> Manage Homestays</a>
         <a href="manage_users.php" class="active"><i class="fa fa-users"></i> Manage Users</a>
+        <a href="view_messages.php"><i class="fa fa-envelope"></i> View Messages</a>
         <a href="../../Homestay.php"><i class="fa fa-globe"></i> View Website</a>
         <a href="../logout.php"><i class="fa fa-sign-out"></i> Logout</a>
     </div>
