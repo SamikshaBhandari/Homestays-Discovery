@@ -6,17 +6,19 @@ $userEmail  = $isLoggedIn ? $_SESSION['email'] : '';
 
 include 'Backend/databaseconnection.php';
 
-$featured_sql = "SELECT homestay_id, name, location, price, rating, profile_image
-                 FROM homestays
-                 WHERE is_featured = 1
-                 ORDER BY rating DESC, homestay_id DESC
+$featured_sql = "SELECT h.homestay_id, h.name, h.location, h.price, h.profile_image, 
+                        (SELECT IFNULL(AVG(t.rating), 0) FROM testimonials t WHERE t.homestay_id = h.homestay_id) as rating
+                 FROM homestays h
+                 WHERE h.is_featured = 1
+                 ORDER BY rating DESC, h.homestay_id DESC
                  LIMIT 6";
 $featured_result = mysqli_query($conn, $featured_sql);
 
 if (!$featured_result || mysqli_num_rows($featured_result) === 0) {
-    $featured_sql = "SELECT homestay_id, name, location, price, rating, profile_image
-                     FROM homestays
-                     ORDER BY rating DESC, homestay_id DESC
+    $featured_sql = "SELECT h.homestay_id, h.name, h.location, h.price, h.profile_image, 
+                            (SELECT IFNULL(AVG(t.rating), 0) FROM testimonials t WHERE t.homestay_id = h.homestay_id) as rating
+                     FROM homestays h
+                     ORDER BY rating DESC, h.homestay_id DESC
                      LIMIT 6";
     $featured_result = mysqli_query($conn, $featured_sql);
 }
@@ -95,7 +97,7 @@ $test_result = mysqli_query($conn, $test_sql);
       <?php if ($featured_result && mysqli_num_rows($featured_result) > 0): ?>
         <?php while ($f = mysqli_fetch_assoc($featured_result)):
           $img    = !empty($f['profile_image']) ? htmlspecialchars($f['profile_image']) : 'placeholder.jpg';
-          $rating = (int)$f['rating'];
+          $rating = round($f['rating']); 
         ?>
         <div class="Destination1">
           <img src="images/<?php echo $img; ?>" alt="<?php echo htmlspecialchars($f['name']); ?>" />
@@ -109,7 +111,7 @@ $test_result = mysqli_query($conn, $test_sql);
                   <i class="fa-solid fa-star" style="color: <?php echo $i < $rating ? 'rgb(249, 220, 7)' : 'lightgray'; ?>;"></i>
                 <?php endfor; ?>
               </span>
-              <span class="rating-value"><?php echo $rating; ?></span>
+              <span class="rating-value"><?php echo number_format($f['rating'], 1); ?></span>
             </div>
           </div>
           <p class="location-text">

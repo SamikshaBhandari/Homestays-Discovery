@@ -14,27 +14,36 @@ $where_conditions = [];
 
 if (!empty($location_search)) {
     $location_search_escaped = $conn->real_escape_string($location_search);
-    $where_conditions[] = "location LIKE '%$location_search_escaped%'";
+    $where_conditions[] = "h.location LIKE '%$location_search_escaped%'";
 }
 
 if (!empty($price_range)) {
     if ($price_range === '1000-1500') {
-        $where_conditions[] = "price >= 1000 AND price <= 1500";
+        $where_conditions[] = "h.price >= 1000 AND h.price <= 1500";
     } elseif ($price_range === '1500-2000') {
-        $where_conditions[] = "price >= 1500 AND price <= 2000";
+        $where_conditions[] = "h.price >= 1500 AND h.price <= 2000";
     }
 }
+
 $where_clause = '';
 if (!empty($where_conditions)) {
     $where_clause = 'WHERE ' . implode(' AND ', $where_conditions);
 }
-$order_by = 'homestay_id DESC';
+
+$order_by = 'h.homestay_id DESC';
 if ($sort_by === 'rate') {
-    $order_by = 'rating DESC';
+    $order_by = 'avg_rating DESC';
 } elseif ($sort_by === 'recommended') {
-    $order_by = 'homestay_id DESC';
+    $order_by = 'h.homestay_id DESC';
 }
-$sql = "SELECT * FROM homestays $where_clause ORDER BY $order_by"; 
+
+$sql = "SELECT h.*, IFNULL(AVG(t.rating), 0) as avg_rating 
+        FROM homestays h 
+        LEFT JOIN testimonials t ON h.homestay_id = t.homestay_id 
+        $where_clause 
+        GROUP BY h.homestay_id 
+        ORDER BY $order_by"; 
+
 $result = mysqli_query($conn, $sql);
 
 if (!$result) {
@@ -57,14 +66,14 @@ $count = mysqli_num_rows($result);
       <div class="image">
         <img src="images/logo.png" alt="Logo" />
       </div>
-<div class="navigation">
-    <a href="index1.php">Home</a>
-    <a href="Homestay.php">Homestays</a>
-    <?php if ($isLoggedIn): ?>
-        <a href="Backend/my_bookings.php">My Bookings</a>  
-    <?php endif; ?>
-    <a href="Contact.php">Contact</a>
-</div>
+      <div class="navigation">
+          <a href="index1.php">Home</a>
+          <a href="Homestay.php">Homestays</a>
+          <?php if ($isLoggedIn): ?>
+              <a href="Backend/my_bookings.php">My Bookings</a>  
+          <?php endif; ?>
+          <a href="Contact.php">Contact</a>
+      </div>
       <div class="Login_container">
         <?php if ($isLoggedIn): 
             $gravatar_url = "https://www.gravatar.com/avatar/" . md5(strtolower(trim($userEmail))) . "?d=mp&s=40";
@@ -147,6 +156,7 @@ $count = mysqli_num_rows($result);
         </a>
       </div>
     </div>
+
     <?php if ($count > 0): ?>
     <div class="results-info">
         Found <strong><?php echo $count; ?></strong> homestay(s)
@@ -158,17 +168,20 @@ $count = mysqli_num_rows($result);
 
     <div class="Destination">
         <?php if ($count > 0): ?>
-            <?php while($row = mysqli_fetch_assoc($result)): ?>
+            <?php while($row = mysqli_fetch_assoc($result)): 
+                $avgRating = number_format($row['avg_rating'], 1);
+                $starRating = round($row['avg_rating']);
+            ?>
             <div class="Container_text">
               <img src="images/<?php echo htmlspecialchars($row['profile_image']); ?>" alt="<?php echo htmlspecialchars($row['name']); ?>" />
-                            <div class="homestay_details">
+              <div class="homestay_details">
                 <div class="homestay_name">
                   <h3><?php echo htmlspecialchars($row['name']); ?></h3>
                 </div>
                 <div class="review">
                   <p>
                     <i class="fa-solid fa-star" style="color: rgb(249, 220, 7)"></i>
-                    <?php echo htmlspecialchars($row['rating']); ?>
+                    <?php echo $avgRating; ?>
                   </p>
                 </div>
               </div>
@@ -194,23 +207,21 @@ $count = mysqli_num_rows($result);
             <?php endwhile; ?>
         <?php else: ?>
             <div class="no-results">
-              <i class="fa fa-search"></i>
+              <i class="fa fa-search" style="font-size: 48px; color: #ccc;"></i>
               <p>No homestays found matching your filters.</p>
               <p><a href="Homestay.php">Clear filters and try again</a></p>
             </div>
         <?php endif; ?>
     </div>
+
     <footer>
         <div class="main_section">
           <div class="media">
-            <img src="Images/logo.png" alt="TravelLocal Nepal" />
-            <p>
-            Discover authentic Nepali hospitality through our carefully selected homestays.<br />
-            Experience local culture, breathtaking landscapes, and unforgettable adventures.
-          </p>
+            <img src="images/logo.png" alt="TravelLocal Nepal" />
+          <p>Discover authentic Nepali hospitality through our homestays.<br>Experience local culture and breathtaking landscapes.</p>
             <div class="icons">
-              <button><a href="#" class="fa-brands fa-facebook" style="color: blue;"></a></button>
-              <button><a href="#" class="fa-brands fa-instagram" style="color: red;"></a></button>
+              <button><i class="fa-brands fa-facebook" style="color: blue;"></i></button>
+              <button><i class="fa-brands fa-instagram" style="color: red;"></i></button>
             </div>
           </div>
           <div class="link">

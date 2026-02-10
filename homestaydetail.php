@@ -15,8 +15,12 @@ if (!$homestayId) {
   echo "Invalid homestay id.";
   exit;
 }
-
-$stmt = $conn->prepare("SELECT homestay_id, name, location, rating, description, profile_image, host_name, price, user_id FROM homestays WHERE homestay_id = ? LIMIT 1");
+$stmt = $conn->prepare("SELECT h.homestay_id, h.name, h.location, h.description, h.profile_image, h.host_name, h.price, h.user_id,
+                        IFNULL(AVG(t.rating), 0) as avg_rating
+                        FROM homestays h
+                        LEFT JOIN testimonials t ON h.homestay_id = t.homestay_id
+                        WHERE h.homestay_id = ?
+                        GROUP BY h.homestay_id LIMIT 1");
 $stmt->bind_param("i", $homestayId);
 $stmt->execute();
 $res = $stmt->get_result();
@@ -30,7 +34,7 @@ if (!$homestay) {
 }
 
 $name = htmlspecialchars($homestay['name'] ?? 'Homestay');
-$rating = htmlspecialchars($homestay['rating'] ?? 'N/A');
+$rating = number_format((float)$homestay['avg_rating'], 1);
 $location = htmlspecialchars($homestay['location'] ?? 'Unknown location');
 $description = nl2br(htmlspecialchars($homestay['description'] ?? 'No description provided.'));
 $hostName = htmlspecialchars($homestay['host_name'] ?? 'Host');
@@ -52,11 +56,6 @@ while ($imgRow = $imgRes->fetch_assoc()) {
 }
 $imgStmt->close();
 
-if ($profileFile === '' && !empty($galleryImgs)) {
-    $primaryImg = $galleryImgs[0];
-    array_shift($galleryImgs);
-}
-
 $isAdminOrCreator = ($isLoggedIn && ($userRole === 'admin' || $userId == $creatorId));
 
 function encodeImagePath($path) {
@@ -71,59 +70,56 @@ function encodeImagePath($path) {
     <title><?php echo $name; ?> Homestay Detail</title>
     <link rel="stylesheet" href="./css/homestaydetail.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <style>
+   <style>
     .admin_edit_box { 
-        background: rgb(253, 253, 253); 
-        padding: 15px; 
-        border: 1px solid rgb(221, 221, 221); 
-        border-radius: 8px; 
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); 
-    }
-    .admin_edit_box h3 { 
-        margin-bottom: 12px; 
-        font-size: 18px; 
-        color: rgb(51, 51, 51); 
-        border-bottom: 1px solid rgb(238, 238, 238); 
-        padding-bottom: 5px; 
-    }
-    .edit_label { 
-        font-size: 13px; 
-        font-weight: bold; 
-        color: rgb(85, 85, 85); 
-        display: block; 
-        margin-bottom: 3px; 
-        text-align: left; 
-    }
-    .edit_input { 
-        width: 100%; 
-        padding: 10px; 
-        margin-bottom: 12px; 
-        border: 1px solid rgb(204, 204, 204); 
-        border-radius: 5px; 
-    }   
-    .save_btn { 
-        background: rgb(40, 167, 69) !important; 
-        color: rgb(255, 255, 255) !important; 
-        border: none; 
-        padding: 12px; 
-        width: 100%; 
-        border-radius: 5px; 
-        cursor: pointer; 
-        font-weight: bold; 
-        font-size: 15px; 
-    } 
-    .delete_btn { 
-        background: rgb(220, 53, 69) !important; 
-        color: rgb(255, 255, 255) !important; 
-        border: none; 
-        padding: 12px; 
-        width: 100%; 
-        border-radius: 5px; 
-        cursor: pointer; 
-        font-weight: bold; 
-        margin-top: 8px; 
-        font-size: 15px; 
-    }
+    background: rgb(253, 253, 253); 
+    padding: 15px; 
+    border: 1px solid rgb(221, 221, 221); 
+    border-radius: 8px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); 
+}
+
+.edit_label { 
+    font-size: 13px; 
+    font-weight: bold; 
+    color: rgb(85, 85, 85); 
+    display: block; 
+    margin-bottom: 3px; 
+    text-align: left; 
+}
+
+.edit_input { 
+    width: 100%; 
+    padding: 10px; 
+    margin-bottom: 12px; 
+    border: 1px solid rgb(204, 204, 204); 
+    border-radius: 5px; 
+}   
+
+.save_btn { 
+    background: rgb(40, 167, 69) !important; 
+    color: rgb(255, 255, 255) !important; 
+    border: none; 
+    padding: 12px; 
+    width: 100%; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    font-size: 15px; 
+} 
+
+.delete_btn { 
+    background: rgb(220, 53, 69) !important; 
+    color: rgb(255, 255, 255) !important; 
+    border: none; 
+    padding: 12px; 
+    width: 100%; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    margin-top: 8px; 
+    font-size: 15px; 
+}
 </style>
 </head>
 <body>
@@ -133,9 +129,8 @@ function encodeImagePath($path) {
         <a href="index1.php">Home</a>
         <a href="Homestay.php">Homestays</a>
         <?php if ($isLoggedIn): ?>
-    <a href="Backend/my_bookings.php">My Bookings</a>
-  
-  <?php endif; ?>
+            <a href="Backend/my_bookings.php">My Bookings</a>
+        <?php endif; ?>
         <a href="Contact.php">Contact</a>
       </div>
       <div class="Login_container">
@@ -174,7 +169,6 @@ function encodeImagePath($path) {
                 <div class="img2"><img src="<?php echo htmlspecialchars(encodeImagePath($g)); ?>" /></div>
               <?php endforeach; ?>
             <?php else: ?>
-              <div class="img2"><img src="<?php echo htmlspecialchars(encodeImagePath($primaryImg)); ?>" /></div>
               <div class="img2"><img src="<?php echo htmlspecialchars(encodeImagePath($primaryImg)); ?>" /></div>
               <div class="img2"><img src="<?php echo htmlspecialchars(encodeImagePath($primaryImg)); ?>" /></div>
               <div class="img2"><img src="<?php echo htmlspecialchars(encodeImagePath($primaryImg)); ?>" /></div>
@@ -220,8 +214,10 @@ function encodeImagePath($path) {
                 <?php else: ?><button type="button" onclick="loginPrompt()">Reserve Now</button><?php endif; ?>
               </div>
               <a href="review.php?id=<?php echo $homestayId; ?>" class="write-review-link">
-                <button type="button" class="write_review_btn_custom"><i class="fa fa-star"></i> Write a Review</button>
-              </a>
+    <button type="button" class="write_review_btn_custom">
+        <i class="fa fa-star"></i> Write a Review
+    </button>
+</a>
             </form>
           <?php endif; ?>
         </div>
@@ -254,14 +250,6 @@ function encodeImagePath($path) {
             <div class="Room_No">
               <div class="room1"><p><i class="fa-regular fa-user"></i>4 Guests</p></div>
               <div class="room1"><p><i class="fa-solid fa-bed"></i>2 Double Beds</p></div>
-              <div class="room1"><p><i class="fa-solid fa-door-closed"></i>Private Bathroom</p></div>
-            </div>
-          </div>
-          <div class="Room_box" style="margin-top: 20px;">
-            <p>Traditional Double Room</p>
-            <div class="Room_No">
-              <div class="room1"><p><i class="fa-regular fa-user"></i>2 Guests</p></div>
-              <div class="room1"><p><i class="fa-solid fa-bed"></i>1 Double Bed</p></div>
               <div class="room1"><p><i class="fa-solid fa-door-closed"></i>Private Bathroom</p></div>
             </div>
           </div>
@@ -302,7 +290,7 @@ function encodeImagePath($path) {
         }
       }
       function confirmDelete(id) {
-        if (confirm('Are you sure you want to delete this homestay? This action cannot be undone.')) {
+        if (confirm('Are you sure you want to delete this homestay?')) {
             window.location.href = 'Backend/delete_homestay.php?id=' + id;
         }
       }

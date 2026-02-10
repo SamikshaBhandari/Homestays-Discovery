@@ -1,7 +1,6 @@
 <?php
 session_start();
 include 'databaseconnection.php';
-
 if (!isset($_SESSION['user_id']) || !isset($_GET['id'])) {
     header("Location: ../Login.html");
     exit;
@@ -17,9 +16,15 @@ $stmt->bind_param("ii", $booking_id, $user_id);
 if ($stmt->execute()) {
     echo "<script>
             alert('Booking request cancelled successfully.');
-            window.location.href = '../my_booking.php';
+            window.location.href = 'my_bookings.php'; 
           </script>";
 } else {
-    echo "Error: " . $conn->error;
+    echo "<script>
+            alert('Error: Could not cancel booking.');
+            window.location.href = 'my_bookings.php';
+          </script>";
 }
+
+$stmt->close();
+$conn->close();
 ?>

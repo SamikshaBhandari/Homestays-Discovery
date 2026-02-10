@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+$isLoggedIn = isset($_SESSION['user_id']); 
 $redirectSelf = rawurlencode($_SERVER['REQUEST_URI']);
 if (!isset($_SESSION['user_id'])) {
     header("Location: Login.html?redirect={$redirectSelf}");
@@ -50,7 +50,7 @@ $profile_image= $homestay['profile_image'] ? 'images/' . $homestay['profile_imag
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Complete Booking - <?php echo $homestay_name; ?></title>
+  <title>Complete Booking  <?php echo $homestay_name; ?></title>
   <link rel="stylesheet" href="./css/confirm_booking.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 </head>
@@ -60,7 +60,9 @@ $profile_image= $homestay['profile_image'] ? 'images/' . $homestay['profile_imag
   <div class="navigation">
     <a href="index1.php">Home</a>
     <a href="Homestay.php">Homestays</a>
-    <a href="#">Notification</a>
+    <?php if ($isLoggedIn): ?>
+            <a href="Backend/my_bookings.php">My Bookings</a>
+        <?php endif; ?>
     <a href="Contact.php">Contact</a>
   </div>
   <div class="Login_container">
