@@ -79,8 +79,10 @@ $reviews_result = mysqli_query($conn, $reviews_sql);
         <div class="navigation">
             <a href="index1.php">Home</a>
             <a href="Homestay.php">Homestays</a>
+             <?php if ($isLoggedIn): ?>
+              <a href="Backend/my_bookings.php">My Bookings</a>  
+          <?php endif; ?>
             <a href="Contact.php">Contact</a>
-            <a href="Notifications.php">Notifications</a>
         </div>
         <div class="Login_container">
             <?php if ($isLoggedIn): 

@@ -301,7 +301,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="email">
               <label>Country (Optional)</label>
-              <input type="text" name="guest_country" placeholder="e.g., Japan, USA" />
+              <input type="text" name="guest_country" placeholder="e.g. Nepal" />
             </div>
           </div>
 
