@@ -2,147 +2,179 @@
 session_start();
 include '../databaseconnection.php';
 
-if (!isset($_SESSION['user_id'])) {
-    header('Location: ../../Login.html');
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+    header("Location: ../../Login.html");
     exit;
 }
+
+$userName = $_SESSION['name'];
+$userEmail = $_SESSION['email'];
 
 $messages_sql = "SELECT * FROM contact_messages ORDER BY created_at DESC";
 $messages_result = mysqli_query($conn, $messages_sql);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>View Contact Messages</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+    <meta charset="UTF-8">
+    <title>Messages</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-      * {
-         margin: 0;
-       padding: 0;
-        box-sizing: border-box;
-     }
-      body {
-         font-family: Arial, sans-serif;
-          background: rgb(248, 249, 250);
-           padding: 20px;
-         }
-      .container {
-         max-width: 1200px; 
-         margin: 0 auto;
-         }
-      h1 {
-         color: rgb(44, 62, 80);
-          margin-bottom: 30px; 
-          text-align: center;
-         }
-      .message-card {
-         background: white;
-          padding: 20px;
-           margin-bottom: 20px;
-            border-radius: 8px; 
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-         }
-      .message-header { 
-        display: flex;
-         justify-content: space-between;
-          align-items: center;
-           margin-bottom: 15px; 
-           border-bottom: 2px solid rgb(240, 240, 240);
-            padding-bottom: 10px;
-         }
-      .message-header h3 {
-         color: rgb(44, 62, 80); margin: 0;
-         }
-      .message-date { 
-        color: rgb(127, 140, 141);
-         font-size: 14px;
-         }
-      .message-info {
-         display: grid;
-          grid-template-columns: repeat(3, 1fr);
-           gap: 15px; 
-           margin-bottom: 15px;
-         }
-      .info-item {
-         color: rgb(85, 85, 85); 
-         font-size: 14px; 
-        }
-      .info-item i { 
-        color: rgb(52, 152, 219);
-       margin-right: 5px;
-     }
-      .message-text {
-         color: rgb(85, 85, 85); 
-         line-height: 1.6;
-          background: rgb(248, 249, 250); 
-          padding: 15px; 
-          border-radius: 6px;
-         }
-      .no-messages { 
-        text-align: center;
-         padding: 60px 20px;
-          color: rgb(127, 140, 141);
-         }
-      .back-btn {
-         display: inline-block;
-          margin-bottom: 20px;
-           background: rgb(23, 64, 214);
-            color: white; padding: 10px 20px;
-             text-decoration: none;
-              border-radius: 6px;
-             }
-      .back-btn:hover { 
-        background: rgb(15, 45, 150);
-     }
-    </style>
+        * { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+body { 
+    font-family: sans-serif; 
+    background: rgba(240, 242, 245, 1); 
+    display: flex; 
+}
+.sidebar { 
+    width: 240px; 
+    background: rgba(44, 62, 80, 1); 
+    min-height: 100vh; 
+    position: fixed; 
+}
+.sidebar h2 { 
+    color: rgba(255, 255, 255, 1); 
+    padding: 20px; 
+    text-align: center; 
+    background: rgba(30, 39, 46, 1); 
+    font-size: 18px; 
+}
+.sidebar a { 
+    display: block; 
+    color: rgba(189, 195, 199, 1); 
+    padding: 15px 20px; 
+    text-decoration: none; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+}
+.sidebar a:hover, .sidebar a.active { 
+    background: rgba(52, 152, 219, 1); 
+    color: rgba(255, 255, 255, 1); 
+}
+.main { 
+    margin-left: 240px; 
+    width: 100%; 
+    padding: 20px; 
+}
+.top-nav { 
+    background: rgba(255, 255, 255, 1); 
+    padding: 10px 20px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    border-radius: 5px; 
+    margin-bottom: 20px; 
+}
+.admin-info { 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+}
+.admin-info img { 
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%; 
+}
+.msg-box { 
+    background: rgba(255, 255, 255, 1); 
+    padding: 20px; 
+    border-radius: 8px; 
+    margin-bottom: 20px; 
+    display: flex; 
+    gap: 15px; 
+    border: 1px solid rgba(0,0,0,0.05); 
+}
+.user-pic { 
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%; 
+}
+.msg-body { 
+    flex: 1; 
+}
+.msg-header { 
+    display: flex; 
+    justify-content: space-between; 
+    margin-bottom: 5px; 
+}
+.msg-name { 
+    font-weight: bold; 
+    color: rgb(19, 20, 21); 
+}
+.msg-date { 
+    font-size: 12px; 
+    color: rgba(127, 140, 141, 1); 
+}
+.msg-meta { 
+    font-size: 13px; 
+    color: rgb(73, 73, 74); 
+    margin-bottom: 10px; 
+}
+.msg-text { 
+    background: rgba(248, 249, 250, 1); 
+    padding: 10px; 
+    border-radius: 5px; 
+    font-size: 14px; 
+    color: rgb(59, 60, 60); 
+    line-height: 1.5; 
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <a href="dashboard.php" class="back-btn"><i class="fa fa-arrow-left"></i> Back to Dashboard</a>
-        
-        <h1><i class="fa fa-envelope"></i> Contact Messages</h1>
 
-        <?php if ($messages_result && mysqli_num_rows($messages_result) > 0): ?>
-            <?php while ($msg = mysqli_fetch_assoc($messages_result)): ?>
-            <div class="message-card">
-                <div class="message-header">
-                    <h3><?php echo htmlspecialchars($msg['subject']); ?></h3>
-                    <span class="message-date">
-                        <i class="fa fa-clock"></i> 
-                        <?php echo date('M d, Y - h:i A', strtotime($msg['created_at'])); ?>
-                    </span>
-                </div>
-                
-                <div class="message-info">
-                    <div class="info-item">
-                        <i class="fa fa-user"></i>
-                        <strong>Name:</strong> <?php echo htmlspecialchars($msg['full_name']); ?>
-                    </div>
-                    <div class="info-item">
-                        <i class="fa fa-envelope"></i>
-                        <strong>Email:</strong> <?php echo htmlspecialchars($msg['email']); ?>
-                    </div>
-                    <div class="info-item">
-                        <i class="fa fa-phone"></i>
-                        <strong>Phone:</strong> <?php echo htmlspecialchars($msg['phone']); ?>
-                    </div>
-                </div>
-                
-                <div class="message-text">
-                    <strong>Message:</strong><br>
-                    <?php echo nl2br(htmlspecialchars($msg['message'])); ?>
-                </div>
-            </div>
-            <?php endwhile; ?>
-        <?php else: ?>
-            <div class="no-messages">
-                <i class="fa fa-inbox" style="font-size: 64px; color: rgb(189, 195, 199); margin-bottom: 20px; display: block;"></i>
-                <p style="font-size: 18px;">No messages yet.</p>
-            </div>
-        <?php endif; ?>
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <a href="dashboard.php">Dashboard</a>
+        <a href="manage_bookings.php">Manage Bookings</a>
+        <a href="manage_homestays.php">Manage Homestays</a>
+        <a href="manage_users.php">Manage Users</a>
+        <a href="view_messages.php" class="active">View Messages</a>
+        <a href="../../Homestay.php">Public Site</a>
+        <a href="../logout.php" style="color: rgba(231, 76, 60, 1);">Logout</a>
     </div>
+
+    <div class="main">
+        
+        <div class="top-nav">
+            <h3 style="color: rgba(44, 62, 80, 1);">User Feedbacks</h3>
+            <div class="admin-info">
+                <div style="text-align: right;">
+                    <b style="font-size: 14px; display: block;"><?php echo $userName; ?></b>
+                    <span style="color: rgba(127, 140, 141, 1); font-size: 12px;">Admin</span>
+                </div>
+                <img src="https://www.gravatar.com/avatar/<?php echo md5(strtolower(trim($userEmail))); ?>?d=mp" alt="Admin">
+            </div>
+        </div>
+
+        <?php while ($row = mysqli_fetch_assoc($messages_result)): ?>
+            <div class="msg-box">
+                <img src="https://www.gravatar.com/avatar/<?php echo md5(strtolower(trim($row['email']))); ?>?d=mp" class="user-pic">
+                
+                <div class="msg-body">
+                    <div class="msg-header">
+                        <span class="msg-name"><?php echo htmlspecialchars($row['full_name']); ?></span>
+                        <span class="msg-date"><?php echo date('M d, Y', strtotime($row['created_at'])); ?></span>
+                    </div>
+                    
+                    <div class="msg-meta">
+                        <i class="fa fa-envelope"></i> <?php echo htmlspecialchars($row['email']); ?> | 
+                        <i class="fa fa-phone"></i> <?php echo htmlspecialchars($row['phone']); ?> |
+                        <b>Subject:</b> <?php echo htmlspecialchars($row['subject']); ?>
+                    </div>
+
+                    <div class="msg-text">
+                        <?php echo nl2br(htmlspecialchars($row['message'])); ?>
+                    </div>
+                </div>
+            </div>
+        <?php endwhile; ?>
+
+    </div>
+
 </body>
 </html>
 <?php mysqli_close($conn); ?>
