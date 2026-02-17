@@ -169,9 +169,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <div class="navigation">
   <a href="index1.php">Home</a>
   <a href="Homestay.php">Homestays</a>
-  <?php if ($isLoggedIn): ?>
+ <?php if ($isLoggedIn && $_SESSION['role'] !== 'admin'): ?>
     <a href="Backend/my_bookings.php">My Bookings</a>
-  <?php endif; ?>
+<?php endif; ?>
   <a href="Contact.php">Contact</a>
 </div>
 

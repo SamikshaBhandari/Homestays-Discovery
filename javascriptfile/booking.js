@@ -22,8 +22,7 @@ const updateSummary = () => {
     
     if(displayNights) displayNights.textContent = nights;
     if(displayGuests) displayGuests.textContent = guests;
-    
-    const total = nights * pricePerNight;
+    const total = nights * pricePerNight * guests;
     if(subtotalText) subtotalText.textContent = 'Rs.' + total;
     if(totalAmountText) totalAmountText.textContent = 'Rs.' + total;
 };

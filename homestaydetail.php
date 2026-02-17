@@ -128,9 +128,9 @@ function encodeImagePath($path) {
       <div class="navigation">
         <a href="index1.php">Home</a>
         <a href="Homestay.php">Homestays</a>
-        <?php if ($isLoggedIn): ?>
-            <a href="Backend/my_bookings.php">My Bookings</a>
-        <?php endif; ?>
+        <?php if ($isLoggedIn && $_SESSION['role'] !== 'admin'): ?>
+    <a href="Backend/my_bookings.php">My Bookings</a>
+<?php endif; ?>
         <a href="Contact.php">Contact</a>
       </div>
       <div class="Login_container">
